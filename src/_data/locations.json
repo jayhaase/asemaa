@@ -1,0 +1,16 @@
+[
+    {
+      "id": "loc-1",
+      "name": "Place Name 1",
+      "description": "This is a description of Place Name 1 and its significance to Asemaa.",
+      "x": 45,
+      "y": 30
+    },
+    {
+      "id": "loc-2",
+      "name": "Place Name 2",
+      "description": "This is a description of Place Name 2 and its significance to Asemaa.",
+      "x": 60,
+      "y": 50
+    }
+  ]
