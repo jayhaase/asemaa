@@ -1,0 +1,31 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# 11ty output
+_site/
+.cache/
+
+# macOS
+.DS_Store
+.AppleDouble
+.Spotlight-V100
+.Trashes
+.VolumeIcon.icns
+._*
+
+# Logs
+*.log
+
+# Editor & System Files
+.vscode/
+.idea/
+*.sublime-workspace
+Thumbs.db
+ehthumbs.db
+
+# Optional: 11ty data
+data/*.json
