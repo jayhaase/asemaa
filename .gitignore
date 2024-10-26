@@ -1,0 +1,31 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# 11ty output
+_site/                  # Default 11ty output directory
+.cache/                 # Optional cache directory if used
+
+# macOS
+.DS_Store               # macOS Finder metadata
+.AppleDouble            # macOS resource fork
+.Spotlight-V100         # Spotlight indexing
+.Trashes                # macOS trash folder
+.VolumeIcon.icns        # Custom volume icons
+._*                     # macOS resource forks
+
+# Logs
+*.log
+
+# Editor & System Files
+.vscode/                # VSCode settings
+.idea/                  # JetBrains IDE settings
+*.sublime-workspace     # Sublime Text settings
+Thumbs.db               # Windows Explorer thumbnail cache
+ehthumbs.db             # Windows Explorer enhanced thumbnails
+
+# Optional: 11ty data
+data/*.json             # If using generated JSON data files
