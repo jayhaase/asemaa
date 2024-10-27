@@ -12,7 +12,10 @@
             <h1 class="ml-5">{{ title }}</h1>
         </header>
         <main class="max-w-3xl mx-auto py-12 min-h-screen">
-            {{ content | safe }} <img src="/images/turtle-island.png" alt="Turtle Island" class="map">
+            {{ content | safe }} 
+            <div class="flex justify-center items-center">
+                <img src="/images/turtle-island.png" alt="Turtle Island" class="map">
+            </div>
             <div class="pointers">
                 {% for location in locations %}
                     <div class="pointer" style="top: {{ location.y }}%; left: {{ location.x }}%;" data-location="{{ location.id }}" data-title="{{ location.name }}" data-description="{{ location.description }}">
