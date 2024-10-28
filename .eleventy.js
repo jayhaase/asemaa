@@ -1,15 +1,16 @@
-module.exports = function(eleventyConfig) {
-    // Ensure images are copied over
-    eleventyConfig.addPassthroughCopy("src/images");
-    eleventyConfig.addPassthroughCopy("src/css/styles.css");
-    eleventyConfig.addPassthroughCopy("src/js");
+const markdownIt = require("markdown-it");
 
-    return {
-      dir: {
-        input: "src",
-        output: "_site",
-        layouts: "_layouts"
-      }
-    };
+module.exports = function (eleventyConfig) {
+  // Moving files
+  eleventyConfig.addPassthroughCopy("src/images");
+  eleventyConfig.addPassthroughCopy("src/css/styles.css");
+  eleventyConfig.addPassthroughCopy("src/js");
+
+  return {
+    dir: {
+      input: "src",
+      output: "_site",
+      layouts: "_layouts"
+    },
   };
-  
+};
