@@ -3,7 +3,7 @@ layout: base.njk
 title: Asemaa
 subtitle: The Journey of Seeds
 pageTitle: The Paths of Asemaa
-leftPanelTitle: Miigwech Asemaa
+leftPanelTitle: Miigwech Asemaa!
 leftPanelSubtitle: Thank you sacred tobacco!
 rightPanelTitle: Mikinak Minis
 rightPanelSubtitle: Turtle Island

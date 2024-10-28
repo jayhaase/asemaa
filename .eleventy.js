@@ -1,5 +1,3 @@
-const markdownIt = require("markdown-it");
-
 module.exports = function (eleventyConfig) {
   // Moving files
   eleventyConfig.addPassthroughCopy("src/images");
@@ -9,8 +7,6 @@ module.exports = function (eleventyConfig) {
   return {
     dir: {
       input: "src",
-      output: "_site",
-      layouts: "_layouts"
     },
   };
 };
