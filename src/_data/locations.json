@@ -17,35 +17,14 @@
       "id": "loc-3",
       "name": "Seed Location 3",
       "description": "This is a description of a seed location and its significance to Asemaa.",
-      "x": 60,
-      "y": 50
+      "x": 50,
+      "y": 40
     },
     {
       "id": "loc-4",
       "name": "Seed Location 4",
       "description": "This is a description of a seed location and its significance to Asemaa.",
-      "x": 60,
-      "y": 50
-    },
-    {
-      "id": "loc-5",
-      "name": "Seed Location 5",
-      "description": "This is a description of a seed location and its significance to Asemaa.",
-      "x": 60,
-      "y": 50
-    },
-    {
-      "id": "loc-6",
-      "name": "Seed Location 6",
-      "description": "This is a description of a seed location and its significance to Asemaa. This is a description of a seed location and its significance to Asemaa. This is a description of a seed location and its significance to Asemaa. This is a description of a seed location and its significance to Asemaa. This is a description of a seed location and its significance to Asemaa. This is a description of a seed location and its significance to Asemaa.",
-      "x": 60,
-      "y": 50
-    },
-    {
-      "id": "loc-7",
-      "name": "Seed Location 7",
-      "description": "This is a description of a seed location and its significance to Asemaa.",
-      "x": 60,
-      "y": 50
+      "x": 30,
+      "y": 30
     }
   ]
