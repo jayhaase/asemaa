@@ -1,12 +1,19 @@
 module.exports = function (eleventyConfig) {
-  // Moving files
-  eleventyConfig.addPassthroughCopy("src/images");
-  eleventyConfig.addPassthroughCopy("src/css/styles.css");
-  eleventyConfig.addPassthroughCopy("src/js");
+  // Static assets
+  eleventyConfig.addPassthroughCopy({ "src/assets/images": "images" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/css": "css" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/js": "js" });
 
   return {
     dir: {
       input: "src",
+      output: "_site",
+      includes: "_includes",
+      layouts: "_includes/layouts",
+      data: "_data"
     },
+    templateFormats: ["md", "njk"],
+    markdownTemplateEngine: "njk",
+    htmlTemplateEngine: "njk"
   };
 };

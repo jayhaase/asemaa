@@ -28,7 +28,7 @@
                 class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 max-w-5xl w-full px-4 md:px-0">
                 <!-- Left Card (33%) -->
                 {% set cardText = { title:leftPanelTitle, subtitle: leftPanelSubtitle } %}
-                {% include "_heading_side_card.njk" %}
+                {% include "partials/heading_side_card.njk" %}
                 <!-- Center Card (33%) -->
                 <div class="bg-white border border-gray-300 rounded-lg shadow-lg p-6 w-1/3 max-w-md text-center flex flex-col justify-center
                         h-full">
@@ -37,7 +37,7 @@
                 </div>
                 <!-- Right Card (33%) -->
                 {% set cardText = { title:rightPanelTitle, subtitle: rightPanelSubtitle } %}
-                {% include "_heading_side_card.njk" %}
+                {% include "partials/heading_side_card.njk" %}
             </div>
         </div>
         <main class="content font-body max-w-3xl mx-auto py-6 min-h-screen">
