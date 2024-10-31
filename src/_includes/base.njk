@@ -32,22 +32,21 @@
                 {% include "_heading_side_card.njk" %}
             </div>
         </div>
-        {# <h2 class="ml-5 font-header  text-1xl font-bold py-6">{{ pageTitle }}</h2> #}
         <main class="content font-body max-w-3xl mx-auto py-6 min-h-screen">
             {{ content | safe }}
             <div class="flex space-x-6 py-12">
                 <div
-                    x-data="{ open: '', marker: { x: 0, y: 0, visible: false } }" class="flex space-x-6 py-12">
+                    x-data="{ open: '', marker: { x: 0, y: 0, visible: false } }" class="flex space-x-6">
                     <!-- Sidebar with Key Locations Accordion -->
                     <aside class="w-1/3 bg-white border border-gray-300 rounded-lg p-4">
-                        <h2 class="text-xl font-semibold mb-4">Key Locations</h2>
+                        <h2 class="text-xl font-semibold mb-4">The Journey</h2>
                         <div x-data="{ open: '' }" class="space-y-2">
                             {% for location in locations %}
                                 <div>
                                     <!-- Accordion Button -->
                                     <button
-                                        @click="open === '{{ location.name }}' ? open = '' : open = '{{ location.name }}'; marker = { x: {{ location.x }}, y: {{
-                                            location.y }}, visible: true }"
+                                        @click="open === '{{ location.name }}' ? open = '' : open = '{{ location.name }}'; marker = { x: {{ location.coordinates.x }}, y: {{ location.coordinates.y }}, visible: true }"
+
                                         class="w-full text-left px-4 py-2 text-blue-500 hover:underline">
                                         {{ location.name }}
                                     </button>
@@ -57,9 +56,6 @@
                                         x-transition:enter="transition ease-out duration-300"
                                         x-transition:enter-start="opacity-0 max-h-0"
                                         x-transition:enter-end="opacity-100 max-h-96"
-                                        x-transition:leave="transition ease-in duration-300"
-                                        x-transition:leave-start="opacity-100"
-                                        x-transition:leave-end="opacity-0"
                                         class="overflow-hidden bg-gray-100 px-4 py-2">
                                         <p>{{ location.description }}</p>
                                     </div>

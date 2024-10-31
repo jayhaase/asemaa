@@ -3,28 +3,48 @@
       "id": "loc-1",
       "name": "Seed Location 1",
       "description": "This is a description of a seed location and its significance to Asemaa.",
-      "x": 50,
-      "y": 50
+      "coordinates": {
+        "x": 50,
+        "y": 50
+      },
+      "historicalSignificance": "Historical significance details for Location 1",
+      "imageUrl": "/images/location1.jpg",
+      "yearEstablished": "1750"
     },
     {
       "id": "loc-2",
       "name": "Seed Location 2",
       "description": "This is a description of a seed location and its significance to Asemaa.",
-      "x": 60,
-      "y": 50
+      "coordinates": {
+        "x": 60,
+        "y": 50
+      },
+      "historicalSignificance": "Historical significance details for Location 2",
+      "imageUrl": "/images/location2.jpg",
+      "yearEstablished": "1803"
     },
     {
       "id": "loc-3",
       "name": "Seed Location 3",
       "description": "This is a description of a seed location and its significance to Asemaa.",
-      "x": 50,
-      "y": 40
+      "coordinates": {
+        "x": 50,
+        "y": 40
+      },
+      "historicalSignificance": "Historical significance details for Location 3",
+      "imageUrl": "/images/location3.jpg",
+      "yearEstablished": "1832"
     },
     {
       "id": "loc-4",
       "name": "Seed Location 4",
       "description": "This is a description of a seed location and its significance to Asemaa.",
-      "x": 30,
-      "y": 30
+      "coordinates": {
+        "x": 30,
+        "y": 30
+      },
+      "historicalSignificance": "Historical significance details for Location 4",
+      "imageUrl": "/images/location4.jpg",
+      "yearEstablished": "1850"
     }
   ]
