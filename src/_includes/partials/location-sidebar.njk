@@ -3,11 +3,19 @@
     <!-- Scrollable container -->
     <div class="overflow-y-auto max-h-[600px] space-y-4 pr-2">
         {% for location in locations %}
-            <div
-                class="bg-gray-50 rounded-lg p-4 border border-gray-200 hover:border-gray-300 transition-colors"
-                @mouseenter="marker = { x: {{ location.coordinates.x }}, y: {{ location.coordinates.y }}, visible: true }">
+            <div 
+                class="bg-gray-50 rounded-lg p-4 border border-gray-200 hover:border-gray-300 transition-colors cursor-pointer"
+                @mouseenter="marker = { x: {{ location.coordinates.x }}, y: {{ location.coordinates.y }}, visible: true }"
+                @mouseleave="marker.visible = false"
+                @click="selectedLocation = {
+                    name: '{{ location.name | safe }}',
+                    description: '{{ location.description | safe }}',
+                    historicalSignificance: '{{ location.historicalSignificance | safe }}',
+                    yearEstablished: '{{ location.yearEstablished }}'
+                }; showDialog = true">
+                
                 <h3 class="font-semibold text-lg mb-2">{{ location.name }}</h3>
-                <p class="text-sm text-gray-600 mb-2">{{ location.description }}</p>
+                <p class="text-sm text-gray-600 line-clamp-2">{{ location.description }}</p>
             </div>
         {% endfor %}
     </div>

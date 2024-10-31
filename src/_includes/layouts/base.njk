@@ -20,57 +20,127 @@
         <meta property="og:image" content="">
     </head>
     <body>
-        <div
-            class="flex items-center justify-center py-4 bg-gray-100">
-            <!-- Container for three cards in a row -->
+        <!-- Test Button -->
+        <button 
+            onclick="document.getElementById('location-dialog').style.display = 'flex'"
+            class="fixed top-4 left-4 bg-blue-500 text-white px-4 py-2 rounded">
+            Test Dialog
+        </button>
+
+        <div 
+            x-data="{ 
+                marker: { x: 0, y: 0, visible: false },
+                showDialog: false,
+                selectedLocation: null
+            }"
+            @show-location.window="
+                selectedLocation = $event.detail;
+                showDialog = true;
+                console.log('Event received:', selectedLocation, showDialog)
+            ">
             <div
-                class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 max-w-5xl w-full px-4 md:px-0">
-                <!-- Left Card (33%) -->
-                {% set cardText = { title:leftPanelTitle, subtitle: leftPanelSubtitle } %}
-                {% include "partials/heading-side-card.njk" %}
-                <!-- Center Card (33%) -->
-                <div class="bg-white border border-gray-300 rounded-lg shadow-lg p-6 w-1/3 max-w-md text-center flex flex-col justify-center
-                        h-full">
-                    <h1 class="font-heading text-5xl font-semibold text-gray-800">{{ title }}</h1>
-                    <h2 class="font-heading text-xl mt-2 text-gray-600">{{ subtitle }}</h2>
-                </div>
-                <!-- Right Card (33%) -->
-                {% set cardText = { title:rightPanelTitle, subtitle: rightPanelSubtitle } %}
-                {% include "partials/heading-side-card.njk" %}
-            </div>
-        </div>
-        <main class="content font-body max-w-3xl mx-auto py-6 min-h-screen">
-            {{ content | safe }}
-            <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 py-12">
+                class="flex items-center justify-center py-4 bg-gray-100">
+                <!-- Container for three cards in a row -->
                 <div
-                    x-data="{ open: '', marker: { x: 0, y: 0, visible: false } }" class="flex space-x-6">
-                    <!-- Sidebar with Key Locations -->
-                    {% include "partials/location-sidebar.njk" %}
-                    <!-- Map Area with Image and Marker -->
-                    <div class="flex-1 relative bg-white border border-gray-300 rounded-lg p-4 flex items-center justify-center min-h-[600px]">
-                        <!-- Map Image -->
-                        <img
-                            src="/images/turtle-island.png" 
-                            alt="Turtle Island" 
-                            class="map w-full max-h-[600px] object-contain">
-                        <!-- Marker -->
-                        <div
-                            x-show="marker.visible"
-                            x-transition:enter="transition ease-out duration-200"
-                            x-transition:enter-start="opacity-0 scale-50"
-                            x-transition:enter-end="opacity-100 scale-100"
-                            :style="{ left: marker.x + '%', top: marker.y + '%' }"
-                            class="absolute bg-red-500 h-4 w-4 rounded-full transform -translate-x-1/2 -translate-y-1/2 border border-black">
-                            <!-- Optional: Add pulse effect -->
-                            <div class="absolute w-full h-full rounded-full bg-red-500 animate-ping opacity-75"></div>
+                    class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 max-w-5xl w-full px-4 md:px-0">
+                    <!-- Left Card (33%) -->
+                    {% set cardText = { title:leftPanelTitle, subtitle: leftPanelSubtitle } %}
+                    {% include "partials/heading-side-card.njk" %}
+                    <!-- Center Card (33%) -->
+                    <div class="bg-white border border-gray-300 rounded-lg shadow-lg p-6 w-1/3 max-w-md text-center flex flex-col justify-center
+                            h-full">
+                        <h1 class="font-heading text-5xl font-semibold text-gray-800">{{ title }}</h1>
+                        <h2 class="font-heading text-xl mt-2 text-gray-600">{{ subtitle }}</h2>
+                    </div>
+                    <!-- Right Card (33%) -->
+                    {% set cardText = { title:rightPanelTitle, subtitle: rightPanelSubtitle } %}
+                    {% include "partials/heading-side-card.njk" %}
+                </div>
+            </div>
+            <main class="content font-body max-w-3xl mx-auto py-6 min-h-screen">
+                {{ content | safe }}
+                <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 py-12">
+                    <div class="flex space-x-6">
+                        {% include "partials/location-sidebar.njk" %}
+                        {% include "partials/map-area.njk" %}
+                    </div>
+                </div>
+            </main>
+
+            <!-- Location Dialog -->
+            <div 
+                x-show="showDialog"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="fixed inset-0 z-50 bg-black/50 flex items-center justify-center"
+                @click.self="showDialog = false"
+                style="display: none">
+                
+                <div 
+                    class="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto"
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 transform scale-95"
+                    x-transition:enter-end="opacity-100 transform scale-100">
+                    
+                    <!-- Dialog Header -->
+                    <div class="border-b px-6 py-4 flex items-center justify-between">
+                        <h3 class="text-xl font-semibold" x-text="selectedLocation?.name"></h3>
+                        <button @click="showDialog = false" class="text-gray-500 hover:text-gray-700">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Dialog Content -->
+                    <div class="px-6 py-4">
+                        <div class="text-sm text-gray-500 mb-4">
+                            Established: <span x-text="selectedLocation?.yearEstablished"></span>
                         </div>
+                        
+                        <div class="prose mb-4">
+                            <h4 class="text-lg font-semibold mb-2">Description</h4>
+                            <p x-text="selectedLocation?.description"></p>
+                        </div>
+
+                        <div class="prose">
+                            <h4 class="text-lg font-semibold mb-2">Historical Significance</h4>
+                            <p x-text="selectedLocation?.historicalSignificance"></p>
+                        </div>
+                    </div>
+
+                    <!-- Dialog Footer -->
+                    <div class="border-t px-6 py-4">
+                        <button 
+                            @click="showDialog = false"
+                            class="bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-lg transition-colors">
+                            Close
+                        </button>
                     </div>
                 </div>
             </div>
-        </main>
-        <!-- Scripts moved inside body -->
+        </div>
+
+        <!-- Simple Dialog -->
+        <div 
+            id="location-dialog" 
+            style="display: none"
+            class="fixed inset-0 z-50 bg-black/50 items-center justify-center">
+            <div class="bg-white p-8 rounded-lg shadow-xl max-w-lg w-full mx-4 relative">
+                <h2 class="text-xl font-bold mb-4">Test Dialog</h2>
+                <p class="mb-4">This is a test dialog to verify that the dialog functionality works.</p>
+                <button 
+                    onclick="document.getElementById('location-dialog').style.display = 'none'"
+                    class="bg-gray-200 px-4 py-2 rounded">
+                    Close
+                </button>
+            </div>
+        </div>
+
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-        <script src="https://unpkg.com/micromodal@0.4.10/dist/micromodal.min.js"></script>
-        <script src="/js/scripts.js"></script>
     </body>
 </html>
