@@ -47,11 +47,12 @@
                     <!-- Sidebar with Key Locations -->
                     {% include "partials/location-sidebar.njk" %}
                     <!-- Map Area with Image and Marker -->
-                    <div
-                        class="flex-1 relative bg-white border border-gray-300 rounded-lg p-4">
+                    <div class="flex-1 relative bg-white border border-gray-300 rounded-lg p-4 flex items-center justify-center min-h-[600px]">
                         <!-- Map Image -->
                         <img
-                        src="/images/turtle-island.png" alt="Turtle Island" class="map w-full">
+                            src="/images/turtle-island.png" 
+                            alt="Turtle Island" 
+                            class="map w-full max-h-[600px] object-contain">
                         <!-- Marker -->
                         <div
                             x-show="marker.visible"

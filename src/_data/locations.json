@@ -1,133 +1,133 @@
 [
     {
       "id": "loc-1",
-      "name": "Grand Portage",
-      "description": "A crucial trading post where Ojibwe people exchanged Asemaa and other goods with French voyageurs.",
+      "name": "Lorem Ipsum",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "coordinates": {
         "x": 50,
         "y": 50
       },
-      "historicalSignificance": "Major gathering point for Native American and European traders, particularly important for tobacco trade routes.",
+      "historicalSignificance": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "imageUrl": "/images/location1.jpg",
       "yearEstablished": "1731"
     },
     {
       "id": "loc-2",
-      "name": "Madeline Island",
-      "description": "Sacred location where Ojibwe people cultivated and traded Asemaa among different bands.",
+      "name": "Dolor Sit",
+      "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
       "coordinates": {
         "x": 60,
         "y": 50
       },
-      "historicalSignificance": "Spiritual center for Ojibwe people and key location for traditional tobacco cultivation.",
+      "historicalSignificance": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "imageUrl": "/images/location2.jpg",
       "yearEstablished": "1693"
     },
     {
       "id": "loc-3",
-      "name": "Sault Ste. Marie",
-      "description": "Historic meeting point where multiple tribes gathered to trade Asemaa and other sacred medicines.",
+      "name": "Amet Consectetur",
+      "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
       "coordinates": {
         "x": 50,
         "y": 40
       },
-      "historicalSignificance": "One of the oldest settlements in the Great Lakes region, crucial for inter-tribal trade.",
+      "historicalSignificance": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.",
       "imageUrl": "/images/location3.jpg",
       "yearEstablished": "1668"
     },
     {
       "id": "loc-4",
-      "name": "Manitoulin Island",
-      "description": "Traditional growing grounds for Asemaa, considered sacred by many First Nations.",
+      "name": "Adipiscing Elit",
+      "description": "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.",
       "coordinates": {
         "x": 30,
         "y": 30
       },
-      "historicalSignificance": "Largest freshwater island in the world, significant spiritual site for tobacco cultivation.",
+      "historicalSignificance": "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.",
       "imageUrl": "/images/location4.jpg",
       "yearEstablished": "1650"
     },
     {
       "id": "loc-5",
-      "name": "Mackinac Island",
-      "description": "Strategic trading post where Asemaa was exchanged between various tribes and European traders.",
+      "name": "Tempor Incididunt",
+      "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum.",
       "coordinates": {
         "x": 45,
         "y": 45
       },
-      "historicalSignificance": "Key location for fur trade and diplomatic relations between tribes and Europeans.",
+      "historicalSignificance": "Deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
       "imageUrl": "/images/location5.jpg",
       "yearEstablished": "1670"
     },
     {
       "id": "loc-6",
-      "name": "Fond du Lac",
-      "description": "Important Ojibwe settlement where traditional tobacco cultivation techniques were preserved.",
+      "name": "Labore Dolore",
+      "description": "Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
       "coordinates": {
         "x": 55,
         "y": 35
       },
-      "historicalSignificance": "Center for maintaining traditional agricultural practices and seed preservation.",
+      "historicalSignificance": "Et harum quidem rerum facilis est et expedita distinctio.",
       "imageUrl": "/images/location6.jpg",
       "yearEstablished": "1720"
     },
     {
       "id": "loc-7",
-      "name": "Red Lake",
-      "description": "Sacred location where specific strains of Asemaa were cultivated and protected.",
+      "name": "Magna Aliqua",
+      "description": "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.",
       "coordinates": {
         "x": 40,
         "y": 60
       },
-      "historicalSignificance": "Home to unique varieties of traditional tobacco preserved through generations.",
+      "historicalSignificance": "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet.",
       "imageUrl": "/images/location7.jpg",
       "yearEstablished": "1750"
     },
     {
       "id": "loc-8",
-      "name": "Thunder Bay",
-      "description": "Major trading hub where Asemaa was exchanged between northern and southern tribes.",
+      "name": "Enim Minim",
+      "description": "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores.",
       "coordinates": {
         "x": 65,
         "y": 45
       },
-      "historicalSignificance": "Critical point for north-south trade routes and cultural exchange.",
+      "historicalSignificance": "Alias consequatur aut perferendis doloribus asperiores repellat.",
       "imageUrl": "/images/location8.jpg",
       "yearEstablished": "1683"
     },
     {
       "id": "loc-9",
-      "name": "Leech Lake",
-      "description": "Traditional growing area where specific ceremonial tobacco varieties were maintained.",
+      "name": "Veniam Quis",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
       "coordinates": {
         "x": 35,
         "y": 55
       },
-      "historicalSignificance": "Known for preserving ancient tobacco cultivation methods and ceremonies.",
+      "historicalSignificance": "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.",
       "imageUrl": "/images/location9.jpg",
       "yearEstablished": "1700"
     },
     {
       "id": "loc-10",
-      "name": "Rainy River",
-      "description": "Important waterway where Asemaa trade routes connected different regions.",
+      "name": "Nostrud Exercitation",
+      "description": "Nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit.",
       "coordinates": {
         "x": 70,
         "y": 40
       },
-      "historicalSignificance": "Crucial water route for tobacco trade between Lake of the Woods and Lake Superior.",
+      "historicalSignificance": "Qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.",
       "imageUrl": "/images/location10.jpg",
       "yearEstablished": "1731"
     },
     {
       "id": "loc-11",
-      "name": "White Earth",
-      "description": "Sacred location where traditional tobacco growing knowledge was passed down.",
+      "name": "Ullamco Laboris",
+      "description": "Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
       "coordinates": {
         "x": 45,
         "y": 65
       },
-      "historicalSignificance": "Center for preserving traditional ecological knowledge about tobacco cultivation.",
+      "historicalSignificance": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "imageUrl": "/images/location11.jpg",
       "yearEstablished": "1867"
     }
