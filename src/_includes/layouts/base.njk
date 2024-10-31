@@ -12,32 +12,20 @@
             rel="stylesheet">
         <meta name="description" content="Learn about Ojibwe Asemaa and its historical trading routes across Turtle Island">
         <meta property="og:title" content="{{ title }}">
-        <meta property="og:description" content="Learn about Ojibwe Asemaa and its historical trading routes across Turtle Island">
-        <meta property="og:type" content="website">
-        <!-- Add your site URL here -->
-        <meta property="og:url" content="">
-        <!-- Add your site image here -->
+        <meta
+            property="og:description"
+            content="Learn about Ojibwe Asemaa and its historical trading routes across Turtle Island">
+        <meta
+        property="og:type" content="website"> <!-- Add your site URL here -->
+        <meta
+        property="og:url" content=""> <!-- Add your site image here -->
         <meta property="og:image" content="">
     </head>
     <body>
-        <!-- Test Button -->
-        <button 
-            onclick="document.getElementById('location-dialog').style.display = 'flex'"
-            class="fixed top-4 left-4 bg-blue-500 text-white px-4 py-2 rounded">
-            Test Dialog
-        </button>
-
-        <div 
-            x-data="{ 
-                marker: { x: 0, y: 0, visible: false },
-                showDialog: false,
-                selectedLocation: null
-            }"
-            @show-location.window="
-                selectedLocation = $event.detail;
-                showDialog = true;
-                console.log('Event received:', selectedLocation, showDialog)
-            ">
+        <div
+            x-data="{ marker: { x: 0, y: 0, visible: false }, showDialog: false, selectedLocation: null }"
+            @show-location.window=" selectedLocation = $event.detail; showDialog = true; console.log('Event received:',
+                selectedLocation, showDialog) ">
             <div
                 class="flex items-center justify-center py-4 bg-gray-100">
                 <!-- Container for three cards in a row -->
@@ -66,40 +54,36 @@
                     </div>
                 </div>
             </main>
-
             <!-- Simplified Dialog -->
-            <div 
+            <div
                 x-show="showDialog"
                 x-cloak
                 class="fixed inset-0 z-50 flex items-center justify-center p-4"
                 @click.self="showDialog = false">
-                
                 <!-- Backdrop -->
                 <div class="fixed inset-0 bg-black/50"></div>
-                
                 <!-- Dialog Content -->
-                <div class="relative bg-white rounded-lg shadow-xl max-w-2xl w-full">
+                <div
+                    class="relative bg-white rounded-lg shadow-xl max-w-2xl w-full">
                     <!-- Header -->
                     <div class="border-b p-4 flex justify-between items-center">
                         <h2 class="text-xl font-semibold" x-text="selectedLocation?.name"></h2>
                         <button @click="showDialog = false" class="text-gray-500 hover:text-gray-700">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                             </svg>
                         </button>
                     </div>
-                    
                     <!-- Body -->
                     <div class="p-4 space-y-4">
                         <div class="text-sm text-gray-500">
-                            Established: <span x-text="selectedLocation?.yearEstablished"></span>
+                            Established:
+                            <span x-text="selectedLocation?.yearEstablished"></span>
                         </div>
-                        
                         <div>
                             <h3 class="font-semibold mb-2">Description</h3>
                             <p class="text-gray-600" x-text="selectedLocation?.description"></p>
                         </div>
-                        
                         <div>
                             <h3 class="font-semibold mb-2">Historical Significance</h3>
                             <p class="text-gray-600" x-text="selectedLocation?.historicalSignificance"></p>
@@ -108,23 +92,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Simple Dialog -->
-        <div 
-            id="location-dialog" 
-            style="display: none"
-            class="fixed inset-0 z-50 bg-black/50 items-center justify-center">
-            <div class="bg-white p-8 rounded-lg shadow-xl max-w-lg w-full mx-4 relative">
-                <h2 class="text-xl font-bold mb-4">Test Dialog</h2>
-                <p class="mb-4">This is a test dialog to verify that the dialog functionality works.</p>
-                <button 
-                    onclick="document.getElementById('location-dialog').style.display = 'none'"
-                    class="bg-gray-200 px-4 py-2 rounded">
-                    Close
-                </button>
-            </div>
-        </div>
-
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </body>
 </html>
