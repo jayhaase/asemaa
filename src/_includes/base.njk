@@ -11,6 +11,14 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Nunito:wght@400;700&family=Cinzel:wght@400;700&display=swap"
             rel="stylesheet">
+        <meta name="description" content="Learn about Ojibwe Asemaa and its historical trading routes across Turtle Island">
+        <meta property="og:title" content="{{ title }}">
+        <meta property="og:description" content="Learn about Ojibwe Asemaa and its historical trading routes across Turtle Island">
+        <meta property="og:type" content="website">
+        <!-- Add your site URL here -->
+        <meta property="og:url" content="">
+        <!-- Add your site image here -->
+        <meta property="og:image" content="">
     </head>
     <body>
         <div
@@ -46,7 +54,6 @@
                                     <!-- Accordion Button -->
                                     <button
                                         @click="open === '{{ location.name }}' ? open = '' : open = '{{ location.name }}'; marker = { x: {{ location.coordinates.x }}, y: {{ location.coordinates.y }}, visible: true }"
-
                                         class="w-full text-left px-4 py-2 text-blue-500 hover:underline">
                                         {{ location.name }}
                                     </button>
@@ -78,8 +85,9 @@
                 </div>
             </div>
         </main>
+        <!-- Scripts moved inside body -->
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <script src="https://unpkg.com/micromodal@0.4.10/dist/micromodal.min.js"></script>
+        <script src="/js/scripts.js"></script>
     </body>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="https://unpkg.com/micromodal@0.4.10/dist/micromodal.min.js"></script>
-    <script src="/js/scripts.js"></script>
 </html>
