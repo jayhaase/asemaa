@@ -1,15 +1,50 @@
 [
     {
       "id": "loc-1",
-      "name": "Place Name 1",
-      "description": "This is a description of Place Name 1 and its significance to Asemaa.",
-      "x": 45,
-      "y": 30
+      "name": "Seed Location 1",
+      "description": "This is a description of a seed location and its significance to Asemaa.",
+      "x": 50,
+      "y": 50
     },
     {
       "id": "loc-2",
-      "name": "Place Name 2",
-      "description": "This is a description of Place Name 2 and its significance to Asemaa.",
+      "name": "Seed Location 2",
+      "description": "This is a description of a seed location and its significance to Asemaa.",
+      "x": 60,
+      "y": 50
+    },
+    {
+      "id": "loc-3",
+      "name": "Seed Location 3",
+      "description": "This is a description of a seed location and its significance to Asemaa.",
+      "x": 60,
+      "y": 50
+    },
+    {
+      "id": "loc-4",
+      "name": "Seed Location 4",
+      "description": "This is a description of a seed location and its significance to Asemaa.",
+      "x": 60,
+      "y": 50
+    },
+    {
+      "id": "loc-5",
+      "name": "Seed Location 5",
+      "description": "This is a description of a seed location and its significance to Asemaa.",
+      "x": 60,
+      "y": 50
+    },
+    {
+      "id": "loc-6",
+      "name": "Seed Location 6",
+      "description": "This is a description of a seed location and its significance to Asemaa. This is a description of a seed location and its significance to Asemaa. This is a description of a seed location and its significance to Asemaa. This is a description of a seed location and its significance to Asemaa. This is a description of a seed location and its significance to Asemaa. This is a description of a seed location and its significance to Asemaa.",
+      "x": 60,
+      "y": 50
+    },
+    {
+      "id": "loc-7",
+      "name": "Seed Location 7",
+      "description": "This is a description of a seed location and its significance to Asemaa.",
       "x": 60,
       "y": 50
     }
