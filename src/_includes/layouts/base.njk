@@ -45,9 +45,9 @@
                     {% include "partials/heading-side-card.njk" %}
                 </div>
             </div>
-            <main class="content font-body max-w-3xl mx-auto py-6 min-h-screen">
+            <main class="content font-body max-w-3xl mx-auto py-6">
                 {{ content | safe }}
-                <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 py-12">
+                <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 p-12">
                     <div class="flex space-x-6">
                         {% include "partials/location-sidebar.njk" %}
                         {% include "partials/map-area.njk" %}
@@ -91,6 +91,16 @@
                     </div>
                 </div>
             </div>
+            <!-- Gallery link -->
+            <div class="text-center mb-8">
+                <a href="/gallery" class="inline-flex items-center text-grey-600 hover:text-blue-800 font-medium">
+                    View Turtle Island Color Samples
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+            {% include "partials/footer.njk" %}
         </div>
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </body>
