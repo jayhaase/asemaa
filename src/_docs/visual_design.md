@@ -66,7 +66,7 @@ What do you recommend as the first step for you and I to collaborate on the visu
 - **Font Options**:
   - [Lato](https://fonts.google.com/specimen/Lato), [Roboto](https://fonts.google.com/specimen/Roboto), or [Open Sans](https://fonts.google.com/specimen/Open+Sans) – Versatile and clean sans-serifs.
   - [Noto Sans](https://fonts.google.com/specimen/Noto+Sans) – Good for readability and multilingual support.
-- **Usage**: 
+- **Usage**:
   - Use for main body text to ensure readability, especially for detailed descriptions.
 
 ### 3. Accent or Decorative Font (Optional)
@@ -83,6 +83,7 @@ What do you recommend as the first step for you and I to collaborate on the visu
 ### Tailwind Font Classes
 
 Define your fonts in the `tailwind.config.js` file:
+
 ```javascript
 module.exports = {
   theme: {
