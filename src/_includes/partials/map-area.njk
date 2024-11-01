@@ -11,11 +11,12 @@
         {% for location in locations %}
         <button 
             class="absolute bg-red-400 h-2.5 w-2.5 rounded-full transform -translate-x-1/2 -translate-y-1/2 border border-white opacity-60 hover:opacity-100 hover:scale-150 transition-all cursor-pointer z-10"
-            :class="{'opacity-100 scale-150': selectedMarker.x === {{ location.coordinates.x }} && selectedMarker.y === {{ location.coordinates.y }}}"
+            :class="{'opacity-100 scale-150': selectedLocationId === '{{ location.id }}'}"
             style="left: {{ location.coordinates.x }}%; top: {{ location.coordinates.y }}%"
-            @mouseover="marker.x = {{ location.coordinates.x }}; marker.y = {{ location.coordinates.y }}; marker.visible = true"
-            @mouseleave="marker.visible = false"
+            @mouseover="marker.x = {{ location.coordinates.x }}; marker.y = {{ location.coordinates.y }}; marker.visible = true; hoveredLocationId = '{{ location.id }}'"
+            @mouseleave="marker.visible = false; hoveredLocationId = null"
             @click="$dispatch('show-location', {
+                id: '{{ location.id }}',
                 name: '{{ location.name | safe }}',
                 yearEstablished: '{{ location.yearEstablished | safe }}',
                 description: '{{ location.description | safe }}',

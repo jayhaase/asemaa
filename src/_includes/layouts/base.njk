@@ -26,6 +26,8 @@
             x-data="{ 
                 marker: { x: 0, y: 0, visible: false }, 
                 selectedMarker: { x: null, y: null },
+                hoveredLocationId: null,
+                selectedLocationId: null,
                 showDialog: false, 
                 selectedLocation: null 
             }"
@@ -33,6 +35,7 @@
                 selectedLocation = $event.detail; 
                 showDialog = true;
                 selectedMarker = { x: $event.detail.coordinates.x, y: $event.detail.coordinates.y };
+                selectedLocationId = $event.detail.id;
             ">
             <div
                 class="flex items-center justify-center py-4 bg-gray-100">
