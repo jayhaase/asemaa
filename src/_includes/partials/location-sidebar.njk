@@ -3,7 +3,7 @@
     <!-- Scrollable container -->
     <div class="overflow-y-auto max-h-[500px] space-y-4 pr-2">
         {% for location in locations %}
-            <div 
+            <div id="location-{{ location.name | replace(" ", "-") | lower }}" 
                 class="bg-gray-50 rounded-lg p-4 border border-gray-200 hover:border-gray-500 transition-colors"
                 @mouseenter="marker = { x: {{ location.coordinates.x }}, y: {{ location.coordinates.y }}, visible: true }"
                 @mouseleave="marker.visible = false">

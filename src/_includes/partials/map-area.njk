@@ -20,7 +20,7 @@
                 description: '{{ location.description | safe }}',
                 historicalSignificance: '{{ location.historicalSignificance | safe }}',
                 coordinates: { x: {{ location.coordinates.x }}, y: {{ location.coordinates.y }} }
-            })">
+            }); document.getElementById('location-{{ location.name | slugify }}').scrollIntoView({ behavior: 'smooth', block: 'center' })">
         </button>
         {% endfor %}
 
