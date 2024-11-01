@@ -9,9 +9,19 @@
 
         <!-- Static Markers -->
         {% for location in locations %}
-        <div class="absolute bg-red-400 h-2.5 w-2.5 rounded-full transform -translate-x-1/2 -translate-y-1/2 border border-white opacity-60"
-             style="left: {{ location.coordinates.x }}%; top: {{ location.coordinates.y }}%">
-        </div>
+        <button 
+            class="absolute bg-red-400 h-2.5 w-2.5 rounded-full transform -translate-x-1/2 -translate-y-1/2 border border-white opacity-60 hover:opacity-100 hover:scale-150 transition-all cursor-pointer z-10"
+            style="left: {{ location.coordinates.x }}%; top: {{ location.coordinates.y }}%"
+            @mouseover="marker.x = {{ location.coordinates.x }}; marker.y = {{ location.coordinates.y }}; marker.visible = true"
+            @mouseleave="marker.visible = false"
+            @click="$dispatch('show-location', {
+                name: '{{ location.name | safe }}',
+                yearEstablished: '{{ location.yearEstablished | safe }}',
+                description: '{{ location.description | safe }}',
+                historicalSignificance: '{{ location.historicalSignificance | safe }}',
+                coordinates: { x: {{ location.coordinates.x }}, y: {{ location.coordinates.y }} }
+            })">
+        </button>
         {% endfor %}
 
         <!-- Hover Marker with Pulse -->
@@ -21,7 +31,7 @@
             x-transition:enter-start="opacity-0 scale-50"
             x-transition:enter-end="opacity-100 scale-100"
             :style="{ left: marker.x + '%', top: marker.y + '%' }"
-            class="absolute bg-red-500 h-4 w-4 rounded-full transform -translate-x-1/2 -translate-y-1/2 border border-black z-10">
+            class="absolute bg-red-500 h-4 w-4 rounded-full transform -translate-x-1/2 -translate-y-1/2 border border-black">
             <div class="absolute inset-0 rounded-full bg-red-500 animate-ping-large"></div>
         </div>
     </div>

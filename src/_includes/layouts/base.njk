@@ -24,8 +24,7 @@
     <body>
         <div
             x-data="{ marker: { x: 0, y: 0, visible: false }, showDialog: false, selectedLocation: null }"
-            @show-location.window=" selectedLocation = $event.detail; showDialog = true; console.log('Event received:',
-                selectedLocation, showDialog) ">
+            @show-location.window=" selectedLocation = $event.detail; showDialog = true; ">
             <div
                 class="flex items-center justify-center py-4 bg-gray-100">
                 <!-- Container for three cards in a row -->
