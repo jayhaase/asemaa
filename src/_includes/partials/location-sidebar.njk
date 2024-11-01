@@ -3,9 +3,10 @@
     <!-- Scrollable container -->
     <div class="overflow-y-auto max-h-[500px] space-y-4 pr-2">
         {% for location in locations %}
-            <div id="location-{{ location.name | replace(" ", "-") | lower }}" 
-                class="bg-gray-50 rounded-lg p-4 border border-gray-200 hover:border-gray-500 transition-colors"
-                @mouseenter="marker = { x: {{ location.coordinates.x }}, y: {{ location.coordinates.y }}, visible: true }"
+            <div id="location-{{ location.name | slugify }}" 
+                class="rounded-lg p-4 border border-gray-200 hover:border-gray-500 transition-all duration-300"
+                :class="(selectedMarker.x === {{ location.coordinates.x }} && selectedMarker.y === {{ location.coordinates.y }}) || marker.x === {{ location.coordinates.x }} ? 'bg-red-50' : 'bg-gray-50'"
+                @mouseenter="marker = { x: {{ location.coordinates.x }}, y: {{ location.coordinates.y }}, visible: true }; selectedMarker = { x: null, y: null }"
                 @mouseleave="marker.visible = false">
                 
                 <!-- Title -->

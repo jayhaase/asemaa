@@ -23,8 +23,17 @@
     </head>
     <body>
         <div
-            x-data="{ marker: { x: 0, y: 0, visible: false }, showDialog: false, selectedLocation: null }"
-            @show-location.window=" selectedLocation = $event.detail; showDialog = true; ">
+            x-data="{ 
+                marker: { x: 0, y: 0, visible: false }, 
+                selectedMarker: { x: null, y: null },
+                showDialog: false, 
+                selectedLocation: null 
+            }"
+            @show-location.window="
+                selectedLocation = $event.detail; 
+                showDialog = true;
+                selectedMarker = { x: $event.detail.coordinates.x, y: $event.detail.coordinates.y };
+            ">
             <div
                 class="flex items-center justify-center py-4 bg-gray-100">
                 <!-- Container for three cards in a row -->
