@@ -41,7 +41,15 @@ module.exports = function() {
         }
     });
     
+    // Convert to array, sort Z-A, and convert back to object
+    const sortedGroups = {};
+    Object.keys(galleryGroups)
+        .sort((a, b) => b.localeCompare(a))
+        .forEach(key => {
+            sortedGroups[key] = galleryGroups[key];
+        });
+    
     return {
-        groups: galleryGroups
+        groups: sortedGroups
     };
 }; 
