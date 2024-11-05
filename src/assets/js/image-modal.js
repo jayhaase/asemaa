@@ -12,6 +12,8 @@ function imageModal() {
         close() {
             this.isOpen = false;
             document.body.style.overflow = '';
+            this.currentImage = '';
+            this.currentTitle = '';
         }
     }
 } 
