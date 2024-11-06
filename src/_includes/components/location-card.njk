@@ -1,8 +1,8 @@
 <div id="location-{{ location.id }}" 
     class="rounded-lg p-4 border border-gray-200 hover:border-gray-500 transition-all duration-300 cursor-pointer"
     :class="{
-        'bg-red-50': $store.locations.hoveredLocationId === '{{ location.id }}' || $store.locations.selectedLocation?.id === '{{ location.id }}',
-        'bg-gray-50': !($store.locations.hoveredLocationId === '{{ location.id }}' || $store.locations.selectedLocation?.id === '{{ location.id }}')
+        'bg-red-50': $store.locations.selectedLocation?.id === '{{ location.id }}' || $store.locations.hoveredLocationId === '{{ location.id }}',
+        'bg-gray-50': true
     }"
     @mouseenter="$store.locations.setHoveredLocation('{{ location.id }}')"
     @mouseleave="$store.locations.setHoveredLocation(null)"

@@ -13,13 +13,15 @@ document.addEventListener('alpine:init', () => {
 
         setHoveredLocation(id) {
             this.hoveredLocationId = id;
+
+            const location = this.locations.find(l => l.id === id);
+            if (!location) return;
             
-            // Only update dropdown if there's no selected location
-            if (!this.selectedLocation) {
-                const dropdown = document.querySelector('select');
-                if (dropdown) {
-                    dropdown.value = id || '';
-                }
+            this.selectedLocation = location;
+
+            const dropdown = document.querySelector('select');
+            if (dropdown) {
+                dropdown.value = id || '';
             }
         },
 
