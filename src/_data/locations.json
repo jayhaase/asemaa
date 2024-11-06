@@ -7,7 +7,7 @@
         "x": 50,
         "y": 50
       },
-      "imageUrl": "/images/location1.jpg"
+      "imageUrl": "/images/default-landscape.png"
     },
     {
       "id": "loc-2",
@@ -17,7 +17,7 @@
         "x": 60,
         "y": 50
       },
-      "imageUrl": "/images/location2.jpg"
+      "imageUrl": "/images/default-landscape.png"
     },
     {
       "id": "loc-3",
@@ -27,7 +27,7 @@
         "x": 50,
         "y": 40
       },
-      "imageUrl": "/images/location3.jpg"
+      "imageUrl": "/images/default-landscape.png"
     },
     {
       "id": "loc-4",
@@ -37,7 +37,7 @@
         "x": 30,
         "y": 30
       },
-      "imageUrl": "/images/location4.jpg"
+      "imageUrl": "/images/default-landscape.png"
     },
     {
       "id": "loc-5",
@@ -47,7 +47,7 @@
         "x": 45,
         "y": 45
       },
-      "imageUrl": "/images/location5.jpg"
+      "imageUrl": "/images/default-landscape.png"
     },
     {
       "id": "loc-6",
@@ -57,7 +57,7 @@
         "x": 35,
         "y": 35
       },
-      "imageUrl": "/images/location6.jpg"
+      "imageUrl": "/images/default-landscape.png"
     },
     {
       "id": "loc-7",
@@ -67,7 +67,7 @@
         "x": 40,
         "y": 60
       },
-      "imageUrl": "/images/location7.jpg"
+      "imageUrl": "/images/default-landscape.png"
     },
     {
       "id": "loc-8",
@@ -77,7 +77,7 @@
         "x": 65,
         "y": 45
       },
-      "imageUrl": "/images/location8.jpg"
+      "imageUrl": "/images/default-landscape.png"
     },
     {
       "id": "loc-9",
@@ -87,7 +87,7 @@
         "x": 35,
         "y": 55
       },
-      "imageUrl": "/images/location9.jpg"
+      "imageUrl": "/images/default-landscape.png"
     },
     {
       "id": "loc-10",
@@ -97,7 +97,7 @@
         "x": 70,
         "y": 40
       },
-      "imageUrl": "/images/location10.jpg"
+      "imageUrl": "/images/default-landscape.png"
     },
     {
       "id": "loc-11",
@@ -107,6 +107,6 @@
         "x": 45,
         "y": 65
       },
-      "imageUrl": "/images/location11.jpg"
+      "imageUrl": "/images/default-landscape.png"
     }
   ]

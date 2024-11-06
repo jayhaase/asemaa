@@ -74,10 +74,12 @@
                             </button>
                         </div>
                         <!-- Body -->
-                        <div class="p-4 space-y-4">
-                            <div>
-                                <h3 class="font-semibold mb-2">Description</h3>
-                                <p class="text-gray-600" x-text="$store.locations.selectedLocation?.description"></p>
+                        <div class="p-4">
+                            <div class="w-full h-96">
+                                <img 
+                                    :src="$store.locations.selectedLocation?.imageUrl" 
+                                    :alt="$store.locations.selectedLocation?.name"
+                                    class="w-full h-full object-cover rounded-lg">
                             </div>
                         </div>
                     </div>
