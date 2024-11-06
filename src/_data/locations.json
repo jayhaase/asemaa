@@ -7,9 +7,7 @@
         "x": 50,
         "y": 50
       },
-      "historicalSignificance": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      "imageUrl": "/images/location1.jpg",
-      "yearEstablished": "1731"
+      "imageUrl": "/images/location1.jpg"
     },
     {
       "id": "loc-2",
@@ -19,9 +17,7 @@
         "x": 60,
         "y": 50
       },
-      "historicalSignificance": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      "imageUrl": "/images/location2.jpg",
-      "yearEstablished": "1693"
+      "imageUrl": "/images/location2.jpg"
     },
     {
       "id": "loc-3",
@@ -31,9 +27,7 @@
         "x": 50,
         "y": 40
       },
-      "historicalSignificance": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.",
-      "imageUrl": "/images/location3.jpg",
-      "yearEstablished": "1668"
+      "imageUrl": "/images/location3.jpg"
     },
     {
       "id": "loc-4",
@@ -43,9 +37,7 @@
         "x": 30,
         "y": 30
       },
-      "historicalSignificance": "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.",
-      "imageUrl": "/images/location4.jpg",
-      "yearEstablished": "1650"
+      "imageUrl": "/images/location4.jpg"
     },
     {
       "id": "loc-5",
@@ -55,9 +47,7 @@
         "x": 45,
         "y": 45
       },
-      "historicalSignificance": "Deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
-      "imageUrl": "/images/location5.jpg",
-      "yearEstablished": "1670"
+      "imageUrl": "/images/location5.jpg"
     },
     {
       "id": "loc-6",
@@ -67,9 +57,7 @@
         "x": 35,
         "y": 35
       },
-      "historicalSignificance": "Et harum quidem rerum facilis est et expedita distinctio.",
-      "imageUrl": "/images/location6.jpg",
-      "yearEstablished": "1720"
+      "imageUrl": "/images/location6.jpg"
     },
     {
       "id": "loc-7",
@@ -79,9 +67,7 @@
         "x": 40,
         "y": 60
       },
-      "historicalSignificance": "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet.",
-      "imageUrl": "/images/location7.jpg",
-      "yearEstablished": "1750"
+      "imageUrl": "/images/location7.jpg"
     },
     {
       "id": "loc-8",
@@ -91,9 +77,7 @@
         "x": 65,
         "y": 45
       },
-      "historicalSignificance": "Alias consequatur aut perferendis doloribus asperiores repellat.",
-      "imageUrl": "/images/location8.jpg",
-      "yearEstablished": "1683"
+      "imageUrl": "/images/location8.jpg"
     },
     {
       "id": "loc-9",
@@ -103,9 +87,7 @@
         "x": 35,
         "y": 55
       },
-      "historicalSignificance": "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.",
-      "imageUrl": "/images/location9.jpg",
-      "yearEstablished": "1700"
+      "imageUrl": "/images/location9.jpg"
     },
     {
       "id": "loc-10",
@@ -115,9 +97,7 @@
         "x": 70,
         "y": 40
       },
-      "historicalSignificance": "Qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.",
-      "imageUrl": "/images/location10.jpg",
-      "yearEstablished": "1731"
+      "imageUrl": "/images/location10.jpg"
     },
     {
       "id": "loc-11",
@@ -127,8 +107,6 @@
         "x": 45,
         "y": 65
       },
-      "historicalSignificance": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      "imageUrl": "/images/location11.jpg",
-      "yearEstablished": "1867"
+      "imageUrl": "/images/location11.jpg"
     }
   ]

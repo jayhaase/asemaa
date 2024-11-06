@@ -45,8 +45,6 @@
                                             id: loc.id,
                                             name: loc.name,
                                             description: loc.description,
-                                            historicalSignificance: loc.historicalSignificance,
-                                            yearEstablished: loc.yearEstablished,
                                             coordinates: { 
                                                 x: loc.coordinates.x, 
                                                 y: loc.coordinates.y 
@@ -88,17 +86,9 @@
                         </div>
                         <!-- Body -->
                         <div class="p-4 space-y-4">
-                            <div class="text-sm text-gray-500">
-                                Established:
-                                <span x-text="selectedLocation?.yearEstablished"></span>
-                            </div>
                             <div>
                                 <h3 class="font-semibold mb-2">Description</h3>
                                 <p class="text-gray-600" x-text="selectedLocation?.description"></p>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold mb-2">Historical Significance</h3>
-                                <p class="text-gray-600" x-text="selectedLocation?.historicalSignificance"></p>
                             </div>
                         </div>
                     </div>

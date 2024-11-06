@@ -12,14 +12,11 @@
                 <p class="text-sm text-gray-600 line-clamp-3 mb-3">{{ location.description }}</p>
                 
                 <div class="flex justify-between items-center mt-2 pt-2 border-t border-gray-200">
-                    <span class="text-sm text-gray-500">Est. {{ location.yearEstablished }}</span>
                     <button 
                         @click="$store.locations.selectLocation({
                             id: '{{ location.id }}',
                             name: '{{ location.name | safe }}',
                             description: '{{ location.description | safe }}',
-                            historicalSignificance: '{{ location.historicalSignificance | safe }}',
-                            yearEstablished: '{{ location.yearEstablished }}',
                             coordinates: { 
                                 x: {{ location.coordinates.x }}, 
                                 y: {{ location.coordinates.y }} 

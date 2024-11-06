@@ -28,8 +28,6 @@
                     id: '{{ location.id }}',
                     name: '{{ location.name | safe }}',
                     description: '{{ location.description | safe }}',
-                    historicalSignificance: '{{ location.historicalSignificance | safe }}',
-                    yearEstablished: '{{ location.yearEstablished }}',
                     coordinates: { 
                         x: {{ location.coordinates.x }}, 
                         y: {{ location.coordinates.y }} 
