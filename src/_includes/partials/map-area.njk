@@ -24,10 +24,7 @@
                 id: '{{ location.id }}',
                 name: '{{ location.name | safe }}',
                 description: '{{ location.description | safe }}',
-                coordinates: { 
-                    x: {{ location.coordinates.x }}, 
-                    y: {{ location.coordinates.y }} 
-                }
+                coordinates: { x: {{ location.coordinates.x }}, y: {{ location.coordinates.y }} }
             })">
         </button>
     </div>

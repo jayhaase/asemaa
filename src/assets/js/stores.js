@@ -7,20 +7,25 @@ document.addEventListener('alpine:init', () => {
 
         // Actions
         setHoveredLocation(id) {
-            if (this.selectedLocation) return;
+            if (id) {
+                this.selectedLocation = null;
+            }
             this.hoveredLocationId = id;
         },
 
         selectLocation(location) {
             this.hoveredLocationId = null;
             this.selectedLocation = location;
-            this.showDialog = true;
             
-            // Scroll the sidebar location into view
             const sidebarItem = document.getElementById(`location-${location.id}`);
             if (sidebarItem) {
                 sidebarItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
+        },
+
+        showLocationInfo(location) {
+            this.selectLocation(location);
+            this.showDialog = true;
         },
 
         clearSelection() {
@@ -31,8 +36,7 @@ document.addEventListener('alpine:init', () => {
 
         // Getters
         shouldPulse(id) {
-            return this.selectedLocation?.id === id || 
-                   (!this.selectedLocation && this.hoveredLocationId === id);
+            return this.hoveredLocationId === id || this.selectedLocation?.id === id;
         }
     });
 }); 
