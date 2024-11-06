@@ -22,25 +22,41 @@
         <meta property="og:image" content="">
     </head>
     <body>
+        <script>
+            const locationData = {{ locations | dump | safe }};
+        </script>
         <div class="px-6 md:px-0">
             <div
-                x-data="{ 
-                    marker: { x: 0, y: 0, visible: false }, 
-                    selectedMarker: { x: null, y: null },
+                x-data="{
+                    marker: {x:0,y:0,visible:false},
+                    selectedMarker: {x:null,y:null},
                     hoveredLocationId: null,
                     selectedLocationId: null,
-                    showDialog: false, 
-                    selectedLocation: null 
+                    showDialog: false,
+                    selectedLocation: null,
+                    locations: locationData
                 }"
-                @show-location.window="
-                    selectedLocation = $event.detail; 
-                    showDialog = true;
-                    selectedMarker = { x: $event.detail.coordinates.x, y: $event.detail.coordinates.y };
-                    selectedLocationId = $event.detail.id;
-                ">
+                @show-location.window="selectedLocation = $event.detail; showDialog = true; selectedMarker = { x: $event.detail.coordinates.x, y: $event.detail.coordinates.y }; selectedLocationId = $event.detail.id;">
                 {% include "partials/header.njk" %}
                 <main class="content font-body max-w-3xl mx-auto py-6">
                     {{ content | safe }}
+                    <!-- Location Dropdown -->
+                    <div class="w-full max-w-md mx-auto mb-6">
+                        <select
+                            class="w-full p-2 border rounded-md"
+                            x-model="selectedLocationId"
+                            @change="
+                                let loc = locations.find(l => l.id === $event.target.value); 
+                                selectedLocationId = loc.id; 
+                                selectedMarker = { x: loc.coordinates.x, y: loc.coordinates.y };
+                                document.getElementById('location-' + loc.name.toLowerCase().replace(/\s+/g, '-')).scrollIntoView({ behavior: 'smooth', block: 'center' })
+                            ">
+                            <option value="">Select a location...</option>
+                            {% for location in locations %}
+                                <option value="{{ location.id }}">{{ location.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                     <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 p-12 justify-center">
                         <div class="flex space-x-6">
                             {% include "partials/location-sidebar.njk" %}
