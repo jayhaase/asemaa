@@ -25,6 +25,11 @@ document.addEventListener('alpine:init', () => {
             this.hoveredLocationId = null;
             this.selectedLocation = location;
             
+            const dropdown = document.querySelector('select');
+            if (dropdown) {
+                dropdown.value = id;
+            }
+            
             const sidebarItem = document.getElementById(`location-${location.id}`);
             if (sidebarItem) {
                 sidebarItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -40,6 +45,11 @@ document.addEventListener('alpine:init', () => {
             this.selectedLocation = null;
             this.hoveredLocationId = null;
             this.showDialog = false;
+            
+            const dropdown = document.querySelector('select');
+            if (dropdown) {
+                dropdown.value = '';
+            }
         },
 
         // Getters
