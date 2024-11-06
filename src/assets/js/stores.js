@@ -12,10 +12,15 @@ document.addEventListener('alpine:init', () => {
         },
 
         setHoveredLocation(id) {
-            if (id) {
-                this.selectedLocation = null;
-            }
             this.hoveredLocationId = id;
+            
+            // Only update dropdown if there's no selected location
+            if (!this.selectedLocation) {
+                const dropdown = document.querySelector('select');
+                if (dropdown) {
+                    dropdown.value = id || '';
+                }
+            }
         },
 
         selectLocation(id) {
@@ -25,6 +30,7 @@ document.addEventListener('alpine:init', () => {
             this.hoveredLocationId = null;
             this.selectedLocation = location;
             
+            // Update dropdown selection
             const dropdown = document.querySelector('select');
             if (dropdown) {
                 dropdown.value = id;
@@ -46,6 +52,7 @@ document.addEventListener('alpine:init', () => {
             this.hoveredLocationId = null;
             this.showDialog = false;
             
+            // Clear dropdown selection
             const dropdown = document.querySelector('select');
             if (dropdown) {
                 dropdown.value = '';
