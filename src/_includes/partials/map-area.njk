@@ -20,12 +20,7 @@
             :class="{'opacity-100 scale-150': $store.locations.selectedLocation?.id === '{{ location.id }}'}"
             @mouseover="$store.locations.setHoveredLocation('{{ location.id }}')"
             @mouseleave="$store.locations.setHoveredLocation(null)"
-            @click="$store.locations.selectLocation({
-                id: '{{ location.id }}',
-                name: '{{ location.name | safe }}',
-                description: '{{ location.description | safe }}',
-                coordinates: { x: {{ location.coordinates.x }}, y: {{ location.coordinates.y }} }
-            })">
+            @click="$store.locations.selectLocation('{{ location.id }}')">
         </button>
     </div>
     {% endfor %}

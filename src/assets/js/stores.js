@@ -4,8 +4,13 @@ document.addEventListener('alpine:init', () => {
         hoveredLocationId: null,
         selectedLocation: null,
         showDialog: false,
+        locations: [],
 
         // Actions
+        init(locationData) {
+            this.locations = locationData;
+        },
+
         setHoveredLocation(id) {
             if (id) {
                 this.selectedLocation = null;
@@ -13,7 +18,10 @@ document.addEventListener('alpine:init', () => {
             this.hoveredLocationId = id;
         },
 
-        selectLocation(location) {
+        selectLocation(id) {
+            const location = this.locations.find(l => l.id === id);
+            if (!location) return;
+            
             this.hoveredLocationId = null;
             this.selectedLocation = location;
             
@@ -23,8 +31,8 @@ document.addEventListener('alpine:init', () => {
             }
         },
 
-        showLocationInfo(location) {
-            this.selectLocation(location);
+        showLocationInfo(id) {
+            this.selectLocation(id);
             this.showDialog = true;
         },
 
@@ -36,7 +44,8 @@ document.addEventListener('alpine:init', () => {
 
         // Getters
         shouldPulse(id) {
-            return this.hoveredLocationId === id || this.selectedLocation?.id === id;
+            return this.hoveredLocationId === id || 
+                   (this.selectedLocation?.id === id && !this.hoveredLocationId);
         }
     });
 }); 
