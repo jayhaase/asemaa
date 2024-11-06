@@ -1,6 +1,3 @@
-const Image = require("@11ty/eleventy-img");
-const path = require('path');
-
 module.exports = function (eleventyConfig) {
   // Static assets
   eleventyConfig.addPassthroughCopy({ "src/assets/images": "images" });

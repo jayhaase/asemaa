@@ -5,6 +5,7 @@ document.addEventListener('alpine:init', () => {
         selectedLocation: null,
         showDialog: false,
         locations: [],
+        lastFocusedElement: null,
 
         // Actions
         init(locationData) {
@@ -45,8 +46,26 @@ document.addEventListener('alpine:init', () => {
         },
 
         showLocationInfo(id) {
+            this.lastFocusedElement = document.activeElement;
+            
             this.selectLocation(id);
             this.showDialog = true;
+
+            setTimeout(() => {
+                const closeButton = document.querySelector('[aria-label="Close dialog"]');
+                if (closeButton) closeButton.focus();
+            }, 50);
+        },
+
+        closeDialog() {
+            this.showDialog = false;
+            
+            if (this.lastFocusedElement) {
+                setTimeout(() => {
+                    this.lastFocusedElement.focus();
+                    this.lastFocusedElement = null;
+                }, 50);
+            }
         },
 
         clearSelection() {
@@ -54,7 +73,6 @@ document.addEventListener('alpine:init', () => {
             this.hoveredLocationId = null;
             this.showDialog = false;
             
-            // Clear dropdown selection
             const dropdown = document.querySelector('select');
             if (dropdown) {
                 dropdown.value = '';
