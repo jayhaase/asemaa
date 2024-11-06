@@ -1,40 +1,35 @@
 <!-- Map Area with Image and Marker -->
-<div id="mapContainer" class="relative w-[600px] h-[600px] flex items-center justify-center bg-white border border-gray-300 rounded-lg">
-    <!-- Map Image -->
-    <div class="relative">
-        <img
-            src="/images/turtle-island.png"
-            alt="Turtle Island Map"
-            class="w-full h-auto">
+<div id="mapContainer" class="relative w-full h-full border border-gray-300 rounded-lg">
+    <!-- Background Image -->
+    <img src="/images/turtle-island.png" alt="Turtle Island Map" class="w-full h-full object-contain">
+    
+    <!-- Location Markers -->
+    {% for location in locations %}
+    <div class="absolute" style="left: {{ location.coordinates.x }}%; top: {{ location.coordinates.y }}%">
+        <!-- Pulse Animation -->
+        <template x-if="$store.locations.shouldPulse('{{ location.id }}')">
+            <div class="absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2">
+                <div class="absolute w-4 h-4 bg-red-400 rounded-full opacity-75 -mt-2 -ml-2"></div>
+                <div class="absolute w-4 h-4 bg-red-400 rounded-full animate-ping-large -mt-2 -ml-2"></div>
+            </div>
+        </template>
 
-        <!-- Location Markers -->
-        {% for location in locations %}
-        <div class="absolute" style="left: {{ location.coordinates.x }}%; top: {{ location.coordinates.y }}%">
-            <!-- Pulse Animation -->
-            <template x-if="$store.locations.shouldPulse('{{ location.id }}')">
-                <div class="absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2">
-                    <div class="absolute w-4 h-4 bg-red-400 rounded-full opacity-75 -mt-2 -ml-2"></div>
-                    <div class="absolute w-4 h-4 bg-red-400 rounded-full animate-ping-large -mt-2 -ml-2"></div>
-                </div>
-            </template>
-
-            <!-- Static Marker -->
-            <button 
-                class="absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2 bg-red-400 h-2.5 w-2.5 rounded-full border border-white opacity-60 hover:opacity-100 hover:scale-150 transition-all cursor-pointer z-10"
-                :class="{'opacity-100 scale-150': $store.locations.selectedLocation?.id === '{{ location.id }}'}"
-                @mouseover="$store.locations.setHoveredLocation('{{ location.id }}')"
-                @mouseleave="$store.locations.setHoveredLocation(null)"
-                @click="$store.locations.selectLocation({
-                    id: '{{ location.id }}',
-                    name: '{{ location.name | safe }}',
-                    description: '{{ location.description | safe }}',
-                    coordinates: { 
-                        x: {{ location.coordinates.x }}, 
-                        y: {{ location.coordinates.y }} 
-                    }
-                })">
-            </button>
-        </div>
-        {% endfor %}
+        <!-- Static Marker -->
+        <button 
+            class="absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2 bg-red-400 h-2.5 w-2.5 rounded-full border border-white opacity-60 hover:opacity-100 hover:scale-150 transition-all cursor-pointer z-10"
+            :class="{'opacity-100 scale-150': $store.locations.selectedLocation?.id === '{{ location.id }}'}"
+            @mouseover="$store.locations.setHoveredLocation('{{ location.id }}')"
+            @mouseleave="$store.locations.setHoveredLocation(null)"
+            @click="$store.locations.selectLocation({
+                id: '{{ location.id }}',
+                name: '{{ location.name | safe }}',
+                description: '{{ location.description | safe }}',
+                coordinates: { 
+                    x: {{ location.coordinates.x }}, 
+                    y: {{ location.coordinates.y }} 
+                }
+            })">
+        </button>
     </div>
+    {% endfor %}
 </div> 

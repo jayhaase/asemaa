@@ -3,6 +3,7 @@ document.addEventListener('alpine:init', () => {
         // State
         hoveredLocationId: null,
         selectedLocation: null,
+        showDialog: false,
 
         // Actions
         setHoveredLocation(id) {
@@ -13,8 +14,9 @@ document.addEventListener('alpine:init', () => {
         selectLocation(location) {
             this.hoveredLocationId = null;
             this.selectedLocation = location;
+            this.showDialog = true;
             
-            // Scroll the sidebar location into view using location ID
+            // Scroll the sidebar location into view
             const sidebarItem = document.getElementById(`location-${location.id}`);
             if (sidebarItem) {
                 sidebarItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -24,6 +26,7 @@ document.addEventListener('alpine:init', () => {
         clearSelection() {
             this.selectedLocation = null;
             this.hoveredLocationId = null;
+            this.showDialog = false;
         },
 
         // Getters
