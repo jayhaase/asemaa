@@ -1,0 +1,32 @@
+<div
+    x-show="$store.locations.showDialog"
+    x-cloak
+    class="fixed inset-0 z-50 flex items-center justify-center p-4"
+    @click.self="$store.locations.clearSelection()">
+    <!-- Backdrop -->
+    <div class="fixed inset-0 bg-black/50"></div>
+    <!-- Dialog Content -->
+    <div class="relative bg-white rounded-lg shadow-xl max-w-2xl w-full">
+        <!-- Header -->
+        <div class="border-b p-4 flex justify-between items-center">
+            <h2 class="text-xl font-semibold" x-text="$store.locations.selectedLocation?.name"></h2>
+            <button 
+                @click="$store.locations.clearSelection()"
+                class="text-gray-400 hover:text-gray-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Body -->
+        <div class="p-4">
+            <div class="w-full h-96">
+                <img 
+                    :src="$store.locations.selectedLocation?.imageUrl" 
+                    :alt="$store.locations.selectedLocation?.name"
+                    class="w-full h-full object-cover">
+            </div>
+            <p class="text-gray-600 mt-4" x-text="$store.locations.selectedLocation?.description"></p>
+        </div>
+    </div>
+</div> 
