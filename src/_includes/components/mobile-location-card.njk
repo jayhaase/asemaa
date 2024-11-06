@@ -1,0 +1,18 @@
+<div 
+    x-show="$store.locations.selectedLocation" 
+    x-transition.duration.300ms 
+    class="w-full mt-2 md:hidden">
+    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <div class="flex justify-between items-center p-4 border-b">
+            <h3 class="font-semibold text-lg" x-text="$store.locations.selectedLocation?.name"></h3>
+        </div>
+        <div class="w-full h-64">
+            <img 
+                :src="$store.locations.selectedLocation?.imageUrl" 
+                :alt="$store.locations.selectedLocation?.name"
+                class="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async">
+        </div>
+    </div>
+</div> 
