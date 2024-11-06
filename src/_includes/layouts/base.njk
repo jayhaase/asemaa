@@ -26,29 +26,28 @@
             const locationData = {{ locations | dump | safe }};
         </script>
         <div class="px-6 md:px-0">
-            <div
-                x-data="{ locations: locationData }"
-                x-init="$store.locations.init(locations)">
+            <div x-data="{ locations: locationData }" x-init="$store.locations.init(locations)">
                 {% include "partials/header.njk" %}
-                <main class="content font-body max-w-3xl mx-auto py-6">
+                <main class="content font-body container mx-auto px-4 max-w-3xl py-6">
                     {{ content | safe }}
-                    <div class="py-8"
-                        class="flex flex-col justify-center">
-                        <!-- Location Dropdown -->
-                        <div class="w-full max-w-md mx-auto mb-6">
+                    <div
+                        class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 py-10 justify-center">
+                        <!-- Sidebar -->
+                        {% include "partials/location-sidebar.njk" %}
+                        <!-- Map Column -->
+                        <div
+                            class="flex flex-col space-y-4">
+                            <!-- Location Dropdown -->
                             <select
-                                class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest focus:border-transparent"
+                                class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest
+                                    focus:border-transparent"
                                 @change="$store.locations.selectLocation($event.target.value)">
                                 <option value="">Select a Location</option>
                                 {% for location in locations %}
                                     <option value="{{ location.id }}">{{ location.name }}</option>
                                 {% endfor %}
                             </select>
-                        </div>
-                    </div>
-                    <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 p-4 justify-center">
-                        <div class="flex space-x-6">
-                            {% include "partials/location-sidebar.njk" %}
+                            <!-- Map Area -->
                             {% include "partials/map-area.njk" %}
                         </div>
                     </div>
@@ -76,8 +75,8 @@
                         <!-- Body -->
                         <div class="p-4">
                             <div class="w-full h-96">
-                                <img 
-                                    :src="$store.locations.selectedLocation?.imageUrl" 
+                                <img
+                                    :src="$store.locations.selectedLocation?.imageUrl"
                                     :alt="$store.locations.selectedLocation?.name"
                                     class="w-full h-full object-cover rounded-lg">
                             </div>
