@@ -80,6 +80,15 @@ module.exports = function () {
                 "y": 65
             },
             "imageUrl": "/images/locations/lower-sioux.png"
+        },
+        {
+            "id": "loc-shakopee",
+            "name": "Shakopee Mdewakanton Sioux Community",
+            "coordinates": {
+                "x": 45,
+                "y": 55
+            },
+            "imageUrl": "/images/locations/shakopee-mdewakanton.png"
         }
     ];
 
