@@ -1,11 +1,10 @@
-<!-- Map Area with Image and Marker -->
 <div
     id="mapContainer" class="relative w-full h-full border border-gray-300 rounded-lg">
     <!-- Background Image -->
     <img
-        src="/images/turtle-island.png" alt="Turtle Island Map" class="w-full h-full object-contain">
-        <!-- Location Markers -->
-        {% for location in locations %}
-            {% include "components/map-marker.njk" %}
-        {% endfor %}
-    </div>
+    src="/images/turtle-island.png" alt="Turtle Island Map" class="w-full h-full object-contain">
+    <!-- Location Markers -->
+    {% for location in locations %}
+        {% include "components/map-marker.njk" %}
+    {% endfor %}
+</div>
