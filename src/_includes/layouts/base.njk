@@ -32,8 +32,6 @@
                     {{ content | safe }}
                     <div
                         class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 py-4 justify-center">
-                        <!-- Sidebar -->
-                        {% include "partials/location-sidebar.njk" %}
                         <!-- Map Column -->
                         <div
                             class="flex flex-col space-y-2">
@@ -42,6 +40,8 @@
                             <!-- Map Area -->
                             {% include "partials/map-area.njk" %}
                         </div>
+                        <!-- Sidebar -->
+                        {% include "partials/location-sidebar.njk" %}
                     </div>
                     <!-- Selected Location Card (Mobile Only) -->
                     {% include "components/mobile-location-card.njk" %}
