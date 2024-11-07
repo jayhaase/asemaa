@@ -11,75 +11,75 @@ module.exports = function () {
         },
         {
             "id": "loc-2",
-            "name": "Dolor Sit",
+            "name": "Grand Portage Reservation",
             "coordinates": {
                 "x": 60,
                 "y": 50
             },
-            "imageUrl": "/images/default-landscape.png"
+            "imageUrl": "/images/locations/grand-portage.png"
         },
         {
             "id": "loc-5",
-            "name": "Tempor Incididunt",
+            "name": "White Earth Reservation",
             "coordinates": {
                 "x": 45,
                 "y": 45
             },
-            "imageUrl": "/images/default-landscape.png"
+            "imageUrl": "/images/locations/white-earth.png"
         },
         {
             "id": "loc-6",
-            "name": "Labore Dolore",
+            "name": "Red Lake Reservation",
             "coordinates": {
                 "x": 35,
                 "y": 35
             },
-            "imageUrl": "/images/default-landscape.png"
+            "imageUrl": "/images/locations/red-lake.png"
         },
         {
             "id": "loc-7",
-            "name": "Magna Aliqua",
+            "name": "Leech Lake Reservation",
             "coordinates": {
                 "x": 40,
                 "y": 60
             },
-            "imageUrl": "/images/default-landscape.png"
+            "imageUrl": "/images/locations/leech-lake.png"
         },
         {
             "id": "loc-8",
-            "name": "Enim Minim",
+            "name": "Fond du Lac Reservation",
             "coordinates": {
                 "x": 65,
                 "y": 45
             },
-            "imageUrl": "/images/default-landscape.png"
+            "imageUrl": "/images/locations/fond-du-lac.png"
         },
         {
             "id": "loc-9",
-            "name": "Veniam Quis",
+            "name": "Mille Lacs Reservation",
             "coordinates": {
                 "x": 35,
                 "y": 55
             },
-            "imageUrl": "/images/default-landscape.png"
+            "imageUrl": "/images/locations/mille-lacs.png"
         },
         {
             "id": "loc-10",
-            "name": "Nostrud Exercitation",
+            "name": "Upper Sioux Indian Community",
             "coordinates": {
                 "x": 70,
                 "y": 40
             },
-            "imageUrl": "/images/default-landscape.png"
+            "imageUrl": "/images/locations/upper-sioux.png"
         },
         {
             "id": "loc-11",
-            "name": "Ullamco Laboris",
+            "name": "Lower Sioux Indian Community",
             "coordinates": {
                 "x": 45,
                 "y": 65
             },
-            "imageUrl": "/images/default-landscape.png"
+            "imageUrl": "/images/locations/lower-sioux.png"
         }
     ];
 
