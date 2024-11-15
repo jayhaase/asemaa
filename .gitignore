@@ -29,3 +29,6 @@ ehthumbs.db
 
 # Optional: 11ty data
 data/*.json
+
+# Environment variables
+.env
