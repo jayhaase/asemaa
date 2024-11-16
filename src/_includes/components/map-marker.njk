@@ -6,7 +6,7 @@
             <template x-if="$store.locations.selectedLocation?.id === '{{ location.id }}'">
                 <!-- Image pulse for selected state -->
                 <div>
-                    <div class="absolute w-4 h-4 opacity-75 -mt-1.5 -ml-1.5">
+                    <div class="absolute w-4 h-4 opacity-75 -mt-1.5 -ml-1.5 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
                         <img src="/images/marker.png" alt="" class="w-full h-full">
                     </div>
                     <div class="absolute w-4 h-4 animate-ping-large -mt-1.5 -ml-1.5">
@@ -31,7 +31,7 @@
         <template x-if="$store.locations.selectedLocation?.id === '{{ location.id }}'">
             <img src="/images/marker.png" 
                  alt="" 
-                 class="w-4 h-4">
+                 class="w-4 h-4 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
         </template>
         <!-- Show red dot for default state -->
         <template x-if="$store.locations.selectedLocation?.id !== '{{ location.id }}'">
