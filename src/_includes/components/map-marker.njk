@@ -25,10 +25,10 @@
     </template>
     <!-- Static Marker -->
     <button
-        class="absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer z-10"
+        class="absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer z-20 p-2"
         @mouseover="$store.locations.setHoveredLocation('{{ location.id }}')"
         @mouseleave="$store.locations.setHoveredLocation(null)"
-        @click="$store.locations.selectLocation('{{ location.id }}')"
+        @click.stop="$store.locations.selectLocation('{{ location.id }}')"
         aria-label="View {{ location.name }}"
         aria-expanded="false"
         :aria-expanded="$store.locations.selectedLocation?.id === '{{ location.id }}' ? 'true' : 'false'"
