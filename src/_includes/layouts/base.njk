@@ -27,9 +27,7 @@
         </script>
         <div class="px-6 md:px-0">
             <div x-data="{ locations: locationData }" x-init="$store.locations.init(locations)">
-                {% include "partials/header.njk" %}
                 <main class="content font-body container mx-auto px-8 max-w-4xl py-8">
-                    {{ content | safe }}
                     <div
                         class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 py-4 justify-center">
                         <!-- Map Column -->
@@ -57,7 +55,6 @@
                         </svg>
                     </a>
                 </div>
-                {% include "partials/footer.njk" %}
             </div>
         </div>
         <!-- Add before Alpine.js -->
