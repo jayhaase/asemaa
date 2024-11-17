@@ -1,6 +1,6 @@
 # Sacred Tobacco Interactive Map
 
-This repo contains the code for the Sacred Tobacco Interactive Map. The map is built with Eleventy, uses Tailwind CSS for styling, and features interactive elements powered by Alpine.js. It's hosted on Netlify and pulls data from Contentful.
+This repo contains the code for the Sacred Tobacco Interactive Map. The map is built with Eleventy, uses Tailwind CSS for styling, and features interactive elements powered by Alpine.js. It's hosted on Netlify and pulls seed location data from Contentful.
 
 It is expected to be an iframe on the Tobacco First website.
 
@@ -57,4 +57,4 @@ Here is the list of technologies used:
 
 Contentful contains the locations sacred tobacco seeds were shared with others.
 
-Contentful is configured to call a Netlify build hook when new content is published.
+Contentful is configured to call a Netlify build hook when new content is published or unpublished.
