@@ -2,10 +2,12 @@
 
 This repo contains the code for the Sacred Tobacco Interactive Map. It uses the following technologies:
 
-- Eleventy
-- Contentful
-- Netlify
+- Eleventy - 11ty
+- HTML, CSS, JavaScript
 - Tailwind CSS
+- Nunjucks
+- Netlify
+- Contentful
 
 ## Local Development
 

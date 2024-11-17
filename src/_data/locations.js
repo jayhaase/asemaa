@@ -1,3 +1,5 @@
+// This file process the locations data from Contentful and returns 
+// the locations in a sorted array.
 const client = require('./contentful');
 
 module.exports = async function () {
