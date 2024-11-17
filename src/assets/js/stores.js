@@ -17,7 +17,7 @@ document.addEventListener('alpine:init', () => {
 
             const location = this.locations.find(l => l.id === id);
             if (!location) return;
-            
+
             this.selectedLocation = location;
 
             const dropdown = document.querySelector('select');
@@ -29,16 +29,16 @@ document.addEventListener('alpine:init', () => {
         selectLocation(id) {
             const location = this.locations.find(l => l.id === id);
             if (!location) return;
-            
+
             this.hoveredLocationId = null;
             this.selectedLocation = location;
-            
+
             // Update dropdown selection
             const dropdown = document.querySelector('select');
             if (dropdown) {
                 dropdown.value = id;
             }
-            
+
             const sidebarItem = document.getElementById(`location-${location.id}`);
             if (sidebarItem) {
                 sidebarItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -47,7 +47,7 @@ document.addEventListener('alpine:init', () => {
 
         showLocationInfo(id) {
             this.lastFocusedElement = document.activeElement;
-            
+
             this.selectLocation(id);
             this.showDialog = true;
 
@@ -59,7 +59,7 @@ document.addEventListener('alpine:init', () => {
 
         closeDialog() {
             this.showDialog = false;
-            
+
             if (this.lastFocusedElement) {
                 setTimeout(() => {
                     this.lastFocusedElement.focus();
@@ -68,21 +68,10 @@ document.addEventListener('alpine:init', () => {
             }
         },
 
-        clearSelection() {
-            this.selectedLocation = null;
-            this.hoveredLocationId = null;
-            this.showDialog = false;
-            
-            const dropdown = document.querySelector('select');
-            if (dropdown) {
-                dropdown.value = '';
-            }
-        },
-
         // Getters
         shouldPulse(id) {
-            return this.hoveredLocationId === id || 
-                   (this.selectedLocation?.id === id && !this.hoveredLocationId);
+            return this.hoveredLocationId === id ||
+                (this.selectedLocation?.id === id && !this.hoveredLocationId);
         }
     });
 }); 

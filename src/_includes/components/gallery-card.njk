@@ -1,0 +1,20 @@
+<div
+    class="aspect-w-16 aspect-h-9 group relative cursor-pointer"
+    x-on:click="$dispatch('open-modal', { image: '{{ image.url | safe }}', title: '{{ image.title | safe }}' })">
+    <img 
+        src="{{ image.url }}" 
+        alt="{{ image.title }}" 
+        class="object-cover w-full h-full rounded-lg shadow-md transition-transform duration-200 group-hover:scale-105"
+        loading="lazy"
+        decoding="async">
+    
+    <!-- Hover Overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-opacity duration-200 rounded-lg"></div>
+    
+    <!-- Title Overlay -->
+    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+        <span class="text-white text-lg font-semibold px-4 py-2 bg-black bg-opacity-50 rounded">
+            {{ image.title | replace("-", " ") | title }}
+        </span>
+    </div>
+</div> 

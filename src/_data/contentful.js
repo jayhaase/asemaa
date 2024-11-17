@@ -1,3 +1,5 @@
+// For the Contentful client to work, you need to create a .env file in the root of the project
+// based on the .env.example file and add your Contentful space ID and access token.
 require('dotenv').config();
 const contentful = require('contentful');
 
