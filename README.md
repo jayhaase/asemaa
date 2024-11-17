@@ -47,7 +47,7 @@ Here is the list of technologies used:
 
 6. View at <http://localhost:8080>
 
-## Building for Production
+## Deploying to Production
 
 1. Commit changes to the `main` branch.
 2. Push to the `main` branch on GitHub.
