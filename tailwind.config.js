@@ -7,9 +7,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        header: ['Nunito', 'sans-serif'],
+        heading: ['Manrope', 'sans-serif'],
         body: ['Noto Sans', 'sans-serif'],
-        accent: ['Cinzel', 'serif'],
       },
     },
   },
