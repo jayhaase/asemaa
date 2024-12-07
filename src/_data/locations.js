@@ -11,7 +11,7 @@ module.exports = async function () {
         id: item.sys.id,
         name: item.fields.title,
         coordinates: { x: item.fields.fromLeft, y: item.fields.fromTop },
-        imageUrl: item.fields.image.fields.file.url // Adjust based on your image field structure
+        imageUrl: item.fields.image?.fields?.file?.url || null // Add optional chaining and fallback
     }));
 
     // Sort locations alphabetically by name
