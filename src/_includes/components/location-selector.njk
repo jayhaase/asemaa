@@ -1,6 +1,7 @@
-<select
+{# <select
     class="block w-full p-3 md:p-2 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest focus:border-transparent"
-    @change="$store.locations.selectLocation($event.target.value)">
+    @change="$store.locations.selectLocation($event.target.value)"> #}
+<select class="hidden">
     <option value="">Select a Location</option>
     {% for location in locations %}
         <option value="{{ location.id }}">{{ location.name }}</option>
