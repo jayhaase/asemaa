@@ -42,6 +42,27 @@
                 </main>
             </div>
         </div>
+        <script>
+            // Handle iframe resizing
+            function setupIframeResizing() {
+                const resizeObserver = new ResizeObserver(entries => {
+                    for (const entry of entries) {
+                        const height = entry.contentRect.height;
+                        // Send message to parent window
+                        window.parent.postMessage({
+                            type: 'resize',
+                            height: height
+                        }, '*');
+                    }
+                });
+                // Observe the main content element
+                const content = document.querySelector('.content');
+                if (content) {
+                    resizeObserver.observe(content);
+                }
+            }
+            setupIframeResizing();
+        </script>
         <script defer src="{{ '/js/iframe-resize.js' | url }}"></script>
         <script defer src="{{ '/js/stores.js' | url }}"></script>
         <script defer src="https://unpkg.com/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
