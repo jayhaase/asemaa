@@ -33,17 +33,13 @@
                             class="flex flex-col space-y-2">
                             <!-- Map Area -->
                             {% include "partials/map-area.njk" %}
-                            <!-- Location Dropdown -->
-                            {% include "components/location-selector.njk" %}
                         </div>
                         <!-- Sidebar -->
                         {% include "partials/location-sidebar.njk" %}
                     </div>
-                    <!-- Selected Location Card (Mobile Only) -->
-                    {% include "components/mobile-location-card.njk" %}
+                    <!-- Location Dialog -->
+                    {% include "components/location-dialog.njk" %}
                 </main>
-                <!-- Location Dialog -->
-                {% include "components/location-dialog.njk" %}
             </div>
         </div>
         <script defer src="{{ '/js/iframe-resize.js' | url }}"></script>
