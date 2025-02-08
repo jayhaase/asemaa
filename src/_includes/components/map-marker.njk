@@ -1,14 +1,14 @@
 <div class="absolute" style="left: {{ location.coordinates.x }}%; top: {{ location.coordinates.y }}%">
     <!-- Pulse Animation -->
     <template x-if="$store.locations.shouldPulse('{{ location.id }}')">
-        <div class="absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
             <template x-if="$store.locations.selectedLocation?.id === '{{ location.id }}'">
                 <!-- Image pulse for selected state -->
-                <div>
-                    <div class="absolute w-4 h-4 opacity-75 -mt-1.5 -ml-1.5 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
+                <div class="transform -translate-x-1/2 -translate-y-1/2">
+                    <div class="absolute w-4 h-4 opacity-75 -mt-2 -ml-2 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
                         <img src="/images/marker.png" alt="Selected location marker" class="w-full h-full">
                     </div>
-                    <div class="absolute w-4 h-4 animate-ping-large -mt-1.5 -ml-1.5">
+                    <div class="absolute w-4 h-4 animate-ping-large -mt-2 -ml-2">
                         <img src="/images/marker.png" alt="Pulsing location marker" class="w-full h-full opacity-75">
                     </div>
                 </div>
@@ -26,12 +26,6 @@
         :aria-expanded="$store.locations.selectedLocation?.id === '{{ location.id }}' ? 'true' : 'false'"
         aria-controls="location-info-{{ location.id }}"
         role="button">
-        <!-- Show image for selected state -->
-        <template x-if="$store.locations.selectedLocation?.id === '{{ location.id }}'">
-            <img src="/images/marker.png" 
-                 alt="Selected location marker" 
-                 class="w-4 h-4 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
-        </template>
         <!-- Show red dot for default state -->
         <template x-if="$store.locations.selectedLocation?.id !== '{{ location.id }}'">
             <div class="{{ location.markerClass }}">
