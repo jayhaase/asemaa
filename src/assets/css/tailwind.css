@@ -62,9 +62,8 @@ html, body {
 
 
 .marker-heart {
-  position: relative;
-  width: 1.5rem; /* Adjust size as needed */
-  height: 1.5rem;
+  width: 0.75rem;
+  height: 0.75rem;
 }
 
 .marker-heart::before {
