@@ -25,45 +25,21 @@
         </script>
         <div class="h-full">
             <div x-data="{ locations: locationData }" x-init="$store.locations.init(locations)" class="h-full">
-                <main class="content font-body container mx-auto px-8 max-w-4xl py-8">
+                <main class="content font-body container mx-auto max-w-4xl">
                     <div
-                        class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 py-4 justify-center">
+                        class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 justify-center">
                         <!-- Map Column -->
                         <div
                             class="flex flex-col space-y-2">
                             <!-- Map Area -->
                             {% include "partials/map-area.njk" %}
                         </div>
-                        <!-- Sidebar -->
-                        {% include "partials/location-sidebar.njk" %}
                     </div>
                     <!-- Location Dialog -->
                     {% include "components/location-dialog.njk" %}
                 </main>
             </div>
         </div>
-        <script>
-            // Handle iframe resizing
-            function setupIframeResizing() {
-                const resizeObserver = new ResizeObserver(entries => {
-                    for (const entry of entries) {
-                        const height = entry.contentRect.height;
-                        // Send message to parent window
-                        window.parent.postMessage({
-                            type: 'resize',
-                            height: height
-                        }, '*');
-                    }
-                });
-                // Observe the main content element
-                const content = document.querySelector('.content');
-                if (content) {
-                    resizeObserver.observe(content);
-                }
-            }
-            setupIframeResizing();
-        </script>
-        <script defer src="{{ '/js/iframe-resize.js' | url }}"></script>
         <script defer src="{{ '/js/stores.js' | url }}"></script>
         <script defer src="https://unpkg.com/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
         <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>

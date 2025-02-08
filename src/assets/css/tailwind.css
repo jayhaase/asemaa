@@ -8,17 +8,12 @@ html, body {
     padding: 0;
     width: 100%;
     height: 100vh;
-    overflow: hidden;
+    overflow: auto;
 }
 
 /* Ensure map container and sidebar fit properly */
 #mapContainer {
     height: 100%;
-}
-
-/* Ensure the location sidebar scrolls properly within iframe */
-.location-sidebar {
-    max-height: calc(100% - 2rem);
 }
 
 [x-cloak] {
