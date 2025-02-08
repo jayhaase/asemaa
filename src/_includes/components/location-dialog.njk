@@ -9,10 +9,10 @@
     x-trap.noscroll="$store.locations.showDialog"
     @click.self="$store.locations.closeDialog()">
     <!-- Backdrop -->
-    <div class="fixed inset-0 bg-black/50"></div>
+    <div class="fixed inset-0 bg-transparent"></div>
     <!-- Dialog Content -->
     <div 
-        class="relative bg-white rounded-lg shadow-xl max-w-2xl w-full"
+        class="relative bg-white rounded-lg shadow-xl max-w-2xl w-full border-2 border-gray-500"
         @click.outside="$store.locations.closeDialog()">
         <!-- Header -->
         <div class="border-b p-4 flex justify-between items-center">
