@@ -12,7 +12,7 @@
     <div class="fixed inset-0 bg-transparent"></div>
     <!-- Dialog Content -->
     <div 
-        class="relative bg-white rounded-lg shadow-xl max-w-2xl w-full border-2"
+        class="relative bg-white rounded-[22px] shadow-xl max-w-2xl w-full border-4"
         style="border-color: #23545E;"
         @click.outside="$store.locations.closeDialog()">
         <!-- Header -->
@@ -20,7 +20,7 @@
             <h2 id="dialog-title" class="text-xl font-semibold" x-text="$store.locations.selectedLocation?.name"></h2>
             <button 
                 @click="$store.locations.closeDialog()"
-                class="text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-1 rounded-full p-1 transition-colors"
+                class="text-gray-400 hover:text-gray-600 outline-none focus:ring-2 focus:ring-[#23545E] rounded-full p-1 transition-colors"
                 aria-label="Close dialog">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
