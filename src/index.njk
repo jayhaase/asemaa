@@ -30,65 +30,38 @@
         <script>
             const locationData = {{ locations | dump | safe }};
             
-            // Function to send height to parent frame
-            function updateParentHeight() {
-                // Get the maximum height by checking various elements
-                const bodyHeight = Math.max(
-                    document.body.scrollHeight,
-                    document.body.offsetHeight,
-                    document.documentElement.scrollHeight,
-                    document.documentElement.offsetHeight
-                );
-                
-                // Add a small buffer
-                const height = bodyHeight + 10;
-                
-                // Send message to parent
-                if (window.parent !== window) {
-                    window.parent.postMessage({ type: 'resize', height: height }, '*');
-                }
+            function sendHeight() {
+                const height = document.documentElement.scrollHeight;
+                // Try both message formats that Squarespace might recognize
+                window.parent.postMessage('setHeight:' + height, '*');
+                window.parent.postMessage({ height: height }, '*');
             }
 
-            // Initial update
-            document.addEventListener('DOMContentLoaded', () => {
-                updateParentHeight();
-                // Check again after a short delay to catch any dynamic content
-                setTimeout(updateParentHeight, 100);
-                setTimeout(updateParentHeight, 500);
-                setTimeout(updateParentHeight, 1000);
-            });
+            // Check height periodically
+            setInterval(sendHeight, 500);
 
-            // Update on window resize
-            let resizeTimer;
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(updateParentHeight, 100);
-            });
-
-            // Watch for DOM changes
-            const observer = new MutationObserver(() => {
-                updateParentHeight();
-            });
+            // Check height on key events
+            window.addEventListener('load', sendHeight);
+            window.addEventListener('resize', sendHeight);
             
-            // Start observing once DOM is ready
+            // Check after Alpine loads
+            document.addEventListener('alpine:initialized', () => {
+                setTimeout(sendHeight, 100);
+            });
+
+            // Check after any DOM changes
+            const observer = new MutationObserver(() => {
+                setTimeout(sendHeight, 100);
+            });
+
+            // Start observing when DOM is ready
             document.addEventListener('DOMContentLoaded', () => {
                 observer.observe(document.body, { 
                     childList: true, 
-                    subtree: true,
-                    attributes: true,
-                    characterData: true
+                    subtree: true 
                 });
+                sendHeight();
             });
-
-            // Additional check for dynamic content and images
-            window.addEventListener('load', () => {
-                updateParentHeight();
-                // Check again after images might have loaded
-                setTimeout(updateParentHeight, 500);
-            });
-
-            // Check height when Alpine.js makes changes
-            document.addEventListener('alpine:initialized', updateParentHeight);
         </script>
         <div class="min-h-full">
             <div x-data="{ locations: locationData }" x-init="$store.locations.init(locations)" class="h-full">
