@@ -58,3 +58,22 @@ Here is the list of technologies used:
 Contentful contains the locations sacred tobacco seeds were shared with others.
 
 Contentful is configured to call a Netlify build hook when new content is published or unpublished.
+
+## iframe Setup
+
+The parent page should have this Javascript:
+
+```js
+window.addEventListener('message', function(e) {
+    if (e.data.type === 'resize') {
+        const iframe = document.querySelector('iframe'); // adjust selector as needed
+        iframe.style.height = e.data.height + 'px';
+    }
+});
+```
+
+And the iframe should be set up with:
+
+```js
+<iframe src="your-page-url" width="100%" scrolling="no" style="border: none;"></iframe>
+```
