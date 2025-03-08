@@ -4,6 +4,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Sacred Tobacco Map</title>
+        <style>
+            body {
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
         <link rel="stylesheet" href="{{ '/css/tailwind.css' | url }}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,26 +26,69 @@
         property="og:url" content=""> <!-- Add your site image here -->
         <meta property="og:image" content="">
     </head>
-    <body class="h-full">
+    <body class="h-full overflow-x-hidden">
         <script>
             const locationData = {{ locations | dump | safe }};
             
             // Function to send height to parent frame
             function updateParentHeight() {
-                const height = document.documentElement.offsetHeight;
-                window.parent.postMessage({ type: 'resize', height: height }, '*');
+                // Get the maximum height by checking various elements
+                const bodyHeight = Math.max(
+                    document.body.scrollHeight,
+                    document.body.offsetHeight,
+                    document.documentElement.scrollHeight,
+                    document.documentElement.offsetHeight
+                );
+                
+                // Add a small buffer
+                const height = bodyHeight + 10;
+                
+                // Send message to parent
+                if (window.parent !== window) {
+                    window.parent.postMessage({ type: 'resize', height: height }, '*');
+                }
             }
 
-            // Update height when content changes
-            window.addEventListener('load', updateParentHeight);
-            window.addEventListener('resize', updateParentHeight);
-
-            // Create a MutationObserver to watch for DOM changes
-            const observer = new MutationObserver(updateParentHeight);
-            observer.observe(document.body, { 
-                childList: true, 
-                subtree: true 
+            // Initial update
+            document.addEventListener('DOMContentLoaded', () => {
+                updateParentHeight();
+                // Check again after a short delay to catch any dynamic content
+                setTimeout(updateParentHeight, 100);
+                setTimeout(updateParentHeight, 500);
+                setTimeout(updateParentHeight, 1000);
             });
+
+            // Update on window resize
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(updateParentHeight, 100);
+            });
+
+            // Watch for DOM changes
+            const observer = new MutationObserver(() => {
+                updateParentHeight();
+            });
+            
+            // Start observing once DOM is ready
+            document.addEventListener('DOMContentLoaded', () => {
+                observer.observe(document.body, { 
+                    childList: true, 
+                    subtree: true,
+                    attributes: true,
+                    characterData: true
+                });
+            });
+
+            // Additional check for dynamic content and images
+            window.addEventListener('load', () => {
+                updateParentHeight();
+                // Check again after images might have loaded
+                setTimeout(updateParentHeight, 500);
+            });
+
+            // Check height when Alpine.js makes changes
+            document.addEventListener('alpine:initialized', updateParentHeight);
         </script>
         <div class="min-h-full">
             <div x-data="{ locations: locationData }" x-init="$store.locations.init(locations)" class="h-full">
