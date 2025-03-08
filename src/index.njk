@@ -28,52 +28,35 @@
                 const dropdown = document.querySelector('select');
                 if (!mapContainer) return;  // Guard against missing element
                 
-                // Get the actual container height without any padding
-                const containerHeight = mapContainer.getBoundingClientRect().height;
+                // Get the main container that includes both map and dropdown
+                const mainContent = document.querySelector('main');
+                if (!mainContent) return;
                 
-                // Get dropdown height and position
-                const dropdownHeight = dropdown ? dropdown.getBoundingClientRect().height : 0;
-                const dropdownBottom = dropdown ? dropdown.getBoundingClientRect().bottom : 0;
-                const containerBottom = mapContainer.getBoundingClientRect().bottom;
+                // Get the actual content height
+                const contentHeight = mainContent.getBoundingClientRect().height;
                 
-                // Calculate the total height needed including the dropdown
-                const totalContentHeight = Math.max(
-                    containerHeight,
-                    dropdownBottom - mapContainer.getBoundingClientRect().top
-                );
+                // Add a small buffer and ensure minimum height
+                const finalHeight = Math.max(400, contentHeight + 20);
                 
-                // Get the document height including any margins
-                const docHeight = Math.max(
-                    document.documentElement.clientHeight,
-                    document.body.clientHeight,
-                    document.documentElement.offsetHeight,
-                    document.body.offsetHeight
-                );
-                
-                // Use the larger height and add a small buffer
-                const finalHeight = Math.max(totalContentHeight, docHeight) + 20;
-                
-                // Only send if height is reasonable (between min and max)
-                if (finalHeight >= 400 && finalHeight <= 2000) {
-                    console.log('Container height:', containerHeight);
-                    console.log('Dropdown height:', dropdownHeight);
-                    console.log('Total content height:', totalContentHeight);
+                // Only send if height is reasonable and different from last sent
+                if (finalHeight <= 2000 && finalHeight !== window.lastSentHeight) {
+                    console.log('Content height:', contentHeight);
                     console.log('Final height:', finalHeight);
                     window.parent.postMessage('setHeight:' + finalHeight, '*');
                     window.parent.postMessage({ height: finalHeight }, '*');
+                    window.lastSentHeight = finalHeight;
                 }
             }
 
-            // Initial height check with a slight delay to allow content to render
+            // Initial height check with a delay to allow content to render
             setTimeout(sendHeight, 1000);
 
-            // Less frequent periodic checks
-            setInterval(sendHeight, 2000);
+            // Periodic check every 5 seconds
+            setInterval(sendHeight, 5000);
 
             // Check height on key events
             window.addEventListener('load', () => setTimeout(sendHeight, 1000));
             window.addEventListener('resize', () => {
-                // Debounce resize events
                 clearTimeout(window.resizeTimer);
                 window.resizeTimer = setTimeout(sendHeight, 250);
             });
@@ -83,11 +66,18 @@
                 setTimeout(sendHeight, 1000);
             });
 
-            // Check after any DOM changes
-            const observer = new MutationObserver(() => {
-                // Debounce mutation events
-                clearTimeout(window.mutationTimer);
-                window.mutationTimer = setTimeout(sendHeight, 250);
+            // Check after any DOM changes (excluding height changes)
+            const observer = new MutationObserver((mutations) => {
+                // Filter out mutations that only change style/height
+                const significantChange = mutations.some(mutation => 
+                    mutation.type === 'childList' || 
+                    (mutation.type === 'attributes' && mutation.attributeName !== 'style')
+                );
+                
+                if (significantChange) {
+                    clearTimeout(window.mutationTimer);
+                    window.mutationTimer = setTimeout(sendHeight, 250);
+                }
             });
 
             // Start observing when DOM is ready
@@ -95,7 +85,8 @@
                 observer.observe(document.body, { 
                     childList: true, 
                     subtree: true,
-                    attributes: true
+                    attributes: true,
+                    attributeFilter: ['class', 'src', 'alt'] // Only observe specific attribute changes
                 });
                 setTimeout(sendHeight, 1000);
             });
