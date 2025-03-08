@@ -27,50 +27,59 @@
                 const mapContainer = document.querySelector('.map-container');
                 if (!mapContainer) return;  // Guard against missing element
                 
-                // Get various height measurements
-                const containerHeight = mapContainer.offsetHeight;
+                // Get the actual container height without any padding
+                const containerHeight = mapContainer.getBoundingClientRect().height;
+                
+                // Get the document height
                 const docHeight = Math.max(
-                    document.documentElement.scrollHeight,
-                    document.documentElement.offsetHeight
+                    document.documentElement.clientHeight,
+                    document.body.clientHeight
                 );
                 
-                // Use the larger of the two heights, plus padding
-                const height = Math.max(containerHeight, docHeight) + 200;
+                // Use the larger of the two heights, with a fixed padding
+                const finalHeight = Math.max(containerHeight, docHeight);
                 
-                // Only send if height is reasonable (greater than minimum height)
-                if (height >= 400) {
-                    window.parent.postMessage('setHeight:' + height, '*');
-                    window.parent.postMessage({ height: height }, '*');
+                // Only send if height is reasonable (between min and max)
+                if (finalHeight >= 400 && finalHeight <= 2000) {
+                    window.parent.postMessage('setHeight:' + finalHeight, '*');
+                    window.parent.postMessage({ height: finalHeight }, '*');
                 }
             }
 
             // Initial height check with a slight delay to allow content to render
-            setTimeout(sendHeight, 500);
+            setTimeout(sendHeight, 1000);
 
-            // Periodic height checks
-            setInterval(sendHeight, 1000);
+            // Less frequent periodic checks
+            setInterval(sendHeight, 2000);
 
             // Check height on key events
-            window.addEventListener('load', () => setTimeout(sendHeight, 100));
-            window.addEventListener('resize', sendHeight);
+            window.addEventListener('load', () => setTimeout(sendHeight, 1000));
+            window.addEventListener('resize', () => {
+                // Debounce resize events
+                clearTimeout(window.resizeTimer);
+                window.resizeTimer = setTimeout(sendHeight, 250);
+            });
             
             // Check after Alpine loads
             document.addEventListener('alpine:initialized', () => {
-                setTimeout(sendHeight, 100);
+                setTimeout(sendHeight, 1000);
             });
 
             // Check after any DOM changes
             const observer = new MutationObserver(() => {
-                setTimeout(sendHeight, 100);
+                // Debounce mutation events
+                clearTimeout(window.mutationTimer);
+                window.mutationTimer = setTimeout(sendHeight, 250);
             });
 
             // Start observing when DOM is ready
             document.addEventListener('DOMContentLoaded', () => {
                 observer.observe(document.body, { 
                     childList: true, 
-                    subtree: true 
+                    subtree: true,
+                    attributes: true
                 });
-                setTimeout(sendHeight, 100);
+                setTimeout(sendHeight, 1000);
             });
         </script>
         <div class="min-h-full">
