@@ -32,15 +32,24 @@
                 const mainContent = document.querySelector('main');
                 if (!mainContent) return;
                 
-                // Get the actual content height
+                // Get the actual content height and dropdown position
                 const contentHeight = mainContent.getBoundingClientRect().height;
+                const dropdownBottom = dropdown ? dropdown.getBoundingClientRect().bottom : 0;
+                const mainTop = mainContent.getBoundingClientRect().top;
                 
-                // Add a small buffer and ensure minimum height
-                const finalHeight = Math.max(400, contentHeight + 20);
+                // Calculate total height needed including dropdown and padding
+                const totalHeight = Math.max(
+                    contentHeight,
+                    dropdownBottom - mainTop + 50  // Add 50px padding below dropdown
+                );
+                
+                // Add buffer and ensure minimum height
+                const finalHeight = Math.max(400, totalHeight);
                 
                 // Only send if height is reasonable and different from last sent
                 if (finalHeight <= 2000 && finalHeight !== window.lastSentHeight) {
                     console.log('Content height:', contentHeight);
+                    console.log('Dropdown bottom position:', dropdownBottom);
                     console.log('Final height:', finalHeight);
                     window.parent.postMessage('setHeight:' + finalHeight, '*');
                     window.parent.postMessage({ height: finalHeight }, '*');
