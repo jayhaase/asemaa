@@ -3,7 +3,6 @@ document.addEventListener('alpine:init', () => {
         // State
         hoveredLocationId: null,
         selectedLocation: null,
-        showDialog: false,
         locations: [],
         lastFocusedElement: null,
 
@@ -49,23 +48,6 @@ document.addEventListener('alpine:init', () => {
             this.lastFocusedElement = document.activeElement;
 
             this.selectLocation(id);
-            this.showDialog = true;
-
-            setTimeout(() => {
-                const closeButton = document.querySelector('[aria-label="Close dialog"]');
-                if (closeButton) closeButton.focus();
-            }, 50);
-        },
-
-        closeDialog() {
-            this.showDialog = false;
-
-            if (this.lastFocusedElement) {
-                setTimeout(() => {
-                    this.lastFocusedElement.focus();
-                    this.lastFocusedElement = null;
-                }, 50);
-            }
         },
 
         // Getters

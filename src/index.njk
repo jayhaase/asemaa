@@ -37,27 +37,36 @@
                             
                             <!-- Quote Section -->
                             <div class="mb-8">
-                                <blockquote class="text-lg italic text-gray-700 mb-2">
+                                <blockquote class="text-lg text-gray-700 mb-2 quote-box bg-white/70 p-4 border-l-4 border-[#A52A2A] rounded">
                                     "Traditional tobacco was our first gift from the Creator. These are the stories of the Asemaa seeds gifted to us. Look through Turtle Island to follow our journey."
                                 </blockquote>
-                                <cite class="text-sm text-gray-600 block">
+                                <cite class="text-sm text-gray-600 block mt-2 pl-4">
                                     — Suzanne Nash
                                 </cite>
                             </div>
                         </div>
 
-                        <!-- Right Column: Map -->
-                        <div class="md:w-3/4">
+                        <!-- Right Column: Map and Image Viewer -->
+                        <div class="md:w-3/4 relative">
+                            <!-- Map Area -->
                             {% include "partials/map-area.njk" %}
+                            
+                            <!-- Circular Image Viewer -->
+                            <div class="absolute bottom-4 right-4 w-32 h-32 md:w-48 md:h-48 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 shadow-lg bg-white"
+                                 style="border-color: #23545E;"
+                                 x-data
+                                 x-show="$store.locations.selectedLocation?.imageUrl">
+                                <img 
+                                    :src="$store.locations.selectedLocation?.imageUrl" 
+                                    :alt="$store.locations.selectedLocation?.name"
+                                    class="w-full h-full object-cover">
+                            </div>
                         </div>
                     </div>
-                    <!-- Location Dialog -->
-                    {% include "components/location-dialog.njk" %}
                 </main>
             </div>
         </div>
         <script defer src="{{ '/js/stores.js' | url }}"></script>
-        <script defer src="https://unpkg.com/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
         <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </body>
 </html>
