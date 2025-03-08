@@ -9,17 +9,31 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* Ensure map container and sidebar fit properly */
 #mapContainer {
   height: 100%;
-  overflow: hidden;
+  position: relative;
 }
 
 .map-container {
-  overflow: hidden;
+  position: relative;
+  min-height: 600px;
+}
+
+@media (max-width: 768px) {
+  .map-container {
+    min-height: 400px;
+  }
+}
+
+/* Location selector styles */
+.location-selector {
+  position: relative;
+  z-index: 10;
 }
 
 [x-cloak] {

@@ -25,10 +25,22 @@
             
             function sendHeight() {
                 const mapContainer = document.querySelector('.map-container');
+                const dropdown = document.querySelector('select');
                 if (!mapContainer) return;  // Guard against missing element
                 
                 // Get the actual container height without any padding
                 const containerHeight = mapContainer.getBoundingClientRect().height;
+                
+                // Get dropdown height and position
+                const dropdownHeight = dropdown ? dropdown.getBoundingClientRect().height : 0;
+                const dropdownBottom = dropdown ? dropdown.getBoundingClientRect().bottom : 0;
+                const containerBottom = mapContainer.getBoundingClientRect().bottom;
+                
+                // Calculate the total height needed including the dropdown
+                const totalContentHeight = Math.max(
+                    containerHeight,
+                    dropdownBottom - mapContainer.getBoundingClientRect().top
+                );
                 
                 // Get the document height including any margins
                 const docHeight = Math.max(
@@ -38,13 +50,14 @@
                     document.body.offsetHeight
                 );
                 
-                // Add a small buffer to prevent scroll bars (5px buffer)
-                const finalHeight = Math.max(containerHeight, docHeight) + 5;
+                // Use the larger height and add a small buffer
+                const finalHeight = Math.max(totalContentHeight, docHeight) + 20;
                 
                 // Only send if height is reasonable (between min and max)
                 if (finalHeight >= 400 && finalHeight <= 2000) {
                     console.log('Container height:', containerHeight);
-                    console.log('Document height:', docHeight);
+                    console.log('Dropdown height:', dropdownHeight);
+                    console.log('Total content height:', totalContentHeight);
                     console.log('Final height:', finalHeight);
                     window.parent.postMessage('setHeight:' + finalHeight, '*');
                     window.parent.postMessage({ height: finalHeight }, '*');
