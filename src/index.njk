@@ -4,13 +4,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Sacred Tobacco Map</title>
-        <style>
-            body {
-                overflow: hidden;
-                margin: 0;
-                padding: 0;
-            }
-        </style>
         <link rel="stylesheet" href="{{ '/css/tailwind.css' | url }}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,34 +19,28 @@
         property="og:url" content=""> <!-- Add your site image here -->
         <meta property="og:image" content="">
     </head>
-    <body class="h-full overflow-x-hidden">
+    <body class="h-full">
         <script>
             const locationData = {{ locations | dump | safe }};
             
             // Function to send height to parent frame
             function updateParentHeight() {
-                const height = document.body.scrollHeight;
+                const height = document.documentElement.offsetHeight;
                 window.parent.postMessage({ type: 'resize', height: height }, '*');
             }
 
             // Update height when content changes
             window.addEventListener('load', updateParentHeight);
             window.addEventListener('resize', updateParentHeight);
-            
-            // Add a small delay to ensure all content is rendered
-            setTimeout(updateParentHeight, 100);
 
             // Create a MutationObserver to watch for DOM changes
-            const observer = new MutationObserver(() => {
-                setTimeout(updateParentHeight, 100);
-            });
+            const observer = new MutationObserver(updateParentHeight);
             observer.observe(document.body, { 
                 childList: true, 
-                subtree: true,
-                attributes: true
+                subtree: true 
             });
         </script>
-        <div class="min-h-full overflow-x-hidden">
+        <div class="min-h-full">
             <div x-data="{ locations: locationData }" x-init="$store.locations.init(locations)" class="h-full">
                 <main class="content font-body container mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex flex-col md:flex-row md:space-x-8">
