@@ -8,13 +8,18 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100vh;
-  overflow: auto;
+  height: 100%;
+  overflow: hidden;
 }
 
 /* Ensure map container and sidebar fit properly */
 #mapContainer {
   height: 100%;
+  overflow: hidden;
+}
+
+.map-container {
+  overflow: hidden;
 }
 
 [x-cloak] {

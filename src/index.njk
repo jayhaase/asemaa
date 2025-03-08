@@ -30,17 +30,22 @@
                 // Get the actual container height without any padding
                 const containerHeight = mapContainer.getBoundingClientRect().height;
                 
-                // Get the document height
+                // Get the document height including any margins
                 const docHeight = Math.max(
                     document.documentElement.clientHeight,
-                    document.body.clientHeight
+                    document.body.clientHeight,
+                    document.documentElement.offsetHeight,
+                    document.body.offsetHeight
                 );
                 
-                // Use the larger of the two heights, with a fixed padding
-                const finalHeight = Math.max(containerHeight, docHeight);
+                // Add a small buffer to prevent scroll bars (5px buffer)
+                const finalHeight = Math.max(containerHeight, docHeight) + 5;
                 
                 // Only send if height is reasonable (between min and max)
                 if (finalHeight >= 400 && finalHeight <= 2000) {
+                    console.log('Container height:', containerHeight);
+                    console.log('Document height:', docHeight);
+                    console.log('Final height:', finalHeight);
                     window.parent.postMessage('setHeight:' + finalHeight, '*');
                     window.parent.postMessage({ height: finalHeight }, '*');
                 }
