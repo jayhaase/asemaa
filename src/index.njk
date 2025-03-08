@@ -25,13 +25,29 @@
         </script>
         <div class="h-full">
             <div x-data="{ locations: locationData }" x-init="$store.locations.init(locations)" class="h-full">
-                <main class="content font-body container mx-auto max-w-4xl">
-                    <div
-                        class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 justify-center">
-                        <!-- Map Column -->
-                        <div
-                            class="flex flex-col space-y-2">
-                            <!-- Map Area -->
+                <main class="content font-body container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col md:flex-row md:space-x-8">
+                        <!-- Left Column: Title and Quote -->
+                        <div class="md:w-1/4">
+                            <!-- Page Title -->
+                            <div class="mb-12 mt-4">
+                                <h1 class="text-3xl font-bold font-heading">Beishigo Asemaa</h1>
+                                <h2 class="text-xl text-gray-600 font-heading mt-1">Tobacco First</h2>
+                            </div>
+                            
+                            <!-- Quote Section -->
+                            <div class="mb-8">
+                                <blockquote class="text-lg italic text-gray-700 mb-2">
+                                    "Traditional tobacco was our first gift from the Creator. These are the stories of the Asemaa seeds gifted to us. Look through Turtle Island to follow our journey."
+                                </blockquote>
+                                <cite class="text-sm text-gray-600 block">
+                                    — Suzanne Nash
+                                </cite>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Map -->
+                        <div class="md:w-3/4">
                             {% include "partials/map-area.njk" %}
                         </div>
                     </div>
