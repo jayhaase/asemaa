@@ -64,16 +64,37 @@ Contentful is configured to call a Netlify build hook when new content is publis
 The parent page should have this Javascript:
 
 ```js
-window.addEventListener('message', function(e) {
-    if (e.data.type === 'resize') {
-        const iframe = document.querySelector('iframe'); // adjust selector as needed
-        iframe.style.height = e.data.height + 'px';
+<script>
+window.addEventListener('message', function(event) {
+    // Handle both message formats
+    let height;
+    if (typeof event.data === 'string' && event.data.startsWith('setHeight:')) {
+        height = parseInt(event.data.split(':')[1]);
+    } else if (event.data && event.data.height) {
+        height = event.data.height;
+    }
+    
+    if (height) {
+        // Find the iframe - adjust the selector if needed
+        const iframes = document.querySelectorAll('iframe');
+        iframes.forEach(iframe => {
+            if (iframe.src.includes('asemaa')) {  // Adjust this to match part of your iframe URL
+                iframe.style.height = height + 'px';
+            }
+        });
     }
 });
+</script>
 ```
 
 And the iframe should be set up with:
 
-```js
-<iframe src="your-page-url" width="100%" scrolling="no" style="border: none;"></iframe>
+```html
+<iframe 
+    src="https://asemaa.netlify.app/" 
+    width="100%" 
+    frameborder="0"
+    scrolling="no"
+    style="width: 100%; border: none; overflow: hidden;"
+></iframe>
 ```

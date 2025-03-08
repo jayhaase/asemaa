@@ -4,13 +4,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Sacred Tobacco Map</title>
-        <style>
-            body {
-                overflow: hidden;
-                margin: 0;
-                padding: 0;
-            }
-        </style>
         <link rel="stylesheet" href="{{ '/css/tailwind.css' | url }}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,22 +19,39 @@
         property="og:url" content=""> <!-- Add your site image here -->
         <meta property="og:image" content="">
     </head>
-    <body class="h-full overflow-x-hidden">
+    <body class="h-full">
         <script>
             const locationData = {{ locations | dump | safe }};
             
             function sendHeight() {
-                const height = document.documentElement.scrollHeight;
-                // Try both message formats that Squarespace might recognize
-                window.parent.postMessage('setHeight:' + height, '*');
-                window.parent.postMessage({ height: height }, '*');
+                const mapContainer = document.querySelector('.map-container');
+                if (!mapContainer) return;  // Guard against missing element
+                
+                // Get various height measurements
+                const containerHeight = mapContainer.offsetHeight;
+                const docHeight = Math.max(
+                    document.documentElement.scrollHeight,
+                    document.documentElement.offsetHeight
+                );
+                
+                // Use the larger of the two heights, plus padding
+                const height = Math.max(containerHeight, docHeight) + 200;
+                
+                // Only send if height is reasonable (greater than minimum height)
+                if (height >= 400) {
+                    window.parent.postMessage('setHeight:' + height, '*');
+                    window.parent.postMessage({ height: height }, '*');
+                }
             }
 
-            // Check height periodically
-            setInterval(sendHeight, 500);
+            // Initial height check with a slight delay to allow content to render
+            setTimeout(sendHeight, 500);
+
+            // Periodic height checks
+            setInterval(sendHeight, 1000);
 
             // Check height on key events
-            window.addEventListener('load', sendHeight);
+            window.addEventListener('load', () => setTimeout(sendHeight, 100));
             window.addEventListener('resize', sendHeight);
             
             // Check after Alpine loads
@@ -60,7 +70,7 @@
                     childList: true, 
                     subtree: true 
                 });
-                sendHeight();
+                setTimeout(sendHeight, 100);
             });
         </script>
         <div class="min-h-full">
@@ -87,7 +97,7 @@
                         </div>
 
                         <!-- Right Column: Map and Image Viewer -->
-                        <div class="md:w-3/4 relative">
+                        <div class="md:w-3/4 relative map-container">
                             <!-- Map Area -->
                             {% include "partials/map-area.njk" %}
                             
