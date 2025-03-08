@@ -28,16 +28,16 @@
                 <main class="content font-body container mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex flex-col md:flex-row md:space-x-8">
                         <!-- Left Column: Title and Quote -->
-                        <div class="md:w-1/4">
+                        <div class="md:w-1/4 flex flex-col">
                             <!-- Page Title -->
                             <div class="mb-12 mt-4">
                                 <h1 class="text-3xl font-bold font-heading">Beishigo Asemaa</h1>
                                 <h2 class="text-xl text-gray-600 font-heading mt-1">Tobacco First</h2>
                             </div>
                             
-                            <!-- Quote Section -->
-                            <div class="mb-8">
-                                <blockquote class="text-lg text-gray-700 mb-2 quote-box bg-white/70 p-4 border-l-4 border-[#A52A2A] rounded">
+                            <!-- Quote Section - Hidden on mobile, visible on md and up -->
+                            <div class="mb-8 hidden md:block">
+                                <blockquote class="text-lg mb-2 quote-box bg-white/70 p-4 border-l-4 border-[#A52A2A] rounded text-[#23545E]">
                                     "Traditional tobacco was our first gift from the Creator. These are the stories of the Asemaa seeds gifted to us. Look through Turtle Island to follow our journey."
                                 </blockquote>
                                 <cite class="text-sm text-gray-600 block mt-2 pl-4">
@@ -61,6 +61,16 @@
                                     :alt="$store.locations.selectedLocation?.name"
                                     class="w-full h-full object-cover">
                             </div>
+                        </div>
+
+                        <!-- Quote Section - Visible on mobile only, hidden on md and up -->
+                        <div class="mb-8 mt-20 md:hidden">
+                            <blockquote class="text-lg mb-2 quote-box bg-white/70 p-4 border-l-4 border-[#A52A2A] rounded text-[#23545E]">
+                                "Traditional tobacco was our first gift from the Creator. These are the stories of the Asemaa seeds gifted to us. Look through Turtle Island to follow our journey."
+                            </blockquote>
+                            <cite class="text-sm text-[#23545E] block mt-2 pl-4">
+                                — Suzanne Nash
+                            </cite>
                         </div>
                     </div>
                 </main>
