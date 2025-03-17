@@ -123,20 +123,46 @@
                             </div>
                         </div>
 
-                        <!-- Right Column: Map and Image Viewer -->
-                        <div class="md:w-3/4 relative map-container">
+                        <!-- Middle Column: Map Area -->
+                        <div class="md:w-2/4 relative map-container">
                             <!-- Map Area -->
                             {% include "partials/map-area.njk" %}
+                        </div>
+                        
+                        <!-- Right Column: Selected Image -->
+                        <div class="md:w-1/4 md:flex md:flex-col md:items-center md:self-center mt-8 md:mt-0">
+                            <!-- Location Dropdown -->
+                            <div class="w-32 md:w-48 lg:w-64 mb-6">
+                                <select
+                                    class="w-full p-3 md:p-2 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#23545E] focus:border-transparent bg-white"
+                                    @change="$store.locations.selectLocation($event.target.value);">
+                                    <option value="">Select a Location</option>
+                                    {% for location in locations %}
+                                        {% set indexInList = loop.index0 %}
+                                        <option value="{{ location.id }}" data-index="{{ indexInList }}">{{ location.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
                             
-                            <!-- Circular Image Viewer -->
-                            <div class="absolute bottom-4 right-4 w-32 h-32 md:w-48 md:h-48 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 shadow-lg bg-white"
-                                 style="border-color: #23545E;"
-                                 x-data
-                                 x-show="$store.locations.selectedLocation?.imageUrl">
-                                <img 
-                                    :src="$store.locations.selectedLocation?.imageUrl" 
-                                    :alt="$store.locations.selectedLocation?.name"
-                                    class="w-full h-full object-cover">
+                            <!-- Fixed height container for image and text -->
+                            <div class="flex flex-col items-center" style="min-height: 400px;">
+                                <!-- Square Image Viewer -->
+                                <div 
+                                    class="w-32 h-32 md:w-48 md:h-48 lg:w-64 lg:h-64 rounded-md overflow-hidden border-4 shadow-lg bg-white"
+                                    style="border-color: #23545E;"
+                                    x-show="$store.locations.selectedLocation">
+                                    <img 
+                                        :src="$store.locations.selectedLocation?.imageUrl" 
+                                        :alt="$store.locations.selectedLocation?.name"
+                                        class="w-full h-full object-cover">
+                                </div>
+                                
+                                <!-- Lorem Ipsum Text - Only for Minnesota -->
+                                <div 
+                                    class="mt-6 text-sm text-gray-700 w-32 md:w-48 lg:w-64 text-center"
+                                    x-show="$store.locations.selectedLocation && $store.locations.selectedLocation.name === 'Minnesota'">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                                </div>
                             </div>
                         </div>
 
