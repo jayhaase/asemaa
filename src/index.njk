@@ -102,10 +102,10 @@
             <div x-data x-init="$store.locations.init(window.locations)" class="h-full">
                 <main class="content font-body container mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex flex-col md:flex-row md:space-x-8">
-                        <!-- Left Column: Title and Quote -->
-                        <div class="md:w-1/4 flex flex-col">
+                        <!-- Left Column: Title, Quote, and Selected Location Info -->
+                        <div class="md:w-1/3 flex flex-col">
                             <!-- Page Title -->
-                            <div class="mb-12 mt-4">
+                            <div class="mb-8 mt-4">
                                 <h1 class="text-3xl font-bold font-heading">Beishigo Asemaa</h1>
                                 <h2 class="text-xl text-gray-600 font-heading mt-1">Tobacco First</h2>
                             </div>
@@ -119,31 +119,26 @@
                                     — Suzanne Nash
                                 </cite>
                             </div>
-                        </div>
-
-                        <!-- Middle Column: Map Area -->
-                        <div class="md:w-2/4 relative map-container">
-                            <!-- Map Area -->
-                            {% include "partials/map-area.njk" %}
-                        </div>
-                        
-                        <!-- Right Column: Selected Image -->
-                        <div class="md:w-1/4 md:flex md:flex-col md:items-center md:self-center mt-8 md:mt-0">
-                            <!-- Location Dropdown -->
-                            <div class="w-32 md:w-48 lg:w-64 mb-6">
-                                <select
-                                    class="w-full p-3 md:p-2 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#23545E] focus:border-transparent bg-white"
-                                    @change="$store.locations.selectLocation($event.target.value);">
-                                    <option value="">Select a Location</option>
-                                    {% for location in locationsArray %}
-                                        {% set indexInList = loop.index0 %}
-                                        <option value="{{ location.id }}" data-index="{{ indexInList }}">{{ location.name }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
                             
-                            <!-- Fixed height container for image and text -->
-                            <div class="flex flex-col items-center" style="min-height: 400px;">
+                            <!-- Location Selection and Image -->
+                            <div class="mt-4 mb-8">
+                                <!-- Location Dropdown -->
+                                <div class="w-32 md:w-48 lg:w-64 mb-6">
+                                    <label for="location-select" class="block text-sm font-medium text-gray-700 mb-2">
+                                        Sacred Tobacco Paths
+                                    </label>
+                                    <select
+                                        id="location-select"
+                                        class="w-full p-3 md:p-2 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#23545E] focus:border-transparent bg-white"
+                                        @change="$store.locations.selectLocation($event.target.value);">
+                                        <option value="">Find Sacred Seed Paths</option>
+                                        {% for location in locationsArray %}
+                                            {% set indexInList = loop.index0 %}
+                                            <option value="{{ location.id }}" data-index="{{ indexInList }}">{{ location.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                
                                 <!-- Square Image Viewer -->
                                 <div 
                                     class="w-32 h-32 md:w-48 md:h-48 lg:w-64 lg:h-64 rounded-md overflow-hidden border-4 shadow-lg bg-white"
@@ -155,17 +150,23 @@
                                         class="w-full h-full object-cover">
                                 </div>
                                 
-                                <!-- Lorem Ipsum Text - Only for Minnesota -->
+                                <!-- Location-specific text (if any) -->
                                 <div 
-                                    class="mt-6 text-sm text-gray-700 w-32 md:w-48 lg:w-64 text-center"
+                                    class="mt-6 text-sm text-gray-700 w-32 md:w-48 lg:w-64 text-left"
                                     x-show="$store.locations.selectedLocation && $store.locations.selectedLocation.name === 'Minnesota'">
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Right Column: Map Area (expanded) -->
+                        <div class="md:w-2/3 relative map-container">
+                            <!-- Map Area -->
+                            {% include "partials/map-area.njk" %}
+                        </div>
+
                         <!-- Quote Section - Visible on mobile only, hidden on md and up -->
-                        <div class="mb-8 mt-20 md:hidden">
+                        <div class="mb-8 mt-8 md:hidden">
                             <blockquote class="text-lg mb-2 quote-box bg-white/70 p-4 rounded text-[#23545E]">
                                 "Traditional tobacco was our first gift from the Creator. These are the stories of the Asemaa seeds gifted to us. Look through Turtle Island to follow our journey."
                             </blockquote>
