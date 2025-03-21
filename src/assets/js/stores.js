@@ -7,28 +7,9 @@ document.addEventListener('alpine:init', () => {
         locations: [],
 
         // Actions
-        init(locationData) {
-            console.log('Initializing store with data:', locationData);
-            // If locationData is undefined or not an array, try to get it from the global scope
-            if (!locationData || !Array.isArray(locationData)) {
-                console.log('Attempting to get locationData from window.locationData');
-                locationData = window.locationData;
-            }
-            
-            // Ensure we have an array of locations
-            if (Array.isArray(locationData)) {
-                console.log('Setting locations array with length:', locationData.length);
-                this.locations = locationData;
-            } else if (locationData && typeof locationData === 'object') {
-                // If we have an object with locations property (from x-data binding)
-                console.log('Extracting locations from object');
-                this.locations = locationData.locations || [];
-            } else {
-                console.warn('No valid location data found');
-                this.locations = [];
-            }
-            
-            console.log('Final locations array:', this.locations);
+        init(locations) {
+            console.log('Initializing store with data:', locations);
+            this.locations = locations;
         },
 
         setHoveredLocation(id) {

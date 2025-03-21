@@ -25,6 +25,12 @@ module.exports = function (eleventyConfig) {
     return data;
   });
 
+  // Add data handling for the locations array
+  eleventyConfig.addGlobalData('locationsArray', async () => {
+    const locations = require('./src/_data/locations');
+    return await locations();
+  });
+
   return {
     dir: {
       input: "src",

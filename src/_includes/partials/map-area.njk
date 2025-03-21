@@ -4,7 +4,7 @@
     <img
     src="/images/turtle-island.png" alt="Turtle Island Map" class="w-full h-full object-contain">
     <!-- Location Markers -->
-    {% for location in locations %}
+    {% for location in locationsArray %}
         {% include "components/map-marker.njk" %}
     {% endfor %}
 </div>

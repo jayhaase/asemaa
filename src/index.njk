@@ -21,9 +21,9 @@
     </head>
     <body class="h-full">
         <script>
-            // Ensure locationData is available globally and is an array
-            window.locationData = {{ locations | dump | safe }};
-            console.log('Initial location data:', window.locationData);
+            // Ensure locations is available globally and is an array
+            window.locations = {{ locationsArray | dump | safe }};
+            console.log('Locations array length:', window.locations?.length);
             
             function sendHeight() {
                 const mapContainer = document.querySelector('.map-container');
@@ -103,7 +103,7 @@
             });
         </script>
         <div class="min-h-full">
-            <div x-data x-init="$store.locations.init(window.locationData)" class="h-full">
+            <div x-data x-init="$store.locations.init(window.locations)" class="h-full">
                 <main class="content font-body container mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex flex-col md:flex-row md:space-x-8">
                         <!-- Left Column: Title and Quote -->
@@ -139,7 +139,7 @@
                                     class="w-full p-3 md:p-2 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#23545E] focus:border-transparent bg-white"
                                     @change="$store.locations.selectLocation($event.target.value);">
                                     <option value="">Select a Location</option>
-                                    {% for location in locations %}
+                                    {% for location in locationsArray %}
                                         {% set indexInList = loop.index0 %}
                                         <option value="{{ location.id }}" data-index="{{ indexInList }}">{{ location.name }}</option>
                                     {% endfor %}

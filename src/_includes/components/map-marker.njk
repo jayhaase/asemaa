@@ -28,7 +28,9 @@
         role="button">
         <!-- Show red dot for default state -->
         <template x-if="$store.locations.selectedLocation?.id !== '{{ location.id }}'">
-            <div class="{{ location.markerClass }}">
+            <div 
+                class="{{ location.markerClass }}"
+                :data-hovered="$store.locations.hoveredLocationId === '{{ location.id }}'">
             </div>
         </template>
         <span class="sr-only">Location: {{ location.name }}</span>

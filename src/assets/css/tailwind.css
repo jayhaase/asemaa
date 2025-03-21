@@ -81,6 +81,13 @@ body {
   /* Tailwind's rounded-full */
   border: 1px solid #fff;
   /* Tailwind's border border-white */
+  transition: all 0.2s ease-in-out;
+}
+
+.marker-dot:hover,
+.marker-dot[data-hovered="true"] {
+  transform: scale(1.5);
+  box-shadow: 0 0 10px rgba(245, 101, 101, 0.5);
 }
 
 .marker-diamond {
@@ -93,11 +100,25 @@ body {
   transform: rotate(45deg);
   border: 1px solid #fff;
   /* Tailwind's border border-white */
+  transition: all 0.2s ease-in-out;
+}
+
+.marker-diamond:hover,
+.marker-diamond[data-hovered="true"] {
+  transform: rotate(45deg) scale(1.5);
+  box-shadow: 0 0 10px rgba(236, 201, 75, 0.5);
 }
 
 .marker-heart {
   width: 0.75rem;
   height: 0.75rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.marker-heart:hover,
+.marker-heart[data-hovered="true"] {
+  transform: scale(1.5);
+  filter: drop-shadow(0 0 5px rgba(245, 101, 101, 0.5));
 }
 
 .marker-heart::before {
