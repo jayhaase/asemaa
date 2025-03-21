@@ -15,6 +15,7 @@ document.addEventListener('alpine:init', () => {
         setHoveredLocation(id) {
             console.log('Setting hovered location:', id);
             this.hoveredLocationId = id;
+            this.selectLocation(id);
         },
 
         selectLocation(id) {
