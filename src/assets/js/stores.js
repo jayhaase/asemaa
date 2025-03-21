@@ -45,6 +45,7 @@ document.addEventListener('alpine:init', () => {
         selectLocation(id) {
             if (!id) {
                 this.selectedLocation = null;
+                this.hoveredLocationId = null; // Clear hover state when selection is cleared
                 return;
             }
             const location = this.locations.find(l => l.id === id);
@@ -53,6 +54,12 @@ document.addEventListener('alpine:init', () => {
                 return;
             }
             this.selectedLocation = location;
+            
+            // If selected directly (not via hover), also set the hover state
+            if (this.hoveredLocationId !== id) {
+                this.hoveredLocationId = id;
+                this.lastHoverChangeTime = Date.now();
+            }
         },
 
         // Getters
