@@ -23,7 +23,6 @@
         <script>
             // Ensure locations is available globally and is an array
             window.locations = {{ locationsArray | dump | safe }};
-            console.log('Locations array length:', window.locations?.length);
             
             function sendHeight() {
                 const mapContainer = document.querySelector('.map-container');
@@ -50,9 +49,6 @@
                 
                 // Only send if height is reasonable and different from last sent
                 if (finalHeight <= 2000 && finalHeight !== window.lastSentHeight) {
-                    console.log('Content height:', contentHeight);
-                    console.log('Dropdown bottom position:', dropdownBottom);
-                    console.log('Final height:', finalHeight);
                     window.parent.postMessage('setHeight:' + finalHeight, '*');
                     window.parent.postMessage({ height: finalHeight }, '*');
                     window.lastSentHeight = finalHeight;

@@ -1,5 +1,4 @@
 document.addEventListener('alpine:init', () => {
-    console.log('Registering locations store...');
     Alpine.store('locations', {
         // State
         hoveredLocationId: null,
@@ -10,11 +9,10 @@ document.addEventListener('alpine:init', () => {
 
         // Actions
         init(locations) {
-            console.log('Initializing store with data:', locations);
             this.locations = locations;
         },
 
-        setHoveredLocation(id) {          
+        setHoveredLocation(id) {
             if (!id) {
                 // Make no changes since we are not hovering over a new location
                 return;
@@ -27,7 +25,7 @@ document.addEventListener('alpine:init', () => {
             const now = Date.now();
             const timeSinceLastChange = now - this.lastHoverChangeTime;
 
-            if ( timeSinceLastChange < this.hoverCooldown) {
+            if (timeSinceLastChange < this.hoverCooldown) {
                 return;
             }
             
@@ -38,6 +36,12 @@ document.addEventListener('alpine:init', () => {
             this.selectLocation(id);
         },
 
+        // Clear all selection states (both hover and selection)
+        clearSelection() {
+            this.hoveredLocationId = null;
+            this.selectedLocation = null;
+        },
+
         selectLocation(id) {
             if (!id) {
                 this.selectedLocation = null;
@@ -45,7 +49,6 @@ document.addEventListener('alpine:init', () => {
             }
             const location = this.locations.find(l => l.id === id);
             if (!location) {
-                console.warn('Location not found for ID:', id);
                 this.selectedLocation = null;
                 return;
             }
@@ -58,5 +61,4 @@ document.addEventListener('alpine:init', () => {
                    (this.selectedLocation?.id === id && !this.hoveredLocationId);
         }
     });
-    console.log('Store registered successfully');
 }); 

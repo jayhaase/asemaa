@@ -1,8 +1,8 @@
 <div
-    id="mapContainer" class="relative w-full h-full">
+    id="mapContainer" class="relative w-full h-full" @click.self="$store.locations.clearSelection()">
     <!-- Background Image -->
     <img
-    src="/images/turtle-island.png" alt="Turtle Island Map" class="w-full h-full object-contain">
+    src="/images/turtle-island.png" alt="Turtle Island Map" class="w-full h-full object-contain" @click.stop="$store.locations.clearSelection()">
     <!-- Location Markers -->
     {% for location in locationsArray %}
         {% include "components/map-marker.njk" %}
