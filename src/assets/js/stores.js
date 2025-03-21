@@ -1,59 +1,37 @@
 document.addEventListener('alpine:init', () => {
+    console.log('Registering locations store...');
     Alpine.store('locations', {
         // State
         hoveredLocationId: null,
         selectedLocation: null,
         locations: [],
-        lastFocusedElement: null,
 
         // Actions
         init(locationData) {
+            console.log('Initializing store with data:', locationData);
             this.locations = locationData;
         },
 
         setHoveredLocation(id) {
+            console.log('Setting hovered location:', id);
             this.hoveredLocationId = id;
-
-            const location = this.locations.find(l => l.id === id);
-            if (!location) return;
-
-            this.selectedLocation = location;
-
-            const dropdown = document.querySelector('select');
-            if (dropdown) {
-                dropdown.value = id || '';
-            }
         },
 
         selectLocation(id) {
+            console.log('Selecting location:', id);
             const location = this.locations.find(l => l.id === id);
-            if (!location) return;
-
-            this.hoveredLocationId = null;
+            if (!location) {
+                this.selectedLocation = null;
+                return;
+            }
             this.selectedLocation = location;
-
-            // Update dropdown selection
-            const dropdown = document.querySelector('select');
-            if (dropdown) {
-                dropdown.value = id;
-            }
-
-            const sidebarItem = document.getElementById(`location-${location.id}`);
-            if (sidebarItem) {
-                sidebarItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        },
-
-        showLocationInfo(id) {
-            this.lastFocusedElement = document.activeElement;
-
-            this.selectLocation(id);
         },
 
         // Getters
         shouldPulse(id) {
-            return this.hoveredLocationId === id ||
-                (this.selectedLocation?.id === id && !this.hoveredLocationId);
+            return this.hoveredLocationId === id || 
+                   (this.selectedLocation?.id === id && !this.hoveredLocationId);
         }
     });
+    console.log('Store registered successfully');
 }); 
