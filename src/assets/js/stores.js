@@ -5,6 +5,8 @@ document.addEventListener('alpine:init', () => {
         hoveredLocationId: null,
         selectedLocation: null,
         locations: [],
+        lastHoverChangeTime: 0,
+        hoverCooldown: 100, // milliseconds between allowed hover changes
 
         // Actions
         init(locations) {
@@ -12,19 +14,28 @@ document.addEventListener('alpine:init', () => {
             this.locations = locations;
         },
 
-        setHoveredLocation(id) {
-            console.log('Setting hovered location:', id);
-            
+        setHoveredLocation(id) {          
             if (!id) {
                 // Make no changes since we are not hovering over a new location
                 return;
             }
 
-            // Only change the seleceted location if we are hovering over a new location
-            if (this.hoveredLocationId !== id) {
-                this.hoveredLocationId = id;
-                this.selectLocation(id);
+            if (this.hoveredLocationId == id) {
+                return;
             }
+  
+            const now = Date.now();
+            const timeSinceLastChange = now - this.lastHoverChangeTime;
+
+            if ( timeSinceLastChange < this.hoverCooldown) {
+                return;
+            }
+            
+            // Only allow hover changes after the cooldown period
+            // This prevents all rapid changes between locations
+            this.hoveredLocationId = id;
+            this.lastHoverChangeTime = now;
+            this.selectLocation(id);
         },
 
         selectLocation(id) {
