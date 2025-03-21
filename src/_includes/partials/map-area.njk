@@ -1,10 +1,16 @@
-<div
-    id="mapContainer" class="relative w-full h-full" @click.self="$store.locations.clearSelection()">
-    <!-- Background Image -->
-    <img
-    src="/images/turtle-island.png" alt="Turtle Island Map" class="w-full h-full object-contain" @click.stop="$store.locations.clearSelection()">
-    <!-- Location Markers -->
-    {% for location in locationsArray %}
-        {% include "components/map-marker.njk" %}
-    {% endfor %}
+<div class="relative map-wrapper">
+    <!-- Fixed size container for consistent marker positioning -->
+    <div id="mapContainer" class="relative w-full">
+        <!-- Background Image -->
+        <img
+            src="/images/turtle-island.png" 
+            alt="Turtle Island Map" 
+            class="w-full h-auto object-contain" 
+            @click.stop="$store.locations.clearSelection()">
+            
+        <!-- Location Markers - Will be positioned by percentage relative to image -->
+        {% for location in locationsArray %}
+            {% include "components/map-marker.njk" %}
+        {% endfor %}
+    </div>
 </div>

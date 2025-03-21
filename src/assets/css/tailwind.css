@@ -13,18 +13,70 @@ body {
   overflow-y: auto;
 }
 
-/* Ensure map container and sidebar fit properly */
-#mapContainer {
-  height: 100%;
-  position: relative;
-}
-
+/* Map container structure */
 .map-container {
   position: relative;
   min-height: 600px;
 }
 
-@media (max-width: 768px) {
+/* Ensure fixed positioning reference */
+.map-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+#mapContainer {
+  max-width: 1280px; 
+  margin: 0 auto;
+  height: auto;
+  position: relative;
+}
+
+/* Ensure markers are positioned directly based on the actual map */
+#mapContainer img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Reset any special positioning adjustments previously added */
+.marker-position, 
+.absolute[style*="left:"][style*="top:"] {
+  /* Use original coordinates directly */
+  left: var(--x-pos);
+  top: var(--y-pos);
+  transform: none;
+}
+
+/* For screens at the optimal width (1280px+), use the base positioning */
+@media (min-width: 1280px) {
+  #mapContainer {
+    width: 100%;
+  }
+}
+
+/* For medium screens (768px-1279px), adjust the container scale */
+@media (min-width: 768px) and (max-width: 1279px) {
+  #mapContainer {
+    /* Remove scaling approach */
+    width: 100%;
+    margin-left: 0;
+  }
+  
+  /* Remove the old approach */
+  .absolute[style*="left:"][style*="top:"] {
+    transform: none;
+  }
+  
+  /* Increase the shift amount for the CSS variable approach */
+  .marker-position {
+    left: calc(var(--x-pos) + 12%);
+    top: var(--y-pos);
+  }
+}
+
+/* For smaller screens, adjust the container to preserve marker positions */
+@media (max-width: 767px) {
   .map-container {
     min-height: 400px;
   }
@@ -166,4 +218,34 @@ body {
   mask-size: contain;
   transform: scale(1);
   /* Keep the red heart at original size */
+}
+
+/* Base marker positioning */
+.marker-position {
+  left: var(--x-pos);
+  top: var(--y-pos);
+}
+
+/* For screens at the optimal width (1280px+), use the base positioning */
+@media (min-width: 1280px) {
+  .marker-position {
+    left: var(--x-pos);
+    top: var(--y-pos);
+  }
+}
+
+/* For medium screens (768px-1279px), adjust marker positions */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .marker-position {
+    left: calc(var(--x-pos) + 12%);
+    top: var(--y-pos);
+  }
+}
+
+/* For smaller screens */
+@media (max-width: 767px) {
+  .marker-position {
+    left: var(--x-pos);
+    top: var(--y-pos);
+  }
 }

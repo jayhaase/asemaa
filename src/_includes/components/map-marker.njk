@@ -1,4 +1,4 @@
-<div class="absolute" style="left: {{ location.coordinates.x }}%; top: {{ location.coordinates.y }}%">
+<div class="absolute" style="left: {{ location.coordinates.x }}%; top: {{ location.coordinates.y }}%" @click.stop="$store.locations.selectLocation('{{ location.id }}')">
     <!-- Pulse Animation -->
     <template x-if="$store.locations.shouldPulse('{{ location.id }}')">
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
@@ -23,7 +23,6 @@
             style="transition: all 0.2s ease-in-out;"
             @mouseover="$store.locations.setHoveredLocation('{{ location.id }}')"
             @mouseleave="$store.locations.setHoveredLocation(null)"
-            @click.stop="$store.locations.selectLocation('{{ location.id }}')"
             aria-label="View {{ location.name }}"
             aria-expanded="false"
             :aria-expanded="$store.locations.selectedLocation?.id === '{{ location.id }}' ? 'true' : 'false'"
