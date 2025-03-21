@@ -3,6 +3,28 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets/images": "images" });
   eleventyConfig.addPassthroughCopy({ "src/assets/js": "js" });
 
+  // Add async data handling
+  eleventyConfig.setDataDeepMerge(true);
+  eleventyConfig.setQuietMode(false);
+
+  // Add debug logging
+  eleventyConfig.on('eleventy.before', async () => {
+    console.log('Starting Eleventy build...');
+  });
+
+  eleventyConfig.on('eleventy.after', async () => {
+    console.log('Finished Eleventy build');
+  });
+
+  // Add data handling
+  eleventyConfig.addGlobalData('locations', async () => {
+    console.log('Fetching locations data...');
+    const locations = require('./src/_data/locations');
+    const data = await locations();
+    console.log('Locations data fetched:', data.length, 'locations');
+    return data;
+  });
+
   return {
     dir: {
       input: "src",

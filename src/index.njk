@@ -21,7 +21,9 @@
     </head>
     <body class="h-full">
         <script>
-            const locationData = {{ locations | dump | safe }};
+            // Ensure locationData is available globally and is an array
+            window.locationData = {{ locations | dump | safe }};
+            console.log('Initial location data:', window.locationData);
             
             function sendHeight() {
                 const mapContainer = document.querySelector('.map-container');
@@ -101,7 +103,7 @@
             });
         </script>
         <div class="min-h-full">
-            <div x-data="{ locations: locationData }" x-init="$store.locations.init(locations)" class="h-full">
+            <div x-data x-init="$store.locations.init(window.locationData)" class="h-full">
                 <main class="content font-body container mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex flex-col md:flex-row md:space-x-8">
                         <!-- Left Column: Title and Quote -->
