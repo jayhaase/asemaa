@@ -120,8 +120,8 @@
                                 </cite>
                             </div>
                             
-                            <!-- Location Selection and Image -->
-                            <div class="mt-4 mb-8">
+                            <!-- Location Selection and Image - On desktop: in left column, On mobile: hidden until after map -->
+                            <div class="mt-4 mb-8 hidden md:block">
                                 <!-- Location Dropdown -->
                                 <div class="w-32 md:w-48 lg:w-64 mb-6">
                                     <label for="location-select" class="block text-sm font-medium text-gray-700 mb-2">
@@ -131,7 +131,7 @@
                                         id="location-select"
                                         class="w-full p-3 md:p-2 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#23545E] focus:border-transparent bg-white"
                                         @change="$store.locations.selectLocation($event.target.value);">
-                                        <option value="">Find Sacred Seed Paths</option>
+                                        <option value="">Select a Location</option>
                                         {% for location in locationsArray %}
                                             {% set indexInList = loop.index0 %}
                                             <option value="{{ location.id }}" data-index="{{ indexInList }}">{{ location.name }}</option>
@@ -163,6 +163,44 @@
                         <div class="md:w-2/3 relative map-container">
                             <!-- Map Area -->
                             {% include "partials/map-area.njk" %}
+                        </div>
+
+                        <!-- Mobile Only: Location Selection and Image -->
+                        <div class="md:hidden mt-8 mb-4">
+                            <!-- Location Dropdown -->
+                            <div class="w-full max-w-xs mx-auto mb-6">
+                                <label for="mobile-location-select" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Sacred Tobacco Paths
+                                </label>
+                                <select
+                                    id="mobile-location-select"
+                                    class="w-full p-3 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#23545E] focus:border-transparent bg-white"
+                                    @change="$store.locations.selectLocation($event.target.value);">
+                                    <option value="">Find Sacred Seed Paths</option>
+                                    {% for location in locationsArray %}
+                                        {% set indexInList = loop.index0 %}
+                                        <option value="{{ location.id }}" data-index="{{ indexInList }}">{{ location.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <!-- Square Image Viewer -->
+                            <div 
+                                class="w-full h-64 max-w-xs mx-auto rounded-md overflow-hidden border-4 shadow-lg bg-white mb-4"
+                                style="border-color: #23545E;"
+                                x-show="$store.locations.selectedLocation">
+                                <img 
+                                    :src="$store.locations.selectedLocation?.imageUrl" 
+                                    :alt="$store.locations.selectedLocation?.name"
+                                    class="w-full h-full object-cover">
+                            </div>
+                            
+                            <!-- Location-specific text (if any) -->
+                            <div 
+                                class="mt-4 text-sm text-gray-700 w-full max-w-xs mx-auto text-left"
+                                x-show="$store.locations.selectedLocation && $store.locations.selectedLocation.name === 'Minnesota'">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                            </div>
                         </div>
 
                         <!-- Quote Section - Visible on mobile only, hidden on md and up -->
