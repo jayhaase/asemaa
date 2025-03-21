@@ -30,6 +30,22 @@ body {
   }
 }
 
+/* Location marker improvements */
+.location-marker button {
+  /* Create a stable hover target */
+  border-radius: 50%;
+  outline: none;
+}
+
+/* Add a small delay to hover transitions to smooth out rapid movements */
+.marker-dot,
+.marker-diamond,
+.marker-heart {
+  transition: all 0.2s ease-in-out;
+  /* Add a slight delay before transition starts */
+  transition-delay: 0.08s;
+}
+
 /* Location selector styles */
 .location-selector {
   position: relative;
@@ -81,7 +97,6 @@ body {
   /* Tailwind's rounded-full */
   border: 1px solid #fff;
   /* Tailwind's border border-white */
-  transition: all 0.2s ease-in-out;
 }
 
 .marker-dot:hover,
@@ -100,7 +115,6 @@ body {
   transform: rotate(45deg);
   border: 1px solid #fff;
   /* Tailwind's border border-white */
-  transition: all 0.2s ease-in-out;
 }
 
 .marker-diamond:hover,
@@ -112,7 +126,6 @@ body {
 .marker-heart {
   width: 0.75rem;
   height: 0.75rem;
-  transition: all 0.2s ease-in-out;
 }
 
 .marker-heart:hover,

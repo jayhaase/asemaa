@@ -14,20 +14,25 @@ document.addEventListener('alpine:init', () => {
 
         setHoveredLocation(id) {
             console.log('Setting hovered location:', id);
-            this.hoveredLocationId = id;
-            this.selectLocation(id);
+            
+            if (!id) {
+                // Make no changes since we are not hovering over a new location
+                return;
+            }
+
+            // Only change the seleceted location if we are hovering over a new location
+            if (this.hoveredLocationId !== id) {
+                this.hoveredLocationId = id;
+                this.selectLocation(id);
+            }
         },
 
         selectLocation(id) {
-            console.log('Selecting location:', id);
-            console.log('Available locations:', this.locations);
             if (!id) {
-                console.log('No ID provided, clearing selection');
                 this.selectedLocation = null;
                 return;
             }
             const location = this.locations.find(l => l.id === id);
-            console.log('Found location:', location);
             if (!location) {
                 console.warn('Location not found for ID:', id);
                 this.selectedLocation = null;

@@ -15,24 +15,28 @@
             </template>
         </div>
     </template>
-    <!-- Static Marker -->
-    <button
-        class="absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer z-20 p-2"
-        @mouseover="$store.locations.setHoveredLocation('{{ location.id }}')"
-        @mouseleave="$store.locations.setHoveredLocation(null)"
-        @click.stop="$store.locations.selectLocation('{{ location.id }}')"
-        aria-label="View {{ location.name }}"
-        aria-expanded="false"
-        :aria-expanded="$store.locations.selectedLocation?.id === '{{ location.id }}' ? 'true' : 'false'"
-        aria-controls="location-info-{{ location.id }}"
-        role="button">
-        <!-- Show red dot for default state -->
-        <template x-if="$store.locations.selectedLocation?.id !== '{{ location.id }}'">
-            <div 
-                class="{{ location.markerClass }}"
-                :data-hovered="$store.locations.hoveredLocationId === '{{ location.id }}'">
-            </div>
-        </template>
-        <span class="sr-only">Location: {{ location.name }}</span>
-    </button>
+
+    <!-- Circular shape for consistent hover behavior -->
+    <div class="location-marker absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2 z-20">
+        <button
+            class="p-3 rounded-full cursor-pointer focus:outline-none hover:bg-transparent"
+            style="transition: all 0.2s ease-in-out;"
+            @mouseover="$store.locations.setHoveredLocation('{{ location.id }}')"
+            @mouseleave="$store.locations.setHoveredLocation(null)"
+            @click.stop="$store.locations.selectLocation('{{ location.id }}')"
+            aria-label="View {{ location.name }}"
+            aria-expanded="false"
+            :aria-expanded="$store.locations.selectedLocation?.id === '{{ location.id }}' ? 'true' : 'false'"
+            aria-controls="location-info-{{ location.id }}"
+            role="button">
+            <!-- Marker dot -->
+            <template x-if="$store.locations.selectedLocation?.id !== '{{ location.id }}'">
+                <div 
+                    class="{{ location.markerClass }}"
+                    :data-hovered="$store.locations.hoveredLocationId === '{{ location.id }}'">
+                </div>
+            </template>
+            <span class="sr-only">Location: {{ location.name }}</span>
+        </button>
+    </div>
 </div> 
