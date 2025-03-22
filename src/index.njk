@@ -132,7 +132,7 @@
                                         class="w-full p-3 md:p-2 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#23545E] focus:border-transparent bg-white"
                                         @change="$store.locations.selectLocation($event.target.value);"
                                         x-bind:value="$store.locations.selectedLocation?.id || ''">
-                                        <option value="">Find Sacred Seed Paths</option>
+                                        <option value="">Select a Path</option>
                                         {% for location in locationsArray %}
                                             {% set indexInList = loop.index0 %}
                                             <option value="{{ location.id }}" data-index="{{ indexInList }}">{{ location.name }}</option>
