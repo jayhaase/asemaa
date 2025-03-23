@@ -1,11 +1,11 @@
 <div class="relative map-wrapper">
     <!-- Fixed size container for consistent marker positioning -->
-    <div id="mapContainer" class="relative w-full">
+    <div id="mapContainer" class="relative w-full z-10">
         <!-- Background Image -->
         <img
             src="/images/turtle-island.png" 
             alt="Turtle Island Map" 
-            class="w-full h-auto object-contain" 
+            class="w-full h-auto object-contain relative z-10" 
             @click.stop="$store.locations.clearSelection()">
             
         <!-- Location Markers - Will be positioned by percentage relative to image -->

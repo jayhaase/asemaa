@@ -17,12 +17,14 @@ body {
 .map-container {
   position: relative;
   min-height: 600px;
+  padding-bottom: 120px; /* Add extra padding for the image overlap */
 }
 
 /* Ensure fixed positioning reference */
 .map-wrapper {
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
 #mapContainer {
@@ -79,6 +81,12 @@ body {
 @media (max-width: 767px) {
   .map-container {
     min-height: 400px;
+    padding-bottom: 40px; /* Less padding on mobile */
+  }
+  
+  /* Add isolation to the mobile map container as well */
+  .relative > .w-full.relative {
+    /* No additional styles needed */
   }
 }
 
@@ -87,6 +95,13 @@ body {
   /* Create a stable hover target */
   border-radius: 50%;
   outline: none;
+  position: relative;
+  z-index: 20; /* Ensure markers are always on top */
+}
+
+/* For location markers, ensure they're always visible */
+.absolute[style*="left:"][style*="top:"] {
+  z-index: 25;
 }
 
 /* Add a small delay to hover transitions to smooth out rapid movements */
@@ -248,4 +263,23 @@ body {
     left: var(--x-pos);
     top: var(--y-pos);
   }
+}
+
+/* Crescent shape image viewer */
+.crescent-clip {
+  /* Modern clip-path approach for a crescent moon shape */
+  clip-path: path('M100 0 A 50 50 0 0 1 100 100 A 50 50 0 0 1 0 100 A 50 50 0 0 1 0 0 A 50 50 0 0 1 100 0 Z M 60 50 A 10 10 0 0 0 40 50 A 10 10 0 0 0 60 50 Z');
+}
+
+/* Fallback for browsers that don't support advanced clip-path */
+@supports not (clip-path: path('')) {
+  .crescent-clip {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0, 50% 50%);
+  }
+}
+
+/* Ensure the map image sits on top of the circle */
+#mapContainer img,
+.w-full.relative img {
+  position: relative;
 }

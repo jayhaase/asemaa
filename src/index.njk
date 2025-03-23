@@ -120,7 +120,7 @@
                                 </cite>
                             </div>
                             
-                            <!-- Location Selection and Image - On desktop: in left column, On mobile: hidden until after map -->
+                            <!-- Location Selection - On desktop: in left column, On mobile: hidden until after map -->
                             <div class="mt-4 mb-8 hidden md:block">
                                 <!-- Location Dropdown -->
                                 <div class="w-32 md:w-48 lg:w-64 mb-6">
@@ -140,20 +140,8 @@
                                     </select>
                                 </div>
                                 
-                                <!-- Square Image Viewer -->
-                                <div class="w-32 md:w-48 lg:w-64 h-24 md:h-36 lg:h-48 rounded-md overflow-hidden border-4 shadow-lg" style="border-color: #23545E;" x-show="$store.locations.selectedLocation">
-                                    <div class="w-full h-full bg-white">
-                                        <img 
-                                            :src="$store.locations.selectedLocation?.imageUrl" 
-                                            :alt="$store.locations.selectedLocation?.name"
-                                            class="w-full h-full object-cover">
-                                    </div>
-                                </div>
-                                <!-- Placeholder to maintain layout space when no image -->
-                                <div class="w-32 h-24 md:w-48 md:h-36 lg:w-64 lg:h-48 opacity-0" x-show="!$store.locations.selectedLocation"></div>
-                                
-                                <!-- Location-specific text (if any) -->
-                                <div class="mt-6 text-sm text-gray-700 w-32 md:w-48 lg:w-64 text-left h-32">
+                                <!-- Location-specific text (moved up, just below dropdown) -->
+                                <div class="mt-2 mb-6 text-sm text-gray-700 w-32 md:w-48 lg:w-64 text-left">
                                     <div x-show="$store.locations.selectedLocation && $store.locations.selectedLocation.name === 'Minnesota'">
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
                                     </div>
@@ -161,10 +149,36 @@
                             </div>
                         </div>
 
-                        <!-- Right Column: Map Area (expanded) -->
+                        <!-- Right Column: Map Area with Circular Image Viewer -->
                         <div class="md:w-2/3 relative map-container mt-8 md:mt-16">
-                            <!-- Map Area -->
-                            {% include "partials/map-area.njk" %}
+                            <!-- Map and Image Container - This parent controls stacking -->
+                            <div class="relative" style="z-index: 1;">
+                                <!-- Circular Image Viewer - Positioned at lower left -->
+                                <div class="absolute bottom-16 left-0" style="z-index: 8; transform: translateY(0%) translateX(-45%);"
+                                     x-show="$store.locations.selectedLocation" 
+                                     x-transition:enter="transition ease-out duration-300"
+                                     x-transition:enter-start="opacity-0"
+                                     x-transition:enter-end="opacity-100"
+                                     x-transition:leave="transition ease-in duration-300"
+                                     x-transition:leave-start="opacity-100"
+                                     x-transition:leave-end="opacity-0">
+                                    <div class="relative w-40 h-40 md:w-48 md:h-48 lg:w-64 lg:h-64">
+                                        <!-- Semi-circle clip path for the crescent shape -->
+                                        <div class="absolute inset-0 bg-white rounded-full overflow-hidden border-4 crescent-clip" 
+                                             style="border-color: #23545E;">
+                                            <img 
+                                                :src="$store.locations.selectedLocation?.imageUrl" 
+                                                :alt="$store.locations.selectedLocation?.name"
+                                                class="w-full h-full object-cover">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Map Area - Higher z-index to overlap the image viewer -->
+                                <div class="relative" style="z-index: 10;">
+                                    {% include "partials/map-area.njk" %}
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Mobile Only: Location Selection and Image -->
@@ -187,22 +201,36 @@
                                 </select>
                             </div>
                             
-                            <!-- Square Image Viewer -->
-                            <div class="w-full h-48 max-w-xs mx-auto rounded-md overflow-hidden border-4 shadow-lg mb-4" style="border-color: #23545E;" x-show="$store.locations.selectedLocation">
-                                <div class="w-full h-full bg-white">
-                                    <img 
-                                        :src="$store.locations.selectedLocation?.imageUrl" 
-                                        :alt="$store.locations.selectedLocation?.name"
-                                        class="w-full h-full object-cover">
-                                </div>
-                            </div>
-                            <!-- Placeholder to maintain layout space when no image -->
-                            <div class="w-full h-48 max-w-xs mx-auto mb-4 opacity-0" x-show="!$store.locations.selectedLocation"></div>
-                            
-                            <!-- Location-specific text (if any) -->
-                            <div class="mt-4 text-sm text-gray-700 w-full max-w-xs mx-auto text-left h-32">
+                            <!-- Location-specific text (moved up, just below dropdown) -->
+                            <div class="mt-2 mb-6 text-sm text-gray-700 w-full max-w-xs mx-auto text-left">
                                 <div x-show="$store.locations.selectedLocation && $store.locations.selectedLocation.name === 'Minnesota'">
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Map container with circular image viewer for mobile -->
+                            <div class="relative">
+                                <!-- Circular Image Viewer for Mobile -->
+                                <div class="absolute bottom-8 left-0" style="z-index: 8; transform: translateY(0%) translateX(-45%);"
+                                     x-show="$store.locations.selectedLocation">
+                                    <div class="relative w-32 h-32">
+                                        <!-- Semi-circle clip path for the crescent shape -->
+                                        <div class="absolute inset-0 bg-white rounded-full overflow-hidden border-4 crescent-clip" 
+                                             style="border-color: #23545E;">
+                                            <img 
+                                                :src="$store.locations.selectedLocation?.imageUrl" 
+                                                :alt="$store.locations.selectedLocation?.name"
+                                                class="w-full h-full object-cover">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Map Area (Mobile) - Higher z-index to overlap the image viewer -->
+                                <div class="w-full relative" style="z-index: 10;">
+                                    <img
+                                        src="/images/turtle-island.png" 
+                                        alt="Turtle Island Map" 
+                                        class="w-full h-auto object-contain">
                                 </div>
                             </div>
                         </div>
