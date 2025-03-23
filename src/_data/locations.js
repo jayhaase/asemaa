@@ -13,7 +13,6 @@ module.exports = async function () {
 
     console.log('Received entries from Contentful');
     console.log('Total entries:', entries.total);
-    console.log('Items length:', entries.items?.length);
 
     // Map marker types to their respective CSS classes
     const markerClasses = {
