@@ -24,10 +24,10 @@ body {
 .map-container {
   position: relative;
   min-height: 600px;
-  padding-bottom: 120px; /* Add extra padding for the image overlap */
+  padding-bottom: 120px;
 }
 
-/* Ensure fixed positioning reference */
+/* Map wrapper */
 .map-wrapper {
   width: 100%;
   height: 100%;
@@ -41,7 +41,6 @@ body {
   position: relative;
 }
 
-/* Ensure markers are positioned directly based on the actual map */
 #mapContainer img {
   display: block;
   width: 100%;
@@ -49,13 +48,159 @@ body {
   filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
 }
 
-/* Reset any special positioning adjustments previously added */
-.marker-position, 
-.absolute[style*="left:"][style*="top:"] {
-  /* Use original coordinates directly */
+/* Marker positioning */
+.marker-position {
   left: var(--x-pos);
   top: var(--y-pos);
-  transform: none;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 767px) {
+  .map-container {
+    min-height: 400px;
+    padding-bottom: 40px;
+  }
+}
+
+/* Location marker styles */
+.location-marker button {
+  border-radius: 50%;
+  outline: none;
+  position: relative;
+  z-index: 20;
+}
+
+.absolute[style*="left:"][style*="top:"] {
+  z-index: 25;
+}
+
+/* Marker animations */
+.marker-dot,
+.marker-diamond,
+.marker-heart {
+  transition: all 0.2s ease-in-out;
+  transition-delay: 0.08s;
+}
+
+/* Connection line styles */
+.connection-line {
+  position: absolute;
+  background-color: #23545E;
+  transform-origin: 0 0;
+  height: 2px;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0.7;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+[x-cloak] {
+  display: none !important;
+}
+
+/* Marker styles */
+.marker-dot {
+  background-color: #f56565;
+  height: 0.75rem;
+  width: 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid #fff;
+}
+
+.marker-dot:hover,
+.marker-dot[data-hovered="true"] {
+  transform: scale(1.5);
+  box-shadow: 0 0 10px rgba(245, 101, 101, 0.5);
+}
+
+.marker-diamond {
+  background-color: #ecc94b;
+  height: 0.75rem;
+  width: 0.75rem;
+  transform: rotate(45deg);
+  border: 1px solid #fff;
+}
+
+.marker-diamond:hover,
+.marker-diamond[data-hovered="true"] {
+  transform: rotate(45deg) scale(1.5);
+  box-shadow: 0 0 10px rgba(236, 201, 75, 0.5);
+}
+
+.marker-heart {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.marker-heart:hover,
+.marker-heart[data-hovered="true"] {
+  transform: scale(1.5);
+  filter: drop-shadow(0 0 5px rgba(245, 101, 101, 0.5));
+}
+
+.marker-heart::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(84, 4, 4);
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  transform: scale(1.2);
+}
+
+.marker-heart::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f56565;
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  transform: scale(1);
+}
+
+/* Active location image */
+.drop-shadow-glow {
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+}
+
+/* Quote box styles */
+blockquote, 
+.quote-box {
+  background: radial-gradient(
+    circle at center,
+    rgba(13, 25, 45, 0.85) 70%,
+    rgba(13, 25, 45, 0.7) 100%
+  ) !important;
+  color: white !important;
+  padding: 1.5rem;
+  border-radius: 0.7rem;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Dropdown/Select styling */
+select,
+option,
+.dropdown,
+.select-box {
+  color: #000000 !important;
+  text-shadow: none;
+}
+
+/* Location selector styles */
+.location-selector {
+  position: relative;
+  z-index: 10;
 }
 
 /* For screens at the optimal width (1280px+), use the base positioning */
@@ -98,20 +243,6 @@ body {
   }
 }
 
-/* Location marker improvements */
-.location-marker button {
-  /* Create a stable hover target */
-  border-radius: 50%;
-  outline: none;
-  position: relative;
-  z-index: 20; /* Ensure markers are always on top */
-}
-
-/* For location markers, ensure they're always visible */
-.absolute[style*="left:"][style*="top:"] {
-  z-index: 25;
-}
-
 /* Add a small delay to hover transitions to smooth out rapid movements */
 .marker-dot,
 .marker-diamond,
@@ -139,10 +270,6 @@ body {
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
-[x-cloak] {
-  display: none !important;
-}
-
 @keyframes ping-large {
   0% {
     transform: scale(1);
@@ -158,89 +285,6 @@ body {
 
 .animate-ping-large {
   animation: ping-large 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-/* styles.css */
-.marker-dot {
-  background-color: #f56565;
-  /* Tailwind's bg-red-500 */
-  height: 0.75rem;
-  /* Tailwind's h-3 */
-  width: 0.75rem;
-  /* Tailwind's w-3 */
-  border-radius: 9999px;
-  /* Tailwind's rounded-full */
-  border: 1px solid #fff;
-  /* Tailwind's border border-white */
-}
-
-.marker-dot:hover,
-.marker-dot[data-hovered="true"] {
-  transform: scale(1.5);
-  box-shadow: 0 0 10px rgba(245, 101, 101, 0.5);
-}
-
-.marker-diamond {
-  background-color: #ecc94b;
-  /* Tailwind's bg-yellow-400 */
-  height: 0.75rem;
-  /* Tailwind's h-3 */
-  width: 0.75rem;
-  /* Tailwind's w-3 */
-  transform: rotate(45deg);
-  border: 1px solid #fff;
-  /* Tailwind's border border-white */
-}
-
-.marker-diamond:hover,
-.marker-diamond[data-hovered="true"] {
-  transform: rotate(45deg) scale(1.5);
-  box-shadow: 0 0 10px rgba(236, 201, 75, 0.5);
-}
-
-.marker-heart {
-  width: 0.75rem;
-  height: 0.75rem;
-}
-
-.marker-heart:hover,
-.marker-heart[data-hovered="true"] {
-  transform: scale(1.5);
-  filter: drop-shadow(0 0 5px rgba(245, 101, 101, 0.5));
-}
-
-.marker-heart::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgb(84, 4, 4);
-  /* Larger white heart */
-  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center;
-  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center;
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  transform: scale(1.2);
-  /* Scale up the white heart */
-}
-
-.marker-heart::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #f56565;
-  /* Smaller red heart */
-  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center;
-  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center;
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  transform: scale(1);
-  /* Keep the red heart at original size */
 }
 
 /* Base marker positioning */
@@ -273,22 +317,9 @@ body {
   }
 }
 
-/* Crescent shape image viewer */
-.crescent-clip {
-  /* Modern clip-path approach for a crescent moon shape */
-  clip-path: path('M100 0 A 50 50 0 0 1 100 100 A 50 50 0 0 1 0 100 A 50 50 0 0 1 0 0 A 50 50 0 0 1 100 0 Z M 60 50 A 10 10 0 0 0 40 50 A 10 10 0 0 0 60 50 Z');
-}
-
 /* Custom drop shadow for the image viewer */
 .drop-shadow-glow {
   filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
-}
-
-/* Fallback for browsers that don't support advanced clip-path */
-@supports not (clip-path: path('')) {
-  .crescent-clip {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0, 50% 50%);
-  }
 }
 
 /* Ensure the map image sits on top of the circle */
@@ -297,34 +328,10 @@ body {
   position: relative;
 }
 
-/* Quote box styles */
-blockquote, 
-.quote-box {
-  background: radial-gradient(
-    circle at center,
-    rgba(13, 25, 45, 0.85) 70%,
-    rgba(13, 25, 45, 0.7) 100%
-  ) !important;
-  color: white !important;
-  padding: 1.5rem;
-  border-radius: 0.7rem;
-  backdrop-filter: blur(4px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
 /* Subtitle enhancement */
 h2, 
 .subtitle {
   opacity: 0.9;
   font-weight: 500;
   letter-spacing: 0.025em;
-}
-
-/* Dropdown/Select styling */
-select,
-option,
-.dropdown,
-.select-box {
-  color: #000000 !important;
-  text-shadow: none;
 }
