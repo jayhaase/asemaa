@@ -112,7 +112,7 @@
                             
                             <!-- Quote Section - Hidden on mobile, visible on md and up -->
                             <div class="mb-8 hidden md:block">
-                                <blockquote class="text-xl mb-2 quote-box bg-white/70 rounded text-[#23545E]">
+                                <blockquote class="text-xl mb-2 quote-box">
                                     "Traditional tobacco was our first gift from the Creator. These are the stories of the Asemaa seeds gifted to us."
                                     <cite class="text-sm block mt-4 text-right">
                                         — Suzanne Nash
@@ -142,7 +142,7 @@
                                 
                                 <!-- Location-specific text (moved up, just below dropdown) -->
                                 <div class="mt-4 mb-6 text-sm w-32 md:w-48 lg:w-64">
-                                    <div x-show="$store.locations.selectedLocation && $store.locations.selectedLocation.name === 'Minnesota'" 
+                                    <div x-show="$store.locations.selectedLocation && $store.locations.selectedLocation.name === 'Minnesota'"
                                          class="p-4 rounded-lg bg-opacity-80 text-white leading-relaxed"
                                          style="background: linear-gradient(to bottom right, rgba(13, 25, 45, 0.85), rgba(13, 25, 45, 0.7))">
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
@@ -203,7 +203,7 @@
                                 </select>
                             </div>
                             
-                            <!-- Location-specific text (moved up, just below dropdown) -->
+                            <!-- Location-specific text for mobile (moved up, just below dropdown) -->
                             <div class="mt-4 mb-6 text-sm w-full max-w-xs mx-auto">
                                 <div x-show="$store.locations.selectedLocation && $store.locations.selectedLocation.name === 'Minnesota'"
                                      class="p-4 rounded-lg bg-opacity-80 text-white leading-relaxed"

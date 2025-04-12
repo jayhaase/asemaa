@@ -176,11 +176,7 @@ body {
 /* Quote box styles */
 blockquote, 
 .quote-box {
-  background: radial-gradient(
-    circle at center,
-    rgba(13, 25, 45, 0.85) 70%,
-    rgba(13, 25, 45, 0.7) 100%
-  ) !important;
+  background: linear-gradient(to bottom right, rgba(13, 25, 45, 0.85), rgba(13, 25, 45, 0.7)) !important;
   color: white !important;
   padding: 1.5rem;
   border-radius: 0.7rem;
