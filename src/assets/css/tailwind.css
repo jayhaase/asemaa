@@ -46,6 +46,7 @@ body {
   display: block;
   width: 100%;
   height: auto;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
 }
 
 /* Reset any special positioning adjustments previously added */
@@ -278,6 +279,11 @@ body {
   clip-path: path('M100 0 A 50 50 0 0 1 100 100 A 50 50 0 0 1 0 100 A 50 50 0 0 1 0 0 A 50 50 0 0 1 100 0 Z M 60 50 A 10 10 0 0 0 40 50 A 10 10 0 0 0 60 50 Z');
 }
 
+/* Custom drop shadow for the image viewer */
+.drop-shadow-glow {
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+}
+
 /* Fallback for browsers that don't support advanced clip-path */
 @supports not (clip-path: path('')) {
   .crescent-clip {
@@ -294,12 +300,13 @@ body {
 /* Quote box styles */
 blockquote, 
 .quote-box {
-  background-color: rgba(0, 0, 0, 0.6) !important;
+  background-color: rgba(13, 25, 45, 0.9) !important;
   color: white !important;
   padding: 1.5rem;
   border-radius: 0.5rem;
   backdrop-filter: blur(4px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
 }
 
 /* Subtitle enhancement */
