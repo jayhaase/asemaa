@@ -11,6 +11,13 @@ body {
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+  background-image: url('../images/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Map container structure */
@@ -282,4 +289,32 @@ body {
 #mapContainer img,
 .w-full.relative img {
   position: relative;
+}
+
+/* Quote box styles */
+blockquote, 
+.quote-box {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  color: white !important;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Subtitle enhancement */
+h2, 
+.subtitle {
+  opacity: 0.9;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+}
+
+/* Dropdown/Select styling */
+select,
+option,
+.dropdown,
+.select-box {
+  color: #000000 !important;
+  text-shadow: none;
 }
