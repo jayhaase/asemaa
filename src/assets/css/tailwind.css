@@ -300,13 +300,16 @@ body {
 /* Quote box styles */
 blockquote, 
 .quote-box {
-  background-color: rgba(13, 25, 45, 0.9) !important;
+  background: radial-gradient(
+    circle at center,
+    rgba(13, 25, 45, 0.85) 70%,
+    rgba(13, 25, 45, 0.7) 100%
+  ) !important;
   color: white !important;
   padding: 1.5rem;
   border-radius: 0.7rem;
   backdrop-filter: blur(4px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
 }
 
 /* Subtitle enhancement */
