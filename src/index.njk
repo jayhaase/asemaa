@@ -114,7 +114,7 @@
                             </div>
                             
                             <!-- Quote Section - Hidden on mobile, visible on md and up -->
-                            <div class="mb-4 mt-12 hidden md:block">
+                            <div class="mb-12 mt-12 hidden md:block">
                                 <blockquote class="text-lg mb-2 quote-box">
                                     <p class="text-gray-300">"Traditional tobacco was our first gift from the Creator. These are the stories of the Asemaa seeds gifted to us."</p>
                                     <cite class="text-sm block mt-4 text-right text-gray-300">
@@ -126,7 +126,7 @@
                             <!-- Location Selection - On desktop: in left column, On mobile: hidden until after map -->
                             <div class="mt-4 mb-8 hidden md:block">
                                 <!-- Location Dropdown -->
-                                <div class="w-32 md:w-48 lg:w-64 mb-6">
+                                <div class="w-40 md:w-56 lg:w-72 mb-6">
                                     <label for="location-select" class="block text-lg text-gray-300 mb-2">
                                         Sacred Tobacco Paths
                                     </label>
@@ -144,9 +144,9 @@
                                 </div>
                                 
                                 <!-- Location-specific text (moved up, just below dropdown) -->
-                                <div class="mt-4 mb-6 text-sm w-32 md:w-48 lg:w-64">
+                                <div class="mt-4 mb-6 text-sm w-40 md:w-56 lg:w-72">
                                     <div x-show="$store.locations.selectedLocation && $store.locations.selectedLocation.name === 'Minnesota'"
-                                         class="p-4 rounded-lg bg-opacity-80 text-white leading-relaxed"
+                                         class="p-4 rounded-lg bg-opacity-80 text-gray-300 leading-relaxed"
                                          style="background: linear-gradient(to bottom right, rgba(13, 25, 45, 0.85), rgba(13, 25, 45, 0.7))">
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
                                     </div>
@@ -209,7 +209,7 @@
                             <!-- Location-specific text for mobile (moved up, just below dropdown) -->
                             <div class="mt-4 mb-6 text-sm w-full max-w-xs mx-auto">
                                 <div x-show="$store.locations.selectedLocation && $store.locations.selectedLocation.name === 'Minnesota'"
-                                     class="p-4 rounded-lg bg-opacity-80 text-white leading-relaxed"
+                                     class="p-4 rounded-lg bg-opacity-80 text-gray-300 leading-relaxed"
                                      style="background: linear-gradient(to bottom right, rgba(13, 25, 45, 0.85), rgba(13, 25, 45, 0.7))">
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
                                 </div>
