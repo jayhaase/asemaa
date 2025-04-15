@@ -18,12 +18,20 @@ module.exports = async function () {
     const markerClasses = {
         Dot: "marker-dot",
         Diamond: "marker-diamond",
-        Heart: "marker-heart" // Assuming you have a class for Heart
+        Heart: "marker-heart",
+        Leaf: "marker-leaf" // Adding new Leaf marker type
     };
 
     const locations = entries.items.map(item => {
         // Determine the marker type, defaulting to "Dot" if not specified
-        const markerType = item.fields.typeOfMarker || "Dot";
+        // const markerType = item.fields.typeOfMarker || "Dot";
+
+        if (item.fields.typeOfMarker == "Heart") {
+            markerType = "Heart";
+        }
+        else {
+            markerType = "Leaf";
+        }
 
         console.log('Processed location:', item.fields.title);
 
