@@ -24,14 +24,14 @@ module.exports = async function () {
 
     const locations = entries.items.map(item => {
         // Determine the marker type, defaulting to "Dot" if not specified
-        // const markerType = item.fields.typeOfMarker || "Dot";
+        const markerType = item.fields.typeOfMarker || "Dot";
 
-        if (item.fields.typeOfMarker == "Heart") {
-            markerType = "Heart";
-        }
-        else {
-            markerType = "Leaf";
-        }
+        // if (item.fields.typeOfMarker == "Heart") {
+        //     markerType = "Heart";
+        // }
+        // else {
+        //     markerType = "Leaf";
+        // }
 
         console.log('Processed location:', item.fields.title);
 
