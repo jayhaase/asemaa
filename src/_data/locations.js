@@ -26,13 +26,6 @@ module.exports = async function () {
         // Determine the marker type, defaulting to "Dot" if not specified
         const markerType = item.fields.typeOfMarker || "Dot";
 
-        // if (item.fields.typeOfMarker == "Heart") {
-        //     markerType = "Heart";
-        // }
-        // else {
-        //     markerType = "Leaf";
-        // }
-
         console.log('Processed location:', item.fields.title);
 
         return {
@@ -41,7 +34,9 @@ module.exports = async function () {
             coordinates: { x: item.fields.fromLeft, y: item.fields.fromTop },
             markerType: markerType,
             imageUrl: item.fields.image?.fields?.file?.url || null,
-            markerClass: markerClasses[markerType] // Use the mapped CSS class
+            markerClass: markerClasses[markerType], // Use the mapped CSS class
+            description: item.fields.description || null,
+            urlToAdditionalInformation: item.fields.urlToAdditionalInformation || null
         };
     });
 
