@@ -102,7 +102,7 @@
             <div x-data x-init="$store.locations.init(window.locations)" class="h-full">
                 <main class="content font-body container mx-auto px-4 sm:px-6 lg:px-8">
                     <!-- Title -->
-                    <div class="mb-8 mt-4 flex items-center gap-4">
+                    <div class="mb-4 mt-4 flex items-center gap-4">
                         <img src="{{ '/images/seed-banner.png' | url }}" alt="Leaf" class="w-16
                          object-contain brightness-150">
                         <div>
@@ -112,18 +112,18 @@
                     </div>
 
                     <!-- Map and Image Container -->
-                    <div class="relative flex justify-center">
+                    <div class="relative flex justify-center -mb-24 -mt-4">
                         <!-- Location-specific text - Positioned to the left of map -->
                         <div class="absolute left-0 -translate-x-1/12 top-1/2 -translate-y-1/2" style="z-index: 20;">
                             <div x-show="$store.locations.selectedLocation && $store.locations.selectedLocation.name === 'Minnesota'"
-                                 class="p-4 rounded-lg bg-opacity-80 text-gray-300 leading-relaxed w-64"
-                                 style="background: linear-gradient(to bottom right, rgba(13, 25, 45, 0.85), rgba(13, 25, 45, 0.7))">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                                 class="p-4 rounded-2xl bg-opacity-90 text-gray-300 leading-relaxed w-64 border-4 drop-shadow-glow"
+                                 style="border-color: #23545E; background-color: #4A7C59;">
+                                <p class="text-white [text-shadow:none]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
                             </div>
                         </div>
 
                         <!-- Map Area -->
-                        <div class="relative map-container">
+                        <div class="relative map-container mb-0">
                             <div class="relative" style="z-index: 1;">
                                 {% include "partials/map-area.njk" %}
                             </div>
@@ -152,7 +152,7 @@
                     </div>
 
                     <!-- Location Selector - Centered below map -->
-                    <div class="mt-2 -mb-8 flex justify-center">
+                    <div class="-mt-24 flex justify-center">
                         <div class="w-64">
                             <label for="location-select" class="block text-lg text-gray-300 mb-2">
                                 Sacred Tobacco Paths
