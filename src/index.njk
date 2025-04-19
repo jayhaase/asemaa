@@ -123,8 +123,8 @@
                         </div>
 
                         <!-- 2. Map Container - Second on mobile, centered on desktop -->
-                        <div class="order-2 lg:ml-48 lg:-mt-32">
-                            <div class="relative map-container mb-8 lg:mb-0">
+                        <div class="order-2 lg:ml-48 lg:-mt-16 xl:-mt-32">
+                            <div class="relative map-container mb-8 lg:mb-0 lg:scale-90 lg:origin-center">
                                 <div class="relative" style="z-index: 1;">
                                     {% include "partials/map-area.njk" %}
                                 </div>
@@ -152,7 +152,7 @@
                         </div>
 
                         <!-- 4. Circular Image - Fourth on mobile, overlays map on desktop -->
-                        <div class="order-4 mb-8 lg:mb-0 lg:absolute lg:bottom-48 lg:-right-0 lg:translate-x-0"
+                        <div class="order-4 mb-8 lg:mb-0 lg:absolute lg:bottom-56 lg:right-[40px] xl:right-[80px] lg:translate-x-0"
                              x-show="$store.locations.selectedLocation"
                              x-transition:enter="transition ease-out duration-300"
                              x-transition:enter-start="opacity-0"
@@ -161,7 +161,7 @@
                              x-transition:leave-start="opacity-100"
                              x-transition:leave-end="opacity-0"
                              style="z-index: 20;">
-                            <div class="relative w-64 h-64 md:w-72 md:h-72 lg:w-64 lg:h-64 mx-auto lg:mx-0 drop-shadow-glow">
+                            <div class="relative w-64 h-64 md:w-72 md:h-72 lg:w-56 lg:h-56 xl:w-64 xl:h-64 mx-auto lg:mx-0 drop-shadow-glow">
                                 <div class="absolute inset-0 bg-white rounded-full overflow-hidden border-4"
                                      style="border-color: #23545E;">
                                     <img 
@@ -173,7 +173,7 @@
                         </div>
 
                         <!-- 5. Description - Last on mobile, overlays map on desktop -->
-                        <div class="order-5 max-w-[85%] mx-auto lg:mx-0 lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2 lg:max-w-[300px]"
+                        <div class="order-5 max-w-[85%] mx-auto lg:mx-0 lg:absolute lg:left-16 lg:top-1/2 lg:-translate-y-1/2 lg:max-w-[300px]"
                              x-show="$store.locations.selectedLocation?.description"
                              style="z-index: 20;">
                             <div class="p-4 rounded-2xl bg-opacity-90 text-gray-200 leading-relaxed border-4 drop-shadow-glow"
