@@ -8,7 +8,7 @@ module.exports = async function () {
     console.log('Access token length:', process.env.CONTENTFUL_ACCESS_TOKEN?.length);
 
     const entries = await client.getEntries({
-        content_type: 'seedLocation' // Replace with your content type ID
+        content_type: 'seedLocation'
     });
 
     console.log('Received entries from Contentful');
@@ -19,13 +19,11 @@ module.exports = async function () {
         Dot: "marker-dot",
         Diamond: "marker-diamond",
         Heart: "marker-heart",
-        Leaf: "marker-leaf" // Adding new Leaf marker type
+        Leaf: "marker-leaf"
     };
 
     const locations = entries.items.map(item => {
-        // Determine the marker type, defaulting to "Dot" if not specified
         const markerType = item.fields.typeOfMarker || "Dot";
-
         console.log('Processed location:', item.fields.title);
 
         return {
@@ -34,7 +32,7 @@ module.exports = async function () {
             coordinates: { x: item.fields.fromLeft, y: item.fields.fromTop },
             markerType: markerType,
             imageUrl: item.fields.image?.fields?.file?.url || null,
-            markerClass: markerClasses[markerType], // Use the mapped CSS class
+            markerClass: markerClasses[markerType],
             description: item.fields.description || null,
             urlToAdditionalInformation: item.fields.urlToAdditionalInformation || null
         };

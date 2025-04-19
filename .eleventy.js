@@ -31,6 +31,15 @@ module.exports = function (eleventyConfig) {
     return await locations();
   });
 
+  // Add data handling for turtle map settings
+  eleventyConfig.addGlobalData('turtleMapSettings', async () => {
+    console.log('Fetching turtle map settings...');
+    const settings = require('./src/_data/turtleMapSettings');
+    const data = await settings();
+    console.log('Turtle map settings fetched:', data);
+    return data;
+  });
+
   return {
     dir: {
       input: "src",

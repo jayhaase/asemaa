@@ -99,7 +99,12 @@
             });
         </script>
         <div class="min-h-full">
-            <div x-data x-init="$store.locations.init(window.locations)" class="h-full">
+            <div x-data 
+                 x-init="$store.locations.init(window.locations); 
+                        if ('{{ turtleMapSettings.defaultLocationId }}') {
+                            $store.locations.selectLocation('{{ turtleMapSettings.defaultLocationId }}');
+                        }"
+                 class="h-full">
                 <main class="content font-body container mx-auto px-4 sm:px-6 lg:px-8">
                     <!-- Title and Selector Section -->
                     <div class="mt-0">
@@ -140,9 +145,9 @@
                             <div x-show="$store.locations.selectedLocation?.description"
                                  class="p-4 rounded-2xl bg-opacity-90 text-gray-200 leading-relaxed w-64 border-4 drop-shadow-glow"
                                  style="border-color: #23545E; background-color: #4A7C59;">
-                                <p class="text-gray-200 [text-shadow:none]" x-text="$store.locations.selectedLocation.description"></p>
-                                <template x-if="$store.locations.selectedLocation.urlToAdditionalInformation">
-                                    <a :href="$store.locations.selectedLocation.urlToAdditionalInformation" 
+                                <p class="text-gray-200 [text-shadow:none]" x-text="$store.locations.selectedLocation?.description || ''"></p>
+                                <template x-if="$store.locations.selectedLocation?.urlToAdditionalInformation">
+                                    <a :href="$store.locations.selectedLocation?.urlToAdditionalInformation" 
                                        target="_blank" 
                                        class="block mt-3 text-sm hover:text-gray-200 [text-shadow:none] underline text-right">
                                         Learn More
