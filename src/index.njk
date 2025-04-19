@@ -139,25 +139,25 @@
                     </div>
 
                     <!-- Map and Image Container -->
-                    <div class="relative flex justify-center -mt-48 translate-x-12">
-                        <!-- Location-specific text - Positioned to the left of map -->
-                        <div class="absolute -left-[15%] top-1/2 -translate-y-1/2 lg:-left-[8%] xl:left-0 2xl:left-[8%] max-w-[300px]" style="z-index: 20;">
-                            <div x-show="$store.locations.selectedLocation?.description"
-                                 class="p-4 rounded-2xl bg-opacity-90 text-gray-200 leading-relaxed border-4 drop-shadow-glow"
-                                 style="border-color: #23545E; background-color: #4A7C59;">
-                                <p class="text-gray-200 [text-shadow:none]" x-text="$store.locations.selectedLocation?.description || ''"></p>
-                                <template x-if="$store.locations.selectedLocation?.urlToAdditionalInformation">
-                                    <a :href="$store.locations.selectedLocation?.urlToAdditionalInformation" 
-                                       target="_blank" 
-                                       class="block mt-3 text-sm hover:text-gray-200 [text-shadow:none] underline text-right">
-                                        Learn More
-                                    </a>
-                                </template>
-                            </div>
-                        </div>
-
+                    <div class="relative flex -mt-48">
                         <!-- Map Area -->
-                        <div class="relative map-container mb-0">
+                        <div class="relative map-container mb-0 ml-48">
+                            <!-- Location-specific text -->
+                            <div class="absolute -left-[25%] top-1/2 -translate-y-1/2 max-w-[300px]" style="z-index: 20;">
+                                <div x-show="$store.locations.selectedLocation?.description"
+                                     class="p-4 rounded-2xl bg-opacity-90 text-gray-200 leading-relaxed border-4 drop-shadow-glow"
+                                     style="border-color: #23545E; background-color: #4A7C59;">
+                                    <p class="text-gray-200 [text-shadow:none]" x-text="$store.locations.selectedLocation?.description || ''"></p>
+                                    <template x-if="$store.locations.selectedLocation?.urlToAdditionalInformation">
+                                        <a :href="$store.locations.selectedLocation?.urlToAdditionalInformation" 
+                                           target="_blank" 
+                                           class="block mt-3 text-sm hover:text-gray-200 [text-shadow:none] underline text-right">
+                                            Learn More
+                                        </a>
+                                    </template>
+                                </div>
+                            </div>
+
                             <div class="relative" style="z-index: 1;">
                                 {% include "partials/map-area.njk" %}
                             </div>
