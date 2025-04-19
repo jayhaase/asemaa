@@ -101,131 +101,84 @@
         <div class="min-h-full">
             <div x-data x-init="$store.locations.init(window.locations)" class="h-full">
                 <main class="content font-body container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex flex-col md:flex-row md:space-x-8">
-                        <!-- Left Column: Title, Quote, and Selected Location Info -->
-                        <div class="md:w-1/3 flex flex-col">
-                            <!-- Page Title -->
-                            <div class="mb-8 mt-4 flex items-center gap-4">
-                                <img src="{{ '/images/seed-banner.png' | url }}" alt="Leaf" class="w-16
-                                 object-contain brightness-150">
-                                <div>
-                                    <h1 class="text-3xl font-bold font-heading">Beishigo Asemaa</h1>
-                                    <h2 class="text-xl font-heading mt-1">Tobacco First</h2>
-                                </div>
-                            </div>
-                            
-                            <!-- Quote Section - Hidden on mobile, visible on md and up -->
-                            <div class="mb-12 mt-12 hidden md:block">
-                                <blockquote class="text-lg mb-2 quote-box">
-                                    <p class="text-gray-300">"Traditional tobacco was our first gift from the Creator. These are the stories of the Asemaa seeds gifted to us."</p>
-                                    <cite class="text-sm block mt-4 text-right text-gray-300">
-                                        — Suzanne Nash
-                                    </cite>
-                                </blockquote>
-                            </div>
-                            
-                            <!-- Location Selection - On desktop: in left column, On mobile: hidden until after map -->
-                            <div class="mt-4 mb-8 hidden md:block">
-                                <!-- Location Dropdown -->
-                                <div class="w-40 md:w-56 lg:w-72 mb-6">
-                                    <label for="location-select" class="block text-lg text-gray-300 mb-2">
-                                        Sacred Tobacco Paths
-                                    </label>
-                                    <select
-                                        id="location-select"
-                                        class="w-full p-3 md:p-2 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#23545E] focus:border-transparent bg-white"
-                                        @change="$store.locations.selectLocation($event.target.value);"
-                                        x-bind:value="$store.locations.selectedLocation?.id || ''">
-                                        <option value="">Select a Path</option>
-                                        {% for location in locationsArray %}
-                                            {% set indexInList = loop.index0 %}
-                                            <option value="{{ location.id }}" data-index="{{ indexInList }}">{{ location.name }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                                
-                                <!-- Location-specific text (moved up, just below dropdown) -->
-                                <div class="mt-4 mb-6 text-sm w-40 md:w-56 lg:w-72">
-                                    <div x-show="$store.locations.selectedLocation && $store.locations.selectedLocation.name === 'Minnesota'"
-                                         class="p-4 rounded-lg bg-opacity-80 text-gray-300 leading-relaxed"
-                                         style="background: linear-gradient(to bottom right, rgba(13, 25, 45, 0.85), rgba(13, 25, 45, 0.7))">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                                    </div>
-                                </div>
+                    <!-- Title -->
+                    <div class="mb-8 mt-4 flex items-center gap-4">
+                        <img src="{{ '/images/seed-banner.png' | url }}" alt="Leaf" class="w-16
+                         object-contain brightness-150">
+                        <div>
+                            <h1 class="text-3xl font-bold font-heading">Beishigo Asemaa</h1>
+                            <h2 class="text-xl font-heading mt-1">Tobacco First</h2>
+                        </div>
+                    </div>
+
+                    <!-- Map and Image Container -->
+                    <div class="relative flex justify-center">
+                        <!-- Location-specific text - Positioned to the left of map -->
+                        <div class="absolute left-0 -translate-x-1/12 top-1/2 -translate-y-1/2" style="z-index: 20;">
+                            <div x-show="$store.locations.selectedLocation && $store.locations.selectedLocation.name === 'Minnesota'"
+                                 class="p-4 rounded-lg bg-opacity-80 text-gray-300 leading-relaxed w-64"
+                                 style="background: linear-gradient(to bottom right, rgba(13, 25, 45, 0.85), rgba(13, 25, 45, 0.7))">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
                             </div>
                         </div>
 
-                        <!-- Right Column: Map Area with Circular Image Viewer -->
-                        <div class="md:w-2/3 relative map-container mt-8 md:mt-16">
-                            <!-- Map and Image Container - This parent controls stacking -->
+                        <!-- Map Area -->
+                        <div class="relative map-container">
                             <div class="relative" style="z-index: 1;">
-                                <!-- Circular Image Viewer - Positioned at bottom right -->
-                                <div class="absolute bottom-16 right-0" style="z-index: 20; transform: translateY(0%);"
-                                     x-show="$store.locations.selectedLocation" 
-                                     x-transition:enter="transition ease-out duration-300"
-                                     x-transition:enter-start="opacity-0"
-                                     x-transition:enter-end="opacity-100"
-                                     x-transition:leave="transition ease-in duration-300"
-                                     x-transition:leave-start="opacity-100"
-                                     x-transition:leave-end="opacity-0">
-                                    <div class="relative w-40 h-40 md:w-48 md:h-48 lg:w-64 lg:h-64 drop-shadow-glow">
-                                        <!-- Full circle shape -->
-                                        <div class="absolute inset-0 bg-white rounded-full overflow-hidden border-4" 
-                                             style="border-color: #23545E;">
-                                            <img 
-                                                :src="$store.locations.selectedLocation?.imageUrl" 
-                                                :alt="$store.locations.selectedLocation?.name"
-                                                class="w-full h-full object-cover">
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Map Area -->
-                                <div class="relative" style="z-index: 10;">
-                                    {% include "partials/map-area.njk" %}
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Mobile Only: Location Selection and Image -->
-                        <div class="md:hidden mt-8 mb-4">
-                            <!-- Location Dropdown -->
-                            <div class="w-full max-w-xs mx-auto mb-6">
-                                <label for="mobile-location-select" class="block text-sm font-medium mb-2">
-                                    Sacred Tobacco Paths
-                                </label>
-                                <select
-                                    id="mobile-location-select"
-                                    class="w-full p-3 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#23545E] focus:border-transparent bg-white"
-                                    @change="$store.locations.selectLocation($event.target.value);"
-                                    x-bind:value="$store.locations.selectedLocation?.id || ''">
-                                    <option value="">Find Sacred Seed Paths</option>
-                                    {% for location in locationsArray %}
-                                        {% set indexInList = loop.index0 %}
-                                        <option value="{{ location.id }}" data-index="{{ indexInList }}">{{ location.name }}</option>
-                                    {% endfor %}
-                                </select>
+                                {% include "partials/map-area.njk" %}
                             </div>
                             
-                            <!-- Location-specific text for mobile (moved up, just below dropdown) -->
-                            <div class="mt-4 mb-6 text-sm w-full max-w-xs mx-auto">
-                                <div x-show="$store.locations.selectedLocation && $store.locations.selectedLocation.name === 'Minnesota'"
-                                     class="p-4 rounded-lg bg-opacity-80 text-gray-300 leading-relaxed"
-                                     style="background: linear-gradient(to bottom right, rgba(13, 25, 45, 0.85), rgba(13, 25, 45, 0.7))">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                            <!-- Circular Image Viewer - Positioned at bottom right of map -->
+                            <div class="absolute bottom-48 right-0 translate-x-1/6" style="z-index: 20;"
+                                 x-show="$store.locations.selectedLocation" 
+                                 x-transition:enter="transition ease-out duration-300"
+                                 x-transition:enter-start="opacity-0"
+                                 x-transition:enter-end="opacity-100"
+                                 x-transition:leave="transition ease-in duration-300"
+                                 x-transition:leave-start="opacity-100"
+                                 x-transition:leave-end="opacity-0">
+                                <div class="relative w-40 h-40 md:w-48 md:h-48 lg:w-64 lg:h-64 drop-shadow-glow">
+                                    <!-- Full circle shape -->
+                                    <div class="absolute inset-0 bg-white rounded-full overflow-hidden border-4" 
+                                         style="border-color: #23545E;">
+                                        <img 
+                                            :src="$store.locations.selectedLocation?.imageUrl" 
+                                            :alt="$store.locations.selectedLocation?.name"
+                                            class="w-full h-full object-cover">
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Quote Section - Visible on mobile only, hidden on md and up -->
-                        <div class="mb-4 mt-12 md:hidden">
-                            <blockquote class="text-lg mb-2 quote-box">
-                                <p class="text-gray-400">"Traditional tobacco was our first gift from the Creator. These are the stories of the Asemaa seeds gifted to us."</p>
-                                <cite class="text-sm block mt-4 text-right text-gray-400">
-                                    — Suzanne Nash
-                                </cite>
-                            </blockquote>
+                    <!-- Location Selector - Centered below map -->
+                    <div class="mt-2 -mb-8 flex justify-center">
+                        <div class="w-64">
+                            <label for="location-select" class="block text-lg text-gray-300 mb-2">
+                                Sacred Tobacco Paths
+                            </label>
+                            <select
+                                id="location-select"
+                                class="w-full p-3 md:p-2 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#23545E] focus:border-transparent bg-white"
+                                @change="$store.locations.selectLocation($event.target.value);"
+                                x-bind:value="$store.locations.selectedLocation?.id || ''">
+                                <option value="">Select a Path</option>
+                                {% for location in locationsArray %}
+                                    {% set indexInList = loop.index0 %}
+                                    <option value="{{ location.id }}" data-index="{{ indexInList }}">{{ location.name }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
+                    </div>
+
+                    <!-- Quote Section - Full width below the map -->
+                    <div class="mt-16 text-center">
+                        <blockquote class="text-lg mb-2 quote-box inline-block max-w-2xl mx-auto">
+                            <p class="text-gray-300">"Traditional tobacco was our first gift from the Creator. These are the stories of the Asemaa seeds gifted to us."</p>
+                            <cite class="text-sm block mt-4 text-right text-gray-300">
+                                — Suzanne Nash
+                            </cite>
+                        </blockquote>
                     </div>
                 </main>
             </div>
