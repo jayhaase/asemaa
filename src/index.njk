@@ -115,7 +115,7 @@
                                 <div>
                                     <h1 class="text-3xl font-heading">Beishigo Asemaa <span class="hidden lg:inline text-xl font-normal">- Tobacco First</span></h1>
                                     <blockquote class="mt-4 max-w-sm">
-                                        <p class="text-gray-200 text-lg leading-relaxed">"Traditional tobacco was our first gift from the Creator. These are the stories of the Asemaa seeds gifted to us."</p>
+                                        <p class="text-lg leading-relaxed">"Traditional tobacco was our first gift from the Creator. These are the stories of the Asemaa seeds gifted to us."</p>
                                         <cite class="text-sm block text-gray-300 text-right ml-8">— Suzanne Nash</cite>
                                     </blockquote>
                                 </div>
@@ -124,7 +124,7 @@
 
                         <!-- 2. Map Container - Second on mobile, centered on desktop -->
                         <div class="order-2 lg:ml-48 lg:-mt-16 xl:-mt-64 relative z-10">
-                            <div class="relative map-container mb-8 lg:mb-0 lg:scale-[0.85] xl:scale-[0.75] lg:origin-center">
+                            <div class="relative map-container mb-16 lg:mb-0 lg:scale-[0.85] xl:scale-[0.75] lg:origin-center">
                                 <div class="relative" style="z-index: 1;">
                                     {% include "partials/map-area.njk" %}
                                 </div>
@@ -132,7 +132,7 @@
                         </div>
 
                         <!-- 3. Selector - Third on mobile, overlays map on desktop -->
-                        <div class="order-3 -mt-32 mb-8 lg:mt-12 lg:mb-0 lg:absolute lg:top-48 lg:left-0 lg:z-30 flex justify-center lg:block relative z-20">
+                        <div class="order-3 -mt-8 mb-16 lg:mt-12 lg:mb-0 lg:absolute lg:top-48 lg:left-0 lg:z-30 flex justify-center lg:block relative z-20">
                             <div class="w-64">
                                 <label for="location-select" class="block text-lg text-gray-100 mb-2">
                                     Begin the journey here…
@@ -152,7 +152,7 @@
                         </div>
 
                         <!-- 4. Circular Image - Fourth on mobile, overlays map on desktop -->
-                        <div class="order-4 mb-8 lg:mb-0 lg:absolute lg:bottom-56 lg:right-[40px] xl:right-[60px] xl:bottom-64 lg:translate-x-0"
+                        <div class="order-4 mb-16 lg:mb-0 lg:absolute lg:bottom-56 lg:right-[40px] xl:right-[160px] xl:bottom-72 lg:translate-x-0"
                              x-show="$store.locations.selectedLocation"
                              x-transition:enter="transition ease-out duration-300"
                              x-transition:enter-start="opacity-0"
