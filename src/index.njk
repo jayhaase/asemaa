@@ -173,10 +173,10 @@
                         </div>
 
                         <!-- 5. Description - Last on mobile, overlays map on desktop -->
-                        <div class="order-5 max-w-[85%] mx-auto lg:mx-0 lg:absolute lg:left-16 lg:top-1/2 lg:-translate-y-1/2 lg:max-w-[300px]"
+                        <div class="order-5 max-w-[85%] mx-auto lg:mx-0 lg:absolute lg:left-48 lg:top-1/2 lg:-translate-y-1/2 lg:max-w-[300px]"
                              x-show="$store.locations.selectedLocation?.description"
                              style="z-index: 20;">
-                            <div class="p-4 rounded-2xl bg-opacity-90 text-gray-200 leading-relaxed border-4 drop-shadow-glow"
+                            <div class="p-4 rounded-2xl bg-opacity-90 text-gray-200 leading-relaxed border-4"
                                  style="border-color: #23545E; background-color: #4A7C59;">
                                 <p class="text-gray-200 [text-shadow:none]" x-text="$store.locations.selectedLocation?.description || ''"></p>
                                 <template x-if="$store.locations.selectedLocation?.urlToAdditionalInformation">
