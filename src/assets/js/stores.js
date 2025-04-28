@@ -75,6 +75,19 @@ document.addEventListener('alpine:init', () => {
         // Toggle description modal
         toggleDescriptionModal() {
             this.isDescriptionModalOpen = !this.isDescriptionModalOpen;
+            
+            // When closing the modal, stop any videos from playing
+            if (!this.isDescriptionModalOpen) {
+                setTimeout(() => {
+                    // Find all iframes in the modal and reload them to stop videos
+                    const videoIframes = document.querySelectorAll('.modal-video-iframe');
+                    videoIframes.forEach(iframe => {
+                        const src = iframe.src;
+                        iframe.src = '';
+                        iframe.src = src;
+                    });
+                }, 100); // Short delay to ensure this happens after the modal starts closing
+            }
         },
         
         // Get YouTube embed URL for the current location
