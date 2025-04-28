@@ -20,7 +20,6 @@
     <div class="location-marker absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2 z-20">
         <button
             class="p-3 rounded-full cursor-pointer focus:outline-none hover:bg-transparent"
-            style="transition: all 0.2s ease-in-out;"
             @mouseover="$store.locations.setHoveredLocation('{{ location.id }}')"
             @mouseleave="$store.locations.setHoveredLocation(null)"
             aria-label="View {{ location.name }}"
