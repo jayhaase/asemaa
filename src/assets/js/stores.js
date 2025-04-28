@@ -6,6 +6,7 @@ document.addEventListener('alpine:init', () => {
         locations: [],
         lastHoverChangeTime: 0,
         hoverCooldown: 100, // milliseconds between allowed hover changes
+        isDescriptionModalOpen: false,
 
         // Actions
         init(locations) {
@@ -40,12 +41,14 @@ document.addEventListener('alpine:init', () => {
         clearSelection() {
             this.hoveredLocationId = null;
             this.selectedLocation = null;
+            this.isDescriptionModalOpen = false;
         },
 
         selectLocation(id) {
             if (!id) {
                 this.selectedLocation = null;
                 this.hoveredLocationId = null; // Clear hover state when selection is cleared
+                this.isDescriptionModalOpen = false;
                 return;
             }
             const location = this.locations.find(l => l.id === id);
@@ -60,6 +63,14 @@ document.addEventListener('alpine:init', () => {
                 this.hoveredLocationId = id;
                 this.lastHoverChangeTime = Date.now();
             }
+            
+            // Close any open description modal when changing locations
+            this.isDescriptionModalOpen = false;
+        },
+
+        // Toggle description modal
+        toggleDescriptionModal() {
+            this.isDescriptionModalOpen = !this.isDescriptionModalOpen;
         },
 
         // Getters

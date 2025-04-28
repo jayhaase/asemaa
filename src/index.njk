@@ -168,24 +168,58 @@
                                         :src="$store.locations.selectedLocation?.imageUrl"
                                         :alt="$store.locations.selectedLocation?.name"
                                         class="w-full h-full object-cover">
+                                    
+                                    <!-- Learn More Button Overlay -->
+                                    <template x-if="$store.locations.selectedLocation?.description || $store.locations.selectedLocation?.urlToAdditionalInformation">
+                                        <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 py-3 px-4 flex justify-center items-center transition-all duration-300 hover:bg-opacity-80">
+                                            <button 
+                                                @click="$store.locations.toggleDescriptionModal()"
+                                                class="text-white font-medium text-sm tracking-wide">
+                                                <span>Learn More</span>
+                                            </button>
+                                        </div>
+                                    </template>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- 5. Description - Last on mobile, overlays map on desktop -->
-                        <div class="order-5 max-w-[85%] mx-auto lg:mx-0 lg:absolute lg:left-20 xl:left-40 2xl:left-48 lg:top-1/2 lg:-translate-y-1/2 lg:max-w-[300px]"
-                             x-show="$store.locations.selectedLocation?.description"
-                             style="z-index: 20;">
-                            <div class="p-4 rounded-2xl bg-opacity-90 text-gray-200 leading-relaxed border-4"
-                                 style="border-color: #23545E; background-color: #4A7C59;">
-                                <p class="text-gray-200 [text-shadow:none]" x-text="$store.locations.selectedLocation?.description || ''"></p>
-                                <template x-if="$store.locations.selectedLocation?.urlToAdditionalInformation">
-                                    <a :href="$store.locations.selectedLocation?.urlToAdditionalInformation" 
-                                       target="_blank" 
-                                       class="block mt-3 text-sm hover:text-gray-200 [text-shadow:none] underline text-right">
-                                        Learn More
-                                    </a>
-                                </template>
+                        <!-- Description Modal -->
+                        <div x-show="$store.locations.isDescriptionModalOpen" 
+                             x-transition:enter="transition ease-out duration-300"
+                             x-transition:enter-start="opacity-0"
+                             x-transition:enter-end="opacity-100"
+                             x-transition:leave="transition ease-in duration-300"
+                             x-transition:leave-start="opacity-100"
+                             x-transition:leave-end="opacity-0"
+                             @click.away="$store.locations.isDescriptionModalOpen = false"
+                             class="fixed inset-0 flex items-center justify-center p-4 z-50"
+                             style="background-color: rgba(0,0,0,0.7);">
+                            <div class="bg-[#4A7C59] border-4 rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto"
+                                 style="border-color: #23545E;"
+                                 @click.stop>
+                                <div class="p-6">
+                                    <div class="flex justify-between items-start mb-4">
+                                        <h3 class="text-xl font-semibold text-white" x-text="$store.locations.selectedLocation?.name"></h3>
+                                        <button @click="$store.locations.isDescriptionModalOpen = false" class="text-white hover:text-gray-300">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="text-gray-200 [text-shadow:none]">
+                                        <p x-text="$store.locations.selectedLocation?.description || 'No description available.'"></p>
+                                        <template x-if="$store.locations.selectedLocation?.urlToAdditionalInformation">
+                                            <a :href="$store.locations.selectedLocation?.urlToAdditionalInformation" 
+                                               target="_blank" 
+                                               class="block mt-6 text-white hover:text-gray-300 [text-shadow:none] underline flex items-center justify-center">
+                                                <span>Visit Website</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                                </svg>
+                                            </a>
+                                        </template>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
