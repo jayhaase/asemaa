@@ -14,7 +14,8 @@ document.addEventListener('alpine:init', () => {
 
         setHoveredLocation(id) {
             if (!id) {
-                // Make no changes since we are not hovering over a new location
+                // When mouse leaves a marker, clear the hover state
+                this.hoveredLocationId = null;
                 return;
             }
 
@@ -33,7 +34,6 @@ document.addEventListener('alpine:init', () => {
             // This prevents all rapid changes between locations
             this.hoveredLocationId = id;
             this.lastHoverChangeTime = now;
-            this.selectLocation(id);
         },
 
         // Clear all selection states (both hover and selection)
@@ -64,8 +64,8 @@ document.addEventListener('alpine:init', () => {
 
         // Getters
         shouldPulse(id) {
-            return this.hoveredLocationId === id || 
-                   (this.selectedLocation?.id === id && !this.hoveredLocationId);
+            // Always pulse for the selected location, and also pulse for hovered locations
+            return this.selectedLocation?.id === id || this.hoveredLocationId === id;
         }
     });
 }); 
