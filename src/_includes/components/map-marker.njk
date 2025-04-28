@@ -1,6 +1,6 @@
 <div class="absolute" style="left: {{ location.coordinates.x }}%; top: {{ location.coordinates.y }}%" @click.stop="$store.locations.selectLocation('{{ location.id }}')">
     <!-- Pulse Animation -->
-    <template x-if="$store.locations.shouldPulse('{{ location.id }}')">
+    <template x-if="$store.locations.shouldPulse('{{ location.id }}') && '{{ location.markerClass }}' !== 'marker-heart'">
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
             <template x-if="$store.locations.selectedLocation?.id === '{{ location.id }}'">
                 <!-- Image pulse for selected state -->
@@ -27,10 +27,12 @@
             :aria-expanded="$store.locations.selectedLocation?.id === '{{ location.id }}' ? 'true' : 'false'"
             aria-controls="location-info-{{ location.id }}"
             role="button">
-            <!-- Marker dot -->
-            <template x-if="$store.locations.selectedLocation?.id !== '{{ location.id }}'">
+            
+            <!-- For non-heart markers when not selected -->
+            <template x-if="$store.locations.selectedLocation?.id !== '{{ location.id }}' || '{{ location.markerClass }}' === 'marker-heart'">
                 <div 
                     class="{{ location.markerClass }}"
+                    :class="{'animate-pulse-subtle': $store.locations.selectedLocation?.id === '{{ location.id }}' && '{{ location.markerClass }}' === 'marker-heart'}"
                     :data-hovered="$store.locations.hoveredLocationId === '{{ location.id }}'">
                     <template x-if="'{{ location.markerClass }}' === 'marker-leaf'">
                         <img src="/images/heart-seed.png" alt="Leaf marker" class="w-6 h-6 object-contain brightness-150">
