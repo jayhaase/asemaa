@@ -7,6 +7,10 @@ document.addEventListener('alpine:init', () => {
         lastHoverChangeTime: 0,
         hoverCooldown: 100, // milliseconds between allowed hover changes
         isDescriptionModalOpen: false,
+        // Default YouTube video IDs to use when available
+        defaultYoutubeVideos: [
+            'fhr9sy7ZgnY', // Ojibwe Asemaa - Tobacco First 
+        ],
 
         // Actions
         init(locations) {
@@ -71,6 +75,22 @@ document.addEventListener('alpine:init', () => {
         // Toggle description modal
         toggleDescriptionModal() {
             this.isDescriptionModalOpen = !this.isDescriptionModalOpen;
+        },
+        
+        // Get YouTube embed URL for the current location
+        // This is a placeholder until we have actual YouTube URLs from Contentful
+        getYoutubeEmbedUrl() {
+            // In the future, this would use the actual YouTube ID from the location data
+            // Currently using a consistent video based on location ID
+            
+            if (!this.selectedLocation) return '';
+            
+            // Get a deterministic index based on the location ID
+            const idSum = this.selectedLocation.id.split('').reduce((sum, char) => sum + char.charCodeAt(0), 0);
+            const index = idSum % this.defaultYoutubeVideos.length;
+            
+            // Return the YouTube embed URL with the selected video ID
+            return `https://www.youtube.com/embed/${this.defaultYoutubeVideos[index]}?rel=0`;
         },
 
         // Getters

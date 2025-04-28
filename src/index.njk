@@ -206,6 +206,22 @@
                                             </svg>
                                         </button>
                                     </div>
+                                    
+                                    <!-- YouTube Video (shown when description exists) -->
+                                    <template x-if="$store.locations.selectedLocation?.description">
+                                        <div class="mb-6">
+                                            <div class="relative pb-[56.25%] h-0 overflow-hidden rounded mb-4">
+                                                <iframe 
+                                                    :src="$store.locations.getYoutubeEmbedUrl()" 
+                                                    class="absolute top-0 left-0 w-full h-full" 
+                                                    frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                                    allowfullscreen>
+                                                </iframe>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    
                                     <div class="text-gray-200 [text-shadow:none]">
                                         <p x-text="$store.locations.selectedLocation?.description || 'No description available.'"></p>
                                         <template x-if="$store.locations.selectedLocation?.urlToAdditionalInformation">
