@@ -45,16 +45,33 @@
             aria-controls="location-info-{{ location.id }}"
             role="button">
             
-            <!-- For all markers -->
-            <template x-if="$store.locations.selectedLocation?.id !== '{{ location.id }}' || true">
+            <!-- For non-heart markers -->
+            <template x-if="'{{ location.markerClass }}' !== 'marker-heart'">
+                <!-- When not selected, show original marker -->
+                <template x-if="$store.locations.selectedLocation?.id !== '{{ location.id }}'">
+                    <div 
+                        class="{{ location.markerClass }}"
+                        :data-hovered="$store.locations.hoveredLocationId === '{{ location.id }}'">
+                        <template x-if="'{{ location.markerClass }}' === 'marker-leaf'">
+                            <img src="/images/heart-seed.png" alt="Leaf marker" class="w-6 h-6 object-contain brightness-150">
+                        </template>
+                    </div>
+                </template>
+                
+                <!-- When selected, show marker dot -->
+                <template x-if="$store.locations.selectedLocation?.id === '{{ location.id }}'">
+                    <div class="marker-dot" :data-hovered="$store.locations.hoveredLocationId === '{{ location.id }}'"></div>
+                </template>
+            </template>
+            
+            <!-- For heart markers that should always remain hearts -->
+            <template x-if="'{{ location.markerClass }}' === 'marker-heart'">
                 <div 
-                    class="{{ location.markerClass }}"
+                    class="marker-heart"
                     :data-hovered="$store.locations.hoveredLocationId === '{{ location.id }}'">
-                    <template x-if="'{{ location.markerClass }}' === 'marker-leaf'">
-                        <img src="/images/heart-seed.png" alt="Leaf marker" class="w-6 h-6 object-contain brightness-150">
-                    </template>
                 </div>
             </template>
+            
             <span class="sr-only">Location: {{ location.name }}</span>
         </button>
     </div>
