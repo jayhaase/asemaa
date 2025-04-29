@@ -49,14 +49,14 @@
             <template x-if="'{{ location.markerClass }}' !== 'marker-heart'">
                 <!-- When not selected, show original marker -->
                 <template x-if="$store.locations.selectedLocation?.id !== '{{ location.id }}'">
-                    <div 
-                        class="{{ location.markerClass }}"
-                        :data-hovered="$store.locations.hoveredLocationId === '{{ location.id }}'">
-                        <template x-if="'{{ location.markerClass }}' === 'marker-leaf'">
-                            <img src="/images/heart-seed.png" alt="Leaf marker" class="w-6 h-6 object-contain brightness-150">
-                        </template>
-                    </div>
-                </template>
+                <div 
+                    class="{{ location.markerClass }}"
+                    :data-hovered="$store.locations.hoveredLocationId === '{{ location.id }}'">
+                    <template x-if="'{{ location.markerClass }}' === 'marker-leaf'">
+                        <img src="/images/heart-seed.png" alt="Leaf marker" class="w-6 h-6 object-contain brightness-150">
+                    </template>
+                </div>
+            </template>
                 
                 <!-- When selected, show marker dot -->
                 <template x-if="$store.locations.selectedLocation?.id === '{{ location.id }}'">

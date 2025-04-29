@@ -139,7 +139,7 @@
                                 </label>
                                 <select
                                     id="location-select"
-                                    class="w-full p-3 md:p-2 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#23545E] focus:border-transparent bg-white"
+                                    class="w-full p-3 md:p-2 text-base border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#23545E] focus:border-transparent bg-white/90 backdrop-blur-sm shadow-md hover:bg-white/95 transition-colors duration-200"
                                     @change="$store.locations.selectLocation($event.target.value);"
                                     x-bind:value="$store.locations.selectedLocation?.id || ''">
                                     <option value="">Select a Path</option>
@@ -161,7 +161,7 @@
                              x-transition:leave-start="opacity-100"
                              x-transition:leave-end="opacity-0"
                              style="z-index: 20;">
-                            <div class="relative w-64 h-64 md:w-72 md:h-72 lg:w-56 lg:h-56 xl:w-72 xl:h-72 mx-auto lg:mx-0 drop-shadow-glow">
+                            <div class="relative w-64 h-64 md:w-72 md:h-72 lg:w-56 lg:h-56 xl:w-56 xl:h-56 mx-auto lg:mx-0 drop-shadow-glow">
                                 <div class="absolute inset-0 bg-white rounded-full overflow-hidden border-4"
                                      style="border-color: #23545E;">
                                     <img 
@@ -191,7 +191,7 @@
                              @click.away="$store.locations.toggleDescriptionModal()"
                              class="fixed inset-0 flex items-center justify-center p-4 z-50"
                              style="background-color: rgba(0,0,0,0.7);">
-                            <div class="bg-[#4A7C59] border-4 rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto"
+                            <div class="bg-[rgb(23,175,170)] border-4 rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto"
                                  style="border-color: #23545E;"
                                  @click.stop>
                                 <div class="p-6">

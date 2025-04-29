@@ -1,6 +1,6 @@
 <div class="absolute left-1/2 -translate-x-1/2 w-1/2 location-selector">
     <select
-        class="w-full p-3 md:p-2 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest focus:border-transparent bg-white"
+        class="w-full p-3 md:p-2 text-base border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-forest focus:border-transparent bg-white/90 backdrop-blur-sm shadow-md hover:bg-white/95 transition-colors duration-200"
         @change="$store.locations.selectLocation($event.target.value);">
         <option value="">Select a Location</option>
         {% for location in locations %}
