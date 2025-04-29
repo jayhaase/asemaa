@@ -196,7 +196,7 @@
                                  @click.stop>
                                 <div class="p-6">
                                     <div class="flex justify-between items-start mb-4">
-                                        <h3 class="text-xl font-semibold text-white" x-text="$store.locations.selectedLocation?.name"></h3>
+                                        <h3 class="text-xl font-semibold text-white [text-shadow:none]" x-text="$store.locations.selectedLocation?.name"></h3>
                                         <button @click="$store.locations.toggleDescriptionModal()" class="text-white hover:text-gray-300">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -204,7 +204,7 @@
                                         </button>
                                     </div>
                                     
-                                    <!-- YouTube Video (shown when description exists) -->
+                                    <!-- YouTube Video (shown when video exists) -->
                                     <template x-if="$store.locations.selectedLocation?.description">
                                         <div class="mb-6">
                                             <div class="relative pb-[56.25%] h-0 overflow-hidden rounded mb-4">
@@ -219,13 +219,13 @@
                                         </div>
                                     </template>
                                     
-                                    <div class="text-gray-200 [text-shadow:none]">
+                                    <div class="[text-shadow:none] text-white">
                                         <p x-text="$store.locations.selectedLocation?.description"></p>
                                         <template x-if="$store.locations.selectedLocation?.urlToAdditionalInformation">
                                             <a :href="$store.locations.selectedLocation?.urlToAdditionalInformation" 
                                                target="_blank" 
                                                class="block mt-6 text-white hover:text-gray-300 [text-shadow:none] underline flex items-center justify-center">
-                                                <span class="text-gray-200">Learn Even More</span>
+                                                <span>Learn Even More</span>
                                             </a>
                                         </template>
                                     </div>
