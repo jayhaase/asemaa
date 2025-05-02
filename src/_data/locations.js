@@ -34,7 +34,8 @@ module.exports = async function () {
             imageUrl: item.fields.image?.fields?.file?.url || null,
             markerClass: markerClasses[markerType],
             description: item.fields.description || null,
-            urlToAdditionalInformation: item.fields.urlToAdditionalInformation || null
+            urlToAdditionalInformation: item.fields.urlToAdditionalInformation || null,
+            youtubeVideoId: item.fields.youtubeVideoId || null
         };
     });
 

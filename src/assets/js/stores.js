@@ -97,13 +97,10 @@ document.addEventListener('alpine:init', () => {
             // Currently using a consistent video based on location ID
             
             if (!this.selectedLocation) return '';
-            
-            // Get a deterministic index based on the location ID
-            const idSum = this.selectedLocation.id.split('').reduce((sum, char) => sum + char.charCodeAt(0), 0);
-            const index = idSum % this.defaultYoutubeVideos.length;
+            if (!this.selectedLocation?.youtubeVideoId) return '';
             
             // Return the YouTube embed URL with the selected video ID
-            return `https://www.youtube.com/embed/${this.defaultYoutubeVideos[index]}?rel=0`;
+            return `https://www.youtube.com/embed/${this.selectedLocation?.youtubeVideoId}?rel=0`;
         },
 
         // Getters
